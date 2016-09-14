@@ -35,6 +35,8 @@ export default class CustomDatePickerAndroid extends Component {
       if (action !== DatePickerAndroid.dismissedAction) {
         const date = moment({ year, month, day }).toDate()
         this.props.onConfirm(date)
+      } else {
+        this.props.onCancel()
       }
     } catch ({ code, message }) {
       console.warn('Cannot open date picker', message)
@@ -51,6 +53,8 @@ export default class CustomDatePickerAndroid extends Component {
       if (action !== TimePickerAndroid.dismissedAction) {
         const date = moment({ hour, minute }).toDate()
         this.props.onConfirm(date)
+      } else {
+        this.props.onCancel()
       }
     } catch ({ code, message }) {
       console.warn('Cannot open time picker', message)
