@@ -10,7 +10,7 @@ export default class CustomDatePickerIOS extends Component {
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     mode: PropTypes.oneOf(['date', 'time']),
-    initialDate: PropTypes.object,
+    date: PropTypes.object,
     titleIOS: PropTypes.string,
     confirmTextIOS: PropTypes.string,
     cancelTextIOS: PropTypes.string
@@ -19,14 +19,14 @@ export default class CustomDatePickerIOS extends Component {
   static defaultProps = {
     visible: false,
     mode: 'date',
-    initialDate: new Date(),
+    date: new Date(),
     titleIOS: 'Pick a date',
     confirmTextIOS: 'Confirm',
     cancelTextIOS: 'Cancel'
   }
 
   state = {
-    date: this.props.initialDate
+    date: this.props.date
   }
 
   _handleConfirm = () => this.props.onConfirm(this.state.date)
