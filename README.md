@@ -1,9 +1,10 @@
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/logo.png" width="100" align="left">
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/logo.png" width="110" align="left">
 # react-native-modal-datetime-picker
 A react-native datetime-picker that works on both Android and iOS.
 <br/>
 <br/>
 
+## Description
 This library exposes a cross-platform interface for showing the native date and time pickers inside a modal.  
 You will have an unified user experience, you won't have to worry anymore about testing the device platform and you won't have to programmatically call the Android TimePicker/DatePicker APIs.
 <br/>
