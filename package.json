@@ -1,0 +1,36 @@
+{
+  "name": "react-native-datetime-picker",
+  "version": "1.0.0",
+  "description": "A react-native datetime-picker for Android and iOS",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "test": "npm run lint"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "native",
+    "date",
+    "time",
+    "picker",
+    "android",
+    "ios"
+  ],
+  "author": "Mazzarolo Matteo",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.15.0",
+    "react-native-animatable": "^0.6.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.5.0",
+    "eslint-config-mostaza-react": "^1.11.2",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.2.1",
+    "react": ">=15.0.0",
+    "react-native": ">=0.24.0"
+  }
+}
