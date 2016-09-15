@@ -70,5 +70,5 @@ export default class DateTimePickerTester extends Component {
 All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datepickerios.html) are also supported!  
 
 ## Notes
-Just remember to always set `visible` props to 'false' in `onConfirm` and `onCancel` (like in the example above).  
+Just remember to always set `visible` props to `false` in `onConfirm` and `onCancel` (like in the example above).  
 Pull request and suggestions are welcome!  
