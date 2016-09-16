@@ -6,23 +6,23 @@ import styles from './index.style'
 
 export default class CustomDatePickerIOS extends Component {
   static propTypes = {
-    visible: PropTypes.bool,
+    cancelTextIOS: PropTypes.string,
+    confirmTextIOS: PropTypes.string,
+    date: PropTypes.instanceOf(Date),
+    mode: PropTypes.oneOf(['date', 'time']),
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-    mode: PropTypes.oneOf(['date', 'time']),
-    date: PropTypes.object,
     titleIOS: PropTypes.string,
-    confirmTextIOS: PropTypes.string,
-    cancelTextIOS: PropTypes.string
+    visible: PropTypes.bool
   }
 
   static defaultProps = {
-    visible: false,
-    mode: 'date',
-    date: new Date(),
-    titleIOS: 'Pick a date',
+    cancelTextIOS: 'Cancel',
     confirmTextIOS: 'Confirm',
-    cancelTextIOS: 'Cancel'
+    date: new Date(),
+    mode: 'date',
+    titleIOS: 'Pick a date',
+    visible: false
   }
 
   state = {
@@ -34,7 +34,7 @@ export default class CustomDatePickerIOS extends Component {
   _handleDateChange = (date) => this.setState({ date })
 
   render () {
-    const { onCancel, visible, mode, titleIOS, confirmTextIOS, cancelTextIOS, ...otherProps } = this.props
+    const { onCancel, visible, mode, titleIOS, confirmTextIOS, cancelTextIOS, date, ...otherProps } = this.props
     return (
       <CustomModal visible={visible} contentContainerStyle={styles.contentContainer}>
         <View style={styles.datepickerContainer}>

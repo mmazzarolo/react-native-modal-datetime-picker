@@ -4,17 +4,17 @@ import moment from 'moment'
 
 export default class CustomDatePickerAndroid extends Component {
   static propTypes = {
-    visible: PropTypes.bool,
-    onConfirm: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired,
+    date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time']),
-    date: PropTypes.object
+    onCancel: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired,
+    visible: PropTypes.bool
   }
 
   static defaultProps = {
-    visible: false,
+    date: new Date(),
     mode: 'date',
-    date: new Date()
+    visible: false
   }
 
   componentDidUpdate = (prevProps) => {
