@@ -61,7 +61,7 @@ export default class DateTimePickerTester extends Component {
 | visible | bool | false | Show the datetime picker? |
 | onConfirm | func | **REQUIRED** | Funcion called on date picked. |
 | onCancel | func | **REQUIRED** |  Funcion called on dismiss. |
-| mode | string | 'date' | Datepicker? 'date' Timepicker? 'time' |
+| mode | string | 'date' | Datepicker? 'date' Timepicker? 'time' Both? 'datetime' |
 | date | obj | new Date() | Initial selected date/time |
 | titleIOS | string | 'Pick a date' | The title text on iOS |
 | confirmTextIOS | string | 'Confirm' | The text on the confirm button on iOS |

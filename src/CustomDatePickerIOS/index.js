@@ -9,7 +9,7 @@ export default class CustomDatePickerIOS extends Component {
     cancelTextIOS: PropTypes.string,
     confirmTextIOS: PropTypes.string,
     date: PropTypes.instanceOf(Date),
-    mode: PropTypes.oneOf(['date', 'time']),
+    mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     titleIOS: PropTypes.string,

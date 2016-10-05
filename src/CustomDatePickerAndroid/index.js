@@ -5,7 +5,7 @@ import moment from 'moment'
 export default class CustomDatePickerAndroid extends Component {
   static propTypes = {
     date: PropTypes.instanceOf(Date),
-    mode: PropTypes.oneOf(['date', 'time']),
+    mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     visible: PropTypes.bool
@@ -19,7 +19,7 @@ export default class CustomDatePickerAndroid extends Component {
 
   componentDidUpdate = (prevProps) => {
     if (!prevProps.visible && this.props.visible) {
-      if (this.props.mode === 'date') {
+      if (this.props.mode === 'date' || this.props.mode === 'datetime') {
         this._showDatePickerAndroid()
       } else {
         this._showTimePickerAndroid()
@@ -34,7 +34,23 @@ export default class CustomDatePickerAndroid extends Component {
       })
       if (action !== DatePickerAndroid.dismissedAction) {
         const date = moment({ year, month, day }).toDate()
-        this.props.onConfirm(date)
+
+        if (this.props.mode === 'datetime') {
+          // Prepopulate and show time picker
+          const timeOptions = !this.props.date ? {} : {
+            hour: this.props.date.getHours(),
+            minute: this.props.date.getMinutes()
+          };
+
+          TimePickerAndroid.open(timeOptions).then(({action, minute, hour}) => {
+            if (action === TimePickerAndroid.timeSetAction) {
+              let selectedDate = new Date(year, month, day, hour, minute);
+              this.props.onConfirm(selectedDate);
+            }
+          });
+        } else {
+          this.props.onConfirm(date)
+        }
       } else {
         this.props.onCancel()
       }
