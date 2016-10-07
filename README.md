@@ -18,7 +18,7 @@ This library is available on npm, install it with: `npm install --save react-nat
 
 ## Usage
 ```javascript
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
