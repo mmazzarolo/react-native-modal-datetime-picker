@@ -17,7 +17,7 @@ export default StyleSheet.create({
     },
     titleContainer: {
         borderBottomColor: BORDER_COLOR,
-        borderBottomWidth: 1,
+        borderBottomWidth: StyleSheet.hairlineWidth,
         padding: 12,
         backgroundColor: 'transparent'
     },
@@ -28,8 +28,8 @@ export default StyleSheet.create({
     },
     confirmButton: {
         borderColor: BORDER_COLOR,
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
+        borderTopWidth: StyleSheet.hairlineWidth,
+        borderBottomWidth: StyleSheet.hairlineWidth,
         padding: 10,
         backgroundColor: 'transparent'
     },
