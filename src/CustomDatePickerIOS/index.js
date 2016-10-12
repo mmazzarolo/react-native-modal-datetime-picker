@@ -48,14 +48,14 @@ export default class CustomDatePickerIOS extends Component {
       </View>
     )
     const confirmButton = (
-      <TouchableOpacity style={styles.confirmButton} onPress={this._handleConfirm}>
+      <View style={styles.confirmButton}>
         <Text style={styles.confirmText}>{confirmTextIOS}</Text>
-      </TouchableOpacity>
+      </View>
     )
     const cancelButton = (
-      <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
+      <View style={styles.cancelButton}>
         <Text style={styles.cancelText}>{cancelTextIOS}</Text>
-      </TouchableOpacity>
+      </View>
     )
     return (
       <AnimatedModal isVisible={isVisible} contentContainerStyle={styles.contentContainer}>
@@ -67,9 +67,13 @@ export default class CustomDatePickerIOS extends Component {
             onDateChange={this._handleDateChange}
             {...otherProps}
           />
-          {customConfirmButtonIOS || confirmButton}
+          <TouchableOpacity onPress={this._handleConfirm}>
+            {customConfirmButtonIOS || confirmButton}
+          </TouchableOpacity>
         </View>
-        {customCancelButtonIOS || cancelButton}
+        <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
+          {customCancelButtonIOS || cancelButton}
+        </TouchableOpacity>
       </AnimatedModal>
     )
   }
