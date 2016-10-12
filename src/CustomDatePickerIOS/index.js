@@ -1,68 +1,90 @@
-/* eslint-disable no-return-assign */
-import React, { Component, PropTypes } from 'react'
-import { Modal } from 'react-native'
-import { View } from 'react-native-animatable'
+import React, {Component, PropTypes} from "react";
+import {DatePickerIOS, Text, TouchableOpacity, View} from "react-native";
+import CustomModal from "../CustomModal";
+import styles from "./index.style";
 
-import styles from './index.style.js'
-
-export default class CustomModal extends Component {
-  static propTypes = {
-    visible: PropTypes.bool,
-    children: PropTypes.node,
-    contentContainerStyle: PropTypes.any
-  }
-
-  static defaultProps = {
-    contentContainerStyle: {},
-    visible: false
-  }
-
-  state = {
-    visible: false
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (!this.state.visible && nextProps.visible) {
-      this.setState({ visible: true })
+export default class CustomDatePickerIOS extends Component {
+    static propTypes = {
+        cancelTextIOS: PropTypes.string,
+        confirmTextIOS: PropTypes.string,
+        date: PropTypes.instanceOf(Date),
+        mode: PropTypes.oneOf(['date', 'time', 'datetime']),
+        onConfirm: PropTypes.func.isRequired,
+        onCancel: PropTypes.func.isRequired,
+        titleIOS: PropTypes.string,
+        visible: PropTypes.bool,
+        backgroundColorIOS: PropTypes.string,
+        titleContainerStyleIOS: PropTypes.number,
+        titleStyleIOS: PropTypes.number,
+        confirmButtonStyleIOS: PropTypes.number,
+        confirmButtonTextStyleIOS: PropTypes.number,
+        cancelButtonStyleIOS: PropTypes.number,
+        cancelButtonTextStyleIOS: PropTypes.number
     }
-  }
 
-  componentDidUpdate (prevProps, prevState) {
-    // On modal open request slide the view up and fade in the backdrop
-    if (this.state.visible && !prevState.visible) {
-      this._open()
-    // On modal close request slide the view down and fade out the backdrop
-    } else if (!this.props.visible && prevProps.visible) {
-      this._close()
+    static defaultProps = {
+        cancelTextIOS: 'Cancel',
+        confirmTextIOS: 'Confirm',
+        date: new Date(),
+        mode: 'date',
+        titleIOS: 'Pick a date',
+        visible: false,
+        backgroundColorIOS : '#f9f9f9',
+        titleContainerStyleIOS: styles.titleContainer,
+        titleStyleIOS: styles.title,
+        confirmButtonStyleIOS: styles.confirmButton,
+        confirmButtonTextStyleIOS: styles.confirmText,
+        cancelButtonStyleIOS: styles.cancelButton,
+        cancelButtonTextStyleIOS: styles.cancelText
     }
-  }
 
-  _open = () => {
-    this.backdropRef.transitionTo({ opacity: 0.70 })
-    this.contentRef.slideInUp(300)
-  }
+    state = {
+        date: this.props.date
+    }
 
-  _close = () => {
-    this.backdropRef.transitionTo({ opacity: 0 })
-    this.contentRef.slideOutDown(300)
-      .then(() => this.setState({ visible: false }))
-  }
+    _handleConfirm = () => this.props.onConfirm(this.state.date)
 
-  render () {
-    const { children, contentContainerStyle, ...otherProps } = this.props
-    const { visible } = this.state
-    return (
-      <Modal
-        transparent={true}
-        animationType={'none'}
-        {...otherProps}
-        visible={visible}
-      >
-        <View ref={(ref) => this.backdropRef = ref} style={styles.backdrop} />
-        <View ref={(ref) => this.contentRef = ref} style={[styles.contentContainer, contentContainerStyle]}>
-          {children}
-        </View>
-      </Modal>
-    )
-  }
+    _handleDateChange = (date) => this.setState({date})
+
+    render() {
+        const {
+            visible,
+            backgroundColorIOS,
+            titleContainerStyleIOS,
+            titleStyleIOS,
+            titleIOS,
+            date,
+            mode,
+            confirmButtonStyleIOS,
+            confirmButtonTextStyleIOS,
+            confirmTextIOS,
+            cancelButtonStyleIOS,
+            onCancel,
+            cancelButtonTextStyleIOS,
+            cancelTextIOS,
+            ...otherProps
+        } = this.props
+
+        return (
+            <CustomModal visible={visible} contentContainerStyle={styles.contentContainer}>
+                <View style={[styles.datepickerContainer, {backgroundColor: backgroundColorIOS}]}>
+                    <View style={[styles.titleContainer, titleContainerStyleIOS]}>
+                        <Text style={[styles.title, titleStyleIOS]}>{titleIOS}</Text>
+                    </View>
+                    <DatePickerIOS
+                        date={this.state.date}
+                        mode={mode}
+                        onDateChange={this._handleDateChange}
+                        {...otherProps}
+                    />
+                    <TouchableOpacity style={[styles.confirmButton, confirmButtonStyleIOS]} onPress={this._handleConfirm}>
+                        <Text style={[styles.confirmText, confirmButtonTextStyleIOS]}>{confirmTextIOS}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.cancelButton, cancelButtonStyleIOS]} onPress={onCancel}>
+                        <Text style={[styles.cancelText, cancelButtonTextStyleIOS]}>{cancelTextIOS}</Text>
+                    </TouchableOpacity>
+                </View>
+            </CustomModal>
+        )
+    }
 }
