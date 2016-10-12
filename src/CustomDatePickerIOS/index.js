@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { DatePickerIOS, Text, TouchableOpacity, View } from 'react-native'
-import CustomModal from '../CustomModal'
+import AnimatedModal from 'react-native-animated-modal'
 
 import styles from './index.style'
 
@@ -58,7 +58,7 @@ export default class CustomDatePickerIOS extends Component {
       </TouchableOpacity>
     )
     return (
-      <CustomModal visible={visible} contentContainerStyle={styles.contentContainer}>
+      <AnimatedModal visible={visible} contentContainerStyle={styles.contentContainer}>
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
           {customTitleContainerIOS || titleContainer}
           <DatePickerIOS
@@ -70,7 +70,7 @@ export default class CustomDatePickerIOS extends Component {
           {customConfirmButtonIOS || confirmButton}
         </View>
         {customCancelButtonIOS || cancelButton}
-      </CustomModal>
+      </AnimatedModal>
     )
   }
 }
