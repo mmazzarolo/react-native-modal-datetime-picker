@@ -66,6 +66,13 @@ export default class DateTimePickerTester extends Component {
 | titleIOS | string | 'Pick a date' | The title text on iOS |
 | confirmTextIOS | string | 'Confirm' | The text on the confirm button on iOS |
 | cancelTextIOS | string | 'Cancel' | The text on the cancel button on iOS |  
+| backgroundColorIOS | string | '#f9f9f9' | The background color of the datepicker on iOS |  
+| titleContainerStyleIOS | Stylesheet object |  | The style of the title container on iOS |  
+| titleStyleIOS | Stylesheet object |  | The style of the title on iOS |  
+| confirmButtonStyleIOS | Stylesheet object |  | The style of the confirm button on iOS |  
+| confirmButtonTextStyleIOS | Stylesheet object |  | The style of the confirm button text on iOS |  
+| cancelButtonStyleIOS | Stylesheet object |  | The style of the cancel button on iOS |  
+| cancelButtonTextStyleIOS | Stylesheet object |  | The style of the cancel button text on iOS |  
 
 All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datepickerios.html) are also supported!  
 

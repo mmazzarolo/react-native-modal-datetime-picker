@@ -1,60 +1,68 @@
+/* eslint-disable no-return-assign */
 import React, { Component, PropTypes } from 'react'
-import { DatePickerIOS, Text, TouchableOpacity, View } from 'react-native'
-import CustomModal from '../CustomModal'
+import { Modal } from 'react-native'
+import { View } from 'react-native-animatable'
 
-import styles from './index.style'
+import styles from './index.style.js'
 
-export default class CustomDatePickerIOS extends Component {
+export default class CustomModal extends Component {
   static propTypes = {
-    cancelTextIOS: PropTypes.string,
-    confirmTextIOS: PropTypes.string,
-    date: PropTypes.instanceOf(Date),
-    mode: PropTypes.oneOf(['date', 'time', 'datetime']),
-    onConfirm: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired,
-    titleIOS: PropTypes.string,
-    visible: PropTypes.bool
+    visible: PropTypes.bool,
+    children: PropTypes.node,
+    contentContainerStyle: PropTypes.any
   }
 
   static defaultProps = {
-    cancelTextIOS: 'Cancel',
-    confirmTextIOS: 'Confirm',
-    date: new Date(),
-    mode: 'date',
-    titleIOS: 'Pick a date',
+    contentContainerStyle: {},
     visible: false
   }
 
   state = {
-    date: this.props.date
+    visible: false
   }
 
-  _handleConfirm = () => this.props.onConfirm(this.state.date)
+  componentWillReceiveProps (nextProps) {
+    if (!this.state.visible && nextProps.visible) {
+      this.setState({ visible: true })
+    }
+  }
 
-  _handleDateChange = (date) => this.setState({ date })
+  componentDidUpdate (prevProps, prevState) {
+    // On modal open request slide the view up and fade in the backdrop
+    if (this.state.visible && !prevState.visible) {
+      this._open()
+    // On modal close request slide the view down and fade out the backdrop
+    } else if (!this.props.visible && prevProps.visible) {
+      this._close()
+    }
+  }
+
+  _open = () => {
+    this.backdropRef.transitionTo({ opacity: 0.70 })
+    this.contentRef.slideInUp(300)
+  }
+
+  _close = () => {
+    this.backdropRef.transitionTo({ opacity: 0 })
+    this.contentRef.slideOutDown(300)
+      .then(() => this.setState({ visible: false }))
+  }
 
   render () {
-    const { onCancel, visible, mode, titleIOS, confirmTextIOS, cancelTextIOS, date, ...otherProps } = this.props
+    const { children, contentContainerStyle, ...otherProps } = this.props
+    const { visible } = this.state
     return (
-      <CustomModal visible={visible} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.datepickerContainer}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>{titleIOS}</Text>
-          </View>
-          <DatePickerIOS
-            date={this.state.date}
-            mode={mode}
-            onDateChange={this._handleDateChange}
-            {...otherProps}
-          />
-          <TouchableOpacity style={styles.confirmButton} onPress={this._handleConfirm}>
-            <Text style={styles.confirmText}>{confirmTextIOS}</Text>
-          </TouchableOpacity>
+      <Modal
+        transparent={true}
+        animationType={'none'}
+        {...otherProps}
+        visible={visible}
+      >
+        <View ref={(ref) => this.backdropRef = ref} style={styles.backdrop} />
+        <View ref={(ref) => this.contentRef = ref} style={[styles.contentContainer, contentContainerStyle]}>
+          {children}
         </View>
-        <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
-          <Text style={styles.cancelText}>{cancelTextIOS}</Text>
-        </TouchableOpacity>
-      </CustomModal>
+      </Modal>
     )
   }
 }

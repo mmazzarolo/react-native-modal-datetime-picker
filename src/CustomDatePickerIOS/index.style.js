@@ -1,51 +1,23 @@
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 
-const BORDER_RADIUS = 14
-const BACKGROUND_COLOR = 'white'
+const DEVICE_WIDTH = Dimensions.get('window').width
+const DEVICE_HEIGHT = Dimensions.get('window').height
 
 export default StyleSheet.create({
+  backdrop: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: DEVICE_HEIGHT,
+    width: DEVICE_WIDTH,
+    opacity: 0,
+    backgroundColor: 'black'
+  },
   contentContainer: {
-    justifyContent: 'flex-end'
-  },
-  datepickerContainer: {
-    backgroundColor: BACKGROUND_COLOR,
-    borderRadius: BORDER_RADIUS
-  },
-  titleContainer: {
-    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
-    borderBottomWidth: 1,
-    padding: 12,
-    backgroundColor: 'transparent'
-  },
-  title: {
-    textAlign: 'center',
-    color: 'grey',
-    fontSize: 20
-  },
-  confirmButton: {
-    borderTopColor: 'rgba(0, 0, 0, 0.1)',
-    borderTopWidth: 1,
-    padding: 10,
-    backgroundColor: 'transparent'
-  },
-  confirmText: {
-    textAlign: 'center',
-    color: '#2E93FC',
-    fontSize: 24,
-    fontWeight: '500',
-    backgroundColor: 'transparent'
-  },
-  cancelButton: {
-    marginTop: 20,
-    backgroundColor: BACKGROUND_COLOR,
-    padding: 10,
-    borderRadius: BORDER_RADIUS
-  },
-  cancelText: {
-    textAlign: 'center',
-    color: '#2E93FC',
-    fontSize: 24,
-    fontWeight: '700',
-    backgroundColor: 'transparent'
+    flex: 1,
+    justifyContent: 'center',
+    margin: DEVICE_WIDTH * 0.05
   }
 })
