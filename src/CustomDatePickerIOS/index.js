@@ -8,10 +8,10 @@ export default class CustomDatePickerIOS extends Component {
   static propTypes = {
     cancelTextIOS: PropTypes.string,
     confirmTextIOS: PropTypes.string,
-    customCancelButton: PropTypes.node,
-    customConfirmButton: PropTypes.node,
-    customTitleContainer: PropTypes.node,
-    datePickerContainerStyle: View.propTypes.style,
+    customCancelButtonIOS: PropTypes.node,
+    customConfirmButtonIOS: PropTypes.node,
+    customTitleContainerIOS: PropTypes.node,
+    datePickerContainerStyleIOS: View.propTypes.style,
     date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onConfirm: PropTypes.func.isRequired,
@@ -38,8 +38,8 @@ export default class CustomDatePickerIOS extends Component {
   _handleDateChange = (date) => this.setState({ date })
 
   render () {
-    const { onCancel, visible, mode, titleIOS, confirmTextIOS, cancelTextIOS, customCancelButton,
-      customConfirmButton, customTitleContainer, datePickerContainerStyle,
+    const { onCancel, visible, mode, titleIOS, confirmTextIOS, cancelTextIOS, customCancelButtonIOS,
+      customConfirmButtonIOS, customTitleContainerIOS, datePickerContainerStyleIOS,
       date, ...otherProps } = this.props
 
     const titleContainer = (
@@ -59,17 +59,17 @@ export default class CustomDatePickerIOS extends Component {
     )
     return (
       <CustomModal visible={visible} contentContainerStyle={styles.contentContainer}>
-        <View style={[styles.datepickerContainer, datePickerContainerStyle]}>
-          {customTitleContainer || titleContainer}
+        <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
+          {customTitleContainerIOS || titleContainer}
           <DatePickerIOS
             date={this.state.date}
             mode={mode}
             onDateChange={this._handleDateChange}
             {...otherProps}
           />
-          {customConfirmButton || confirmButton}
+          {customConfirmButtonIOS || confirmButton}
         </View>
-        {customCancelButton || cancelButton}
+        {customCancelButtonIOS || cancelButton}
       </CustomModal>
     )
   }

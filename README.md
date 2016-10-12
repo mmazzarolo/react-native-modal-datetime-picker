@@ -39,7 +39,7 @@ export default class DateTimePickerTester extends Component {
   render () {
     return (
       <View style={{ flex: 1 }}>
-        <TouchableOpacity onPress={_showDateTimePicker}>
+        <TouchableOpacity onPress={this._showDateTimePicker}>
           <Text>Show TimePicker</Text>
         </TouchableOpacity>
         <DateTimePicker
@@ -58,21 +58,18 @@ export default class DateTimePickerTester extends Component {
 ## Available props
 | Name | Type| Default | Description |
 | --- | --- | --- | --- |
-| visible | bool | false | Show the datetime picker? |
-| onConfirm | func | **REQUIRED** | Funcion called on date picked. |
-| onCancel | func | **REQUIRED** |  Funcion called on dismiss. |
-| mode | string | 'date' | Datepicker? 'date' Timepicker? 'time' Both? 'datetime' |
-| date | obj | new Date() | Initial selected date/time |
-| titleIOS | string | 'Pick a date' | The title text on iOS |
-| confirmTextIOS | string | 'Confirm' | The text on the confirm button on iOS |
 | cancelTextIOS | string | 'Cancel' | The text on the cancel button on iOS |  
-| backgroundColorIOS | string | '#f9f9f9' | The background color of the datepicker on iOS |  
-| titleContainerStyleIOS | style |  | The style of the title container on iOS |  
-| titleStyleIOS | style |  | The style of the title on iOS |  
-| confirmButtonStyleIOS | style |  | The style of the confirm button on iOS |  
-| confirmButtonTextStyleIOS | style |  | The style of the confirm button text on iOS |  
-| cancelButtonStyleIOS | style |  | The style of the cancel button on iOS |  
-| cancelButtonTextStyleIOS | style |  | The style of the cancel button text on iOS |  
+| confirmTextIOS | string | 'Confirm' | The text on the confirm button on iOS |
+| customCancelButtonIOS | node |  | A custom component for the cancel button on iOS |
+| customConfirmButtonIOS | node |  | A custom component for the confirm button on iOS |
+| customTitleContainerIOS | node |  | A custom component for the title container on iOS |
+| datePickerContainerStyleIOS | style |  | The style of the container on iOS |
+| date | obj | new Date() | Initial selected date/time |
+| mode | string | 'date' | Datepicker? 'date' Timepicker? 'time' Both? 'datetime' |
+| onConfirm | func | **REQUIRED** | Function called on date picked |
+| onCancel | func | **REQUIRED** |  Function called on dismiss |
+| titleIOS | string | 'Pick a date' | The title text on iOS |
+| visible | bool | false | Show the datetime picker? |
 
 All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datepickerios.html) are also supported!  
 
