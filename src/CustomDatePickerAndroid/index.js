@@ -8,17 +8,17 @@ export default class CustomDatePickerAndroid extends Component {
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
-    visible: PropTypes.bool
+    isVisible: PropTypes.bool
   }
 
   static defaultProps = {
     date: new Date(),
     mode: 'date',
-    visible: false
+    isVisible: false
   }
 
   componentDidUpdate = (prevProps) => {
-    if (!prevProps.visible && this.props.visible) {
+    if (!prevProps.isVisible && this.props.isVisible) {
       if (this.props.mode === 'date' || this.props.mode === 'datetime') {
         this._showDatePickerAndroid()
       } else {

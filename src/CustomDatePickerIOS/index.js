@@ -17,7 +17,7 @@ export default class CustomDatePickerIOS extends Component {
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     titleIOS: PropTypes.string,
-    visible: PropTypes.bool
+    isVisible: PropTypes.bool
   }
 
   static defaultProps = {
@@ -26,7 +26,7 @@ export default class CustomDatePickerIOS extends Component {
     date: new Date(),
     mode: 'date',
     titleIOS: 'Pick a date',
-    visible: false
+    isVisible: false
   }
 
   state = {
@@ -38,7 +38,7 @@ export default class CustomDatePickerIOS extends Component {
   _handleDateChange = (date) => this.setState({ date })
 
   render () {
-    const { onCancel, visible, mode, titleIOS, confirmTextIOS, cancelTextIOS, customCancelButtonIOS,
+    const { onCancel, isVisible, mode, titleIOS, confirmTextIOS, cancelTextIOS, customCancelButtonIOS,
       customConfirmButtonIOS, customTitleContainerIOS, datePickerContainerStyleIOS,
       date, ...otherProps } = this.props
 
@@ -58,7 +58,7 @@ export default class CustomDatePickerIOS extends Component {
       </TouchableOpacity>
     )
     return (
-      <AnimatedModal visible={visible} contentContainerStyle={styles.contentContainer}>
+      <AnimatedModal isVisible={isVisible} contentContainerStyle={styles.contentContainer}>
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
           {customTitleContainerIOS || titleContainer}
           <DatePickerIOS
