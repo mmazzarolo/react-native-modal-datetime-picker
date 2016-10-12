@@ -14,12 +14,12 @@ export default class CustomDatePickerIOS extends Component {
         titleIOS: PropTypes.string,
         visible: PropTypes.bool,
         backgroundColorIOS: PropTypes.string,
-        titleContainerStyleIOS: PropTypes.style,
-        titleStyleIOS: PropTypes.style,
-        confirmButtonStyleIOS: PropTypes.style,
-        confirmButtonTextStyleIOS: PropTypes.style,
-        cancelButtonStyleIOS: PropTypes.style,
-        cancelButtonTextStyleIOS: PropTypes.style
+        titleContainerStyleIOS: View.propTypes.style,
+        titleStyleIOS: Text.propTypes.style,
+        confirmButtonStyleIOS: View.propTypes.style,
+        confirmButtonTextStyleIOS: Text.propTypes.style,
+        cancelButtonStyleIOS: View.propTypes.style,
+        cancelButtonTextStyleIOS: Text.propTypes.style
     }
 
     static defaultProps = {
