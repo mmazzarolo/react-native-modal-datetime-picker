@@ -15,13 +15,14 @@ export default StyleSheet.create({
   },
   datepickerContainer: {
     backgroundColor: BACKGROUND_COLOR,
-    borderRadius: BORDER_RADIUS
+    borderRadius: BORDER_RADIUS,
+    marginBottom: 20,
   },
   titleContainer: {
     borderBottomColor: BORDER_COLOR,
     borderBottomWidth: StyleSheet.hairlineWidth,
     padding: 12,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   title: {
     textAlign: 'center',
@@ -31,7 +32,6 @@ export default StyleSheet.create({
   confirmButton: {
     borderColor: BORDER_COLOR,
     borderTopWidth: StyleSheet.hairlineWidth,
-    padding: 10,
     backgroundColor: 'transparent'
   },
   confirmText: {
@@ -39,15 +39,15 @@ export default StyleSheet.create({
     color: BUTTON_FONT_COLOR,
     fontSize: BUTTON_FONT_SIZE,
     fontWeight: BUTTON_FONT_WEIGHT,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    padding: 10,
   },
   cancelButton: {
-    marginTop: 20,
     backgroundColor: BACKGROUND_COLOR,
-    padding: 10,
     borderRadius: BORDER_RADIUS
   },
   cancelText: {
+    padding: 10,
     textAlign: 'center',
     color: BUTTON_FONT_COLOR,
     fontSize: BUTTON_FONT_SIZE,
