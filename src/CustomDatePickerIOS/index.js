@@ -58,7 +58,7 @@ export default class CustomDatePickerIOS extends Component {
       </View>
     )
     return (
-      <AnimatedModal isVisible={isVisible} contentContainerStyle={styles.contentContainer}>
+      <AnimatedModal isVisible={isVisible} style={styles.contentContainer}>
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
           {customTitleContainerIOS || titleContainer}
           <DatePickerIOS
