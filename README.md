@@ -70,6 +70,8 @@ export default class DateTimePickerTester extends Component {
 | onConfirm | func | **REQUIRED** | Function called on date picked |
 | onCancel | func | **REQUIRED** |  Function called on dismiss |
 | titleIOS | string | 'Pick a date' | The title text on iOS |
+| minDateAndroid | Date | undefined | Min Date
+| maxDateAndroid | Date | undefined | Max Date
 
 All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datepickerios.html) are also supported!  
 
