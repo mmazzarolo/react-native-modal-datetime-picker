@@ -8,7 +8,9 @@ export default class CustomDatePickerAndroid extends Component {
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
-    isVisible: PropTypes.bool
+    isVisible: PropTypes.bool,
+    minDateAndroid: PropTypes.instanceOf(Date),
+    maxDateAndroid: PropTypes.instanceOf(Date)
   }
 
   static defaultProps = {
@@ -30,7 +32,9 @@ export default class CustomDatePickerAndroid extends Component {
   _showDatePickerAndroid = async () => {
     try {
       const { action, year, month, day } = await DatePickerAndroid.open({
-        date: this.props.date
+        date: this.props.date,
+        minDate: this.props.minDateAndroid,
+        maxDate: this.props.maxDateAndroid
       })
       if (action !== DatePickerAndroid.dismissedAction) {
         const date = moment({ year, month, day }).toDate()
