@@ -70,15 +70,14 @@ export default class DateTimePickerTester extends Component {
 | onConfirm | func | **REQUIRED** | Function called on date picked |
 | onCancel | func | **REQUIRED** |  Function called on dismiss |
 | titleIOS | string | 'Pick a date' | The title text on iOS |
-| minDateAndroid | Date | undefined | Min Date
-| maxDateAndroid | Date | undefined | Max Date
+| minimumDate | Date | undefined | Min Date
+| maximumDate | Date | undefined | Max Date
 
 All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datepickerios.html) are also supported!  
 
 ## Notes
-Just remember to always set the `isVisible` prop to `false` in both `onConfirm` and `onCancel` (like in the example above). 
+Just remember to always set the `isVisible` prop to `false` in both `onConfirm` and `onCancel` (like in the example above).
 
 Under the hood this library is using [react-native-animated-modal](https://github.com/mmazzarolo/react-native-animated-modal) for the iOS modal implementation.  
 
-Pull request and suggestions are welcome! 
-
+Pull request and suggestions are welcome!
