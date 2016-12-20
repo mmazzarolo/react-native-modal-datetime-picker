@@ -8,6 +8,7 @@ export default class CustomDatePickerAndroid extends Component {
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
+    is24Hour: PropTypes.bool,
     isVisible: PropTypes.bool,
     minimumDate: PropTypes.instanceOf(Date),
     maximumDate: PropTypes.instanceOf(Date)
@@ -16,6 +17,7 @@ export default class CustomDatePickerAndroid extends Component {
   static defaultProps = {
     date: new Date(),
     mode: 'date',
+    is24Hour: true,
     isVisible: false
   }
 
@@ -68,7 +70,7 @@ export default class CustomDatePickerAndroid extends Component {
       const { action, hour, minute } = await TimePickerAndroid.open({
         hour: moment(this.props.date).hour(),
         minute: moment(this.props.date).minute(),
-        is24Hour: true
+        is24Hour: this.props.is24Hour
       })
       if (action !== TimePickerAndroid.dismissedAction) {
         const date = moment({ hour, minute }).toDate()
