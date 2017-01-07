@@ -81,4 +81,4 @@ Just remember to always set the `isVisible` prop to `false` in both `onConfirm` 
 
 Under the hood this library is using [react-native-animated-modal](https://github.com/mmazzarolo/react-native-animated-modal) for the iOS modal implementation.  
 
-Pull request and suggestions are welcome!
+Pull requests and suggestions are welcome!
