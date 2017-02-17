@@ -32,6 +32,14 @@ export default class CustomDatePickerIOS extends Component {
   state = {
     date: this.props.date
   }
+  
+  componentWillReceiveProps(nextProps) {
+    if(this.props.date !== nextProps.date) {
+      this.setState({
+        date: nextProps.date
+      });
+    }
+  }
 
   _handleConfirm = () => this.props.onConfirm(this.state.date)
 
