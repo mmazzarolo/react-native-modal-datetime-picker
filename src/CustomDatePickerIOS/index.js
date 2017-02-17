@@ -12,6 +12,8 @@ export default class CustomDatePickerIOS extends Component {
     customConfirmButtonIOS: PropTypes.node,
     customTitleContainerIOS: PropTypes.node,
     datePickerContainerStyleIOS: View.propTypes.style,
+    customTitleTextStyle: Text.propTypes.style,
+    customBtnTextStyle: Text.propTypes.style,
     date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onConfirm: PropTypes.func.isRequired,
@@ -48,21 +50,21 @@ export default class CustomDatePickerIOS extends Component {
   render () {
     const { onCancel, isVisible, mode, titleIOS, confirmTextIOS, cancelTextIOS, customCancelButtonIOS,
       customConfirmButtonIOS, customTitleContainerIOS, datePickerContainerStyleIOS,
-      date, ...otherProps } = this.props
+      date, customBtnTextStyle, customTitleTextStyle, ...otherProps } = this.props
 
     const titleContainer = (
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>{titleIOS}</Text>
+        <Text style={[styles.title, customTitleTextStyle]}>{titleIOS}</Text>
       </View>
     )
     const confirmButton = (
       <View style={styles.confirmButton}>
-        <Text style={styles.confirmText}>{confirmTextIOS}</Text>
+        <Text style={[styles.confirmText, customBtnTextStyle]}>{confirmTextIOS}</Text>
       </View>
     )
     const cancelButton = (
       <View style={styles.cancelButton}>
-        <Text style={styles.cancelText}>{cancelTextIOS}</Text>
+        <Text style={[styles.cancelText, customBtnTextStyle]}>{cancelTextIOS}</Text>
       </View>
     )
     return (
