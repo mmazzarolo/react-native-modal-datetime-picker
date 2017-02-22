@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   button: {
     backgroundColor: 'lightblue',
@@ -13,6 +13,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.1)'
-  }
-})
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
+});
