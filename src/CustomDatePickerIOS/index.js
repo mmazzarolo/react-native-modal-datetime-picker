@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react'
-import { DatePickerIOS, Text, TouchableOpacity, View } from 'react-native'
-import AnimatedModal from 'react-native-animated-modal'
+import React, { Component, PropTypes } from 'react';
+import { DatePickerIOS, Text, TouchableOpacity, View } from 'react-native';
+import AnimatedModal from 'react-native-animated-modal';
 
-import styles from './index.style'
+import styles from './index.style';
 
 export default class CustomDatePickerIOS extends Component {
   static propTypes = {
@@ -17,8 +17,8 @@ export default class CustomDatePickerIOS extends Component {
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     titleIOS: PropTypes.string,
-    isVisible: PropTypes.bool
-  }
+    isVisible: PropTypes.bool,
+  };
 
   static defaultProps = {
     cancelTextIOS: 'Cancel',
@@ -26,45 +26,56 @@ export default class CustomDatePickerIOS extends Component {
     date: new Date(),
     mode: 'date',
     titleIOS: 'Pick a date',
-    isVisible: false
-  }
+    isVisible: false,
+  };
 
   state = {
-    date: this.props.date
-  }
-  
+    date: this.props.date,
+  };
+
   componentWillReceiveProps(nextProps) {
-    if(this.props.date !== nextProps.date) {
+    if (this.props.date !== nextProps.date) {
       this.setState({
-        date: nextProps.date
+        date: nextProps.date,
       });
     }
   }
 
-  _handleConfirm = () => this.props.onConfirm(this.state.date)
+  _handleConfirm = () => this.props.onConfirm(this.state.date);
 
-  _handleDateChange = (date) => this.setState({ date })
+  _handleDateChange = date => this.setState({ date });
 
-  render () {
-    const { onCancel, isVisible, mode, titleIOS, confirmTextIOS, cancelTextIOS, customCancelButtonIOS,
-      customConfirmButtonIOS, customTitleContainerIOS, datePickerContainerStyleIOS,
-      date, ...otherProps } = this.props
+  render() {
+    const {
+      onCancel,
+      isVisible,
+      mode,
+      titleIOS,
+      confirmTextIOS,
+      cancelTextIOS,
+      customCancelButtonIOS,
+      customConfirmButtonIOS,
+      customTitleContainerIOS,
+      datePickerContainerStyleIOS,
+      date,
+      ...otherProps
+    } = this.props;
 
     const titleContainer = (
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{titleIOS}</Text>
       </View>
-    )
+    );
     const confirmButton = (
       <View style={styles.confirmButton}>
         <Text style={styles.confirmText}>{confirmTextIOS}</Text>
       </View>
-    )
+    );
     const cancelButton = (
       <View style={styles.cancelButton}>
         <Text style={styles.cancelText}>{cancelTextIOS}</Text>
       </View>
-    )
+    );
     return (
       <AnimatedModal isVisible={isVisible} style={styles.contentContainer}>
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
@@ -83,6 +94,6 @@ export default class CustomDatePickerIOS extends Component {
           {customCancelButtonIOS || cancelButton}
         </TouchableOpacity>
       </AnimatedModal>
-    )
+    );
   }
 }
