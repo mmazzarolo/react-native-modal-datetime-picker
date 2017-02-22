@@ -40,6 +40,10 @@ buck-out/
 android/app/libs
 android/keystores/debug.keystore
 
+.jsconfig
+.vscode
+
 # Images and extras
 extras/
 example/
+README.md
