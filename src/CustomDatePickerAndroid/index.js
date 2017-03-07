@@ -52,6 +52,9 @@ export default class CustomDatePickerAndroid extends Component {
               let selectedDate = new Date(year, month, day, hour, minute);
               this.props.onConfirm(selectedDate);
             }
+            if (action === TimePickerAndroid.dismissedAction) {
+              this.props.onCancel();
+            }
           });
         } else {
           this.props.onConfirm(date);
