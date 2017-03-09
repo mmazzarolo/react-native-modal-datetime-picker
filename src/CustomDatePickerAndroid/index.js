@@ -10,7 +10,7 @@ export default class CustomDatePickerAndroid extends Component {
     onConfirm: PropTypes.func.isRequired,
     is24Hour: PropTypes.bool,
     isVisible: PropTypes.bool,
-    displayModeAndroid: PropTypes.oneof(['calendar', 'spinner', 'default']),
+    datePickerModeAndroid: PropTypes.oneOf(['calendar', 'spinner', 'default']),
     minimumDate: PropTypes.instanceOf(Date),
     maximumDate: PropTypes.instanceOf(Date),
   };
@@ -18,7 +18,7 @@ export default class CustomDatePickerAndroid extends Component {
   static defaultProps = {
     date: new Date(),
     mode: 'date',
-    displayModeAndroid: 'calendar',
+    datePickerModeAndroid: 'calendar',
     is24Hour: true,
     isVisible: false,
   };
@@ -39,7 +39,7 @@ export default class CustomDatePickerAndroid extends Component {
         date: this.props.date,
         minDate: this.props.minimumDate,
         maxDate: this.props.maximumDate,
-        mode:this.displayModeAndroid
+        mode:this.props.datePickerModeAndroid
       });
       if (action !== DatePickerAndroid.dismissedAction) {
         const date = moment({ year, month, day }).toDate();
