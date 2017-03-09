@@ -1,6 +1,7 @@
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/logo-calendar.png" width="110" align="left">
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/logo-calendar.png" width="120" align="left">
 # react-native-modal-datetime-picker
 A react-native datetime-picker that works on both Android and iOS.
+<br/>
 <br/>
 <br/>
 
