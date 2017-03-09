@@ -67,6 +67,7 @@ export default class DateTimePickerTester extends Component {
 | date | obj | new Date() | Initial selected date/time |
 | isVisible | bool | false | Show the datetime picker? |
 | mode | string | 'date' | Datepicker? 'date' Timepicker? 'time' Both? 'datetime' |
+| datePickerModeAndroid | string | 'calendar' | Display as 'spinner' or 'calendar'|
 | onConfirm | func | **REQUIRED** | Function called on date picked |
 | onCancel | func | **REQUIRED** |  Function called on dismiss |
 | titleIOS | string | 'Pick a date' | The title text on iOS |
