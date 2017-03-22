@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/logo-calendar.png" width="130" align="left">
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/logo-calendar.png" width="130" align="left" />
 # react-native-modal-datetime-picker
 A react-native datetime-picker that works on both Android and iOS.
 <br/>
@@ -14,8 +14,8 @@ You will have an unified user experience, you won't have to worry anymore about 
 This library is available on npm, install it with: `npm install --save react-native-modal-datetime-picker`.  
 
 ## GIFs!
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/datetimepicker-android.gif">
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/datetimepicker-ios.gif">
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/datetimepicker-android.gif" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/datetimepicker-ios.gif" />
 
 ## Usage
 ```javascript
