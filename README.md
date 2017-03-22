@@ -11,8 +11,10 @@ You will have an unified user experience, you won't have to worry anymore about 
 This library is available on npm, install it with: `npm install --save react-native-modal-datetime-picker`.  
 
 ## GIFs!
+<p align="center">
 <img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/datetimepicker-android.gif" />
 <img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/datetimepicker-ios.gif" />
+</p>
 
 ## Usage
 ```javascript
