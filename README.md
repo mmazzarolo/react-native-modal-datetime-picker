@@ -2,7 +2,7 @@
 
 # react-native-modal-datetime-picker
 A react-native datetime-picker that works on both Android and iOS.
-
+  
 ## Description
 This library exposes a cross-platform interface for showing the native date and time pickers inside a modal.  
 You will have an unified user experience, you won't have to worry anymore about testing the device platform and you won't have to programmatically call the Android TimePicker/DatePicker APIs.
