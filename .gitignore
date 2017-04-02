@@ -40,5 +40,5 @@ buck-out/
 android/app/libs
 android/keystores/debug.keystore
 
-.jsconfig
+.jsconfig.json
 .vscode
