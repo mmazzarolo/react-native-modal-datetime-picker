@@ -2763,15 +2763,15 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
-react-native-animatable@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-0.6.1.tgz#bd85023d42ad0ceb3cc98d7b490f7d6dd6ba11b0"
+react-native-animatable@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.1.1.tgz#00ddc72985f62f62a11a505abb1a06e77a92cd8a"
 
-react-native-animated-modal@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-animated-modal/-/react-native-animated-modal-1.0.2.tgz#116d860c59c3a18168995de151c40bb78d9cf535"
+react-native-modal@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-2.0.2.tgz#ea3e1daffd0ac1d6ac4552e4ead654d1733a2bf9"
   dependencies:
-    react-native-animatable "^0.6.1"
+    react-native-animatable "^1.1.1"
 
 react-native@>=0.24.0:
   version "0.41.2"
