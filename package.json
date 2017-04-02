@@ -1,6 +1,6 @@
 {
   "name": "react-native-modal-datetime-picker",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "A react-native datetime-picker for Android and iOS",
   "main": "src/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "moment": "^2.15.0",
-    "react-native-animated-modal": "^1.0.1"
+    "react-native-modal": "^2.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",

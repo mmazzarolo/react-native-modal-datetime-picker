@@ -80,6 +80,6 @@ All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datep
 ## Notes
 Just remember to always set the `isVisible` prop to `false` in both `onConfirm` and `onCancel` (like in the example above).
 
-Under the hood this library is using [react-native-animated-modal](https://github.com/mmazzarolo/react-native-animated-modal) for the iOS modal implementation.  
+Under the hood this library is using [react-native-modal](https://github.com/react-native-community/react-native-modal) for the iOS modal implementation.  
 
 Pull requests and suggestions are welcome!

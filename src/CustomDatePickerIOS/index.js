@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { DatePickerIOS, Text, TouchableOpacity, View } from 'react-native';
-import AnimatedModal from 'react-native-animated-modal';
+import ReactNativeModal from 'react-native-modal';
 
 import styles from './index.style';
 
@@ -77,7 +77,7 @@ export default class CustomDatePickerIOS extends Component {
       </View>
     );
     return (
-      <AnimatedModal isVisible={isVisible} style={styles.contentContainer}>
+      <ReactNativeModal isVisible={isVisible} style={styles.contentContainer}>
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
           {customTitleContainerIOS || titleContainer}
           <DatePickerIOS
@@ -93,7 +93,7 @@ export default class CustomDatePickerIOS extends Component {
         <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
           {customCancelButtonIOS || cancelButton}
         </TouchableOpacity>
-      </AnimatedModal>
+      </ReactNativeModal>
     );
   }
 }
