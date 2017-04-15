@@ -39,7 +39,7 @@ export default class CustomDatePickerAndroid extends Component {
         date: this.props.date,
         minDate: this.props.minimumDate,
         maxDate: this.props.maximumDate,
-        mode:this.props.datePickerModeAndroid
+        mode: this.props.datePickerModeAndroid,
       });
       if (action !== DatePickerAndroid.dismissedAction) {
         const date = moment({ year, month, day }).toDate();
