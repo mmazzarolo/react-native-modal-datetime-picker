@@ -66,12 +66,8 @@ export default class CustomDatePickerIOS extends Component {
         <Text style={styles.title}>{titleIOS}</Text>
       </View>
     );
-    const confirmButton = (
-      <Text style={styles.confirmText}>{confirmTextIOS}</Text>
-    );
-    const cancelButton = (
-      <Text style={styles.cancelText}>{cancelTextIOS}</Text>
-    );
+    const confirmButton = <Text style={styles.confirmText}>{confirmTextIOS}</Text>;
+    const cancelButton = <Text style={styles.cancelText}>{cancelTextIOS}</Text>;
     return (
       <ReactNativeModal isVisible={isVisible} style={styles.contentContainer}>
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>

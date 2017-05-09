@@ -203,17 +203,7 @@ babel-core@^6.21.0, babel-core@^6.23.0, babel-core@^6.7.2:
     slash "^1.0.0"
     source-map "^0.5.0"
 
-babel-eslint@^7.1.1:
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-7.1.1.tgz#8a6a884f085aa7060af69cfc77341c2f99370fb2"
-  dependencies:
-    babel-code-frame "^6.16.0"
-    babel-traverse "^6.15.0"
-    babel-types "^6.15.0"
-    babylon "^6.13.0"
-    lodash.pickby "^4.6.0"
-
-babel-eslint@^7.2.2:
+babel-eslint@^7.1.1, babel-eslint@^7.2.2:
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-7.2.2.tgz#0da2cbe6554fd0fb069f19674f2db2f9c59270ff"
   dependencies:
@@ -720,7 +710,7 @@ babel-template@^6.22.0, babel-template@^6.23.0:
     babylon "^6.11.0"
     lodash "^4.2.0"
 
-babel-traverse@^6.15.0, babel-traverse@^6.21.0, babel-traverse@^6.22.0, babel-traverse@^6.23.0, babel-traverse@^6.23.1:
+babel-traverse@^6.21.0, babel-traverse@^6.22.0, babel-traverse@^6.23.0, babel-traverse@^6.23.1:
   version "6.23.1"
   resolved "https://registry.yarnpkg.com/babel-traverse/-/babel-traverse-6.23.1.tgz#d3cb59010ecd06a97d81310065f966b699e14f48"
   dependencies:
@@ -734,7 +724,7 @@ babel-traverse@^6.15.0, babel-traverse@^6.21.0, babel-traverse@^6.22.0, babel-tr
     invariant "^2.2.0"
     lodash "^4.2.0"
 
-babel-types@^6.15.0, babel-types@^6.19.0, babel-types@^6.21.0, babel-types@^6.22.0, babel-types@^6.23.0:
+babel-types@^6.19.0, babel-types@^6.21.0, babel-types@^6.22.0, babel-types@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-types/-/babel-types-6.23.0.tgz#bb17179d7538bad38cd0c9e115d340f77e7e9acf"
   dependencies:
@@ -747,11 +737,7 @@ babylon@7.0.0-beta.8:
   version "7.0.0-beta.8"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.8.tgz#2bdc5ae366041442c27e068cce6f0d7c06ea9949"
 
-babylon@^6.11.0, babylon@^6.13.0, babylon@^6.14.1, babylon@^6.15.0:
-  version "6.15.0"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.15.0.tgz#ba65cfa1a80e1759b0e89fb562e27dccae70348e"
-
-babylon@^6.16.1:
+babylon@^6.11.0, babylon@^6.14.1, babylon@^6.15.0, babylon@^6.16.1:
   version "6.16.1"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.16.1.tgz#30c5a22f481978a9e7f8cdfdf496b11d94b404d3"
 
@@ -2301,10 +2287,6 @@ lodash.padstart@^4.1.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.padstart/-/lodash.padstart-4.6.1.tgz#d2e3eebff0d9d39ad50f5cbd1b52a7bce6bb611b"
 
-lodash.pickby@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.pickby/-/lodash.pickby-4.6.0.tgz#7dea21d8c18d7703a27c704c15d3b84a67e33aff"
-
 lodash.restparam@^3.0.0:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
@@ -2432,11 +2414,7 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-moment@2.x.x:
-  version "2.17.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
-
-moment@^2.18.1:
+moment@2.x.x, moment@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
