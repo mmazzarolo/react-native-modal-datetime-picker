@@ -3,6 +3,7 @@
   "version": "4.4.0",
   "description": "A react-native datetime-picker for Android and iOS",
   "main": "src/index.js",
+  "typings": "src/index.d.ts",
   "scripts": {
     "lint": "eslint src",
     "test": "npm run lint",
