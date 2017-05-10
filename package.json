@@ -21,6 +21,11 @@
   ],
   "author": "Mazzarolo Matteo",
   "license": "ISC",
+  "homepage": "https://github.com/mmazzarolo/react-native-modal-datetime-picker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mmazzarolo/react-native-modal-datetime-picker"
+  },
   "dependencies": {
     "moment": "^2.18.1",
     "react-native-modal": "^2.2.0"
