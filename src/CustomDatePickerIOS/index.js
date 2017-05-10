@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { DatePickerIOS, Text, TouchableOpacity, View } from 'react-native';
+import { DatePickerIOS, Text, TouchableOpacity, View, ViewPropTypes } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 
 import styles from './index.style';
@@ -11,7 +11,7 @@ export default class CustomDatePickerIOS extends Component {
     customCancelButtonIOS: PropTypes.node,
     customConfirmButtonIOS: PropTypes.node,
     customTitleContainerIOS: PropTypes.node,
-    datePickerContainerStyleIOS: View.propTypes.style,
+    datePickerContainerStyleIOS: ViewPropTypes.style,
     date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onConfirm: PropTypes.func.isRequired,
