@@ -10,6 +10,7 @@ export default class CustomDatePickerIOS extends Component {
     confirmTextIOS: PropTypes.string,
     customCancelButtonIOS: PropTypes.node,
     customConfirmButtonIOS: PropTypes.node,
+    customConfirmButtonWhileInteractingIOS: PropTypes.node,
     customTitleContainerIOS: PropTypes.node,
     datePickerContainerStyleIOS: View.propTypes.style,
     date: PropTypes.instanceOf(Date),
@@ -31,6 +32,7 @@ export default class CustomDatePickerIOS extends Component {
 
   state = {
     date: this.props.date,
+    userIsInteractingWithPicker: false,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +45,19 @@ export default class CustomDatePickerIOS extends Component {
 
   _handleConfirm = () => this.props.onConfirm(this.state.date);
 
-  _handleDateChange = date => this.setState({ date });
+  _handleDateChange = date => {
+   this.setState({
+     date,
+     userIsInteractingWithPicker: false,
+    });
+  };
+
+  _handleUserTouchInit = () => {
+    this.setState({
+      userIsInteractingWithPicker: true,
+    });
+    return false;
+  }
 
   render() {
     const {
@@ -55,6 +69,7 @@ export default class CustomDatePickerIOS extends Component {
       cancelTextIOS,
       customCancelButtonIOS,
       customConfirmButtonIOS,
+      customConfirmButtonWhileInteractingIOS,
       customTitleContainerIOS,
       datePickerContainerStyleIOS,
       date,
@@ -66,21 +81,39 @@ export default class CustomDatePickerIOS extends Component {
         <Text style={styles.title}>{titleIOS}</Text>
       </View>
     );
-    const confirmButton = <Text style={styles.confirmText}>{confirmTextIOS}</Text>;
+    let confirmButton;
+    
+    if (customConfirmButtonIOS) { // if we have a custom confirm btn
+      if (customConfirmButtonWhileInteractingIOS // if we have a custom confirm btn while we're interacting
+        && this.state.userIsInteractingWithPicker) { // and if we're currently interacting
+        confirmButton = customConfirmButtonWhileInteractingIOS;
+      } else {                                      // otherwise if we're not interacting etc
+        confirmButton = customConfirmButtonIOS;     // just set our confirm button as the custom confirmation button
+      }
+    } else { // else if we don't even have a custom confirmation button just create a component now
+      confirmButton = <Text style={styles.confirmText}>{confirmTextIOS}</Text>
+    }
     const cancelButton = <Text style={styles.cancelText}>{cancelTextIOS}</Text>;
     return (
       <ReactNativeModal isVisible={isVisible} style={styles.contentContainer}>
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
           {customTitleContainerIOS || titleContainer}
-          <DatePickerIOS
-            date={this.state.date}
-            mode={mode}
-            onDateChange={this._handleDateChange}
-            {...otherProps}
-          />
+          <View
+            onStartShouldSetResponderCapture={this._handleUserTouchInit}
+          >
+            <DatePickerIOS
+              date={this.state.date}
+              mode={mode}
+              onDateChange={this._handleDateChange}
+              {...otherProps}
+            />
+          </View>
           <View style={styles.confirmButton}>
-            <TouchableOpacity onPress={this._handleConfirm}>
-              {customConfirmButtonIOS || confirmButton}
+            <TouchableOpacity
+              onPress={this._handleConfirm}
+              disabled={this.state.userIsInteractingWithPicker}
+            >
+              {confirmButton}
             </TouchableOpacity>
           </View>
         </View>
