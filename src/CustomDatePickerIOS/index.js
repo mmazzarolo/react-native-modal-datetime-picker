@@ -84,20 +84,21 @@ export default class CustomDatePickerIOS extends Component {
     );
     let confirmButton;
 
+    // Interested PR: https://github.com/mmazzarolo/react-native-modal-datetime-picker/pull/40
+    // Issue on React-Native: https://github.com/facebook/react-native/issues/8169
+    // Up until now when the user interacted with the picker, if he tapped on the confirm button,
+    // the state was not yet changed and thus the picked value would be old and miss-leading.
+    // DatePickerIOS does not update on the fly, and before it even manages to dispatch an update,
+    // our component is unmounted and thus the state is lost.
+    // We no longer allow our user to tap the confirm button unless the picker is still.
+    // They can always tap the cancel button anyway.
     if (customConfirmButtonIOS) {
-      // if we have a custom confirm btn
-      if (
-        customConfirmButtonWhileInteractingIOS && // if we have a custom confirm btn while we're interacting
-        this.state.userIsInteractingWithPicker
-      ) {
-        // and if we're currently interacting
+      if (customConfirmButtonWhileInteractingIOS && this.state.userIsInteractingWithPicker) {
         confirmButton = customConfirmButtonWhileInteractingIOS;
       } else {
-        // otherwise if we're not interacting etc
-        confirmButton = customConfirmButtonIOS; // just set our confirm button as the custom confirmation button
+        confirmButton = customConfirmButtonIOS;
       }
     } else {
-      // else if we don't even have a custom confirmation button just create a component now
       confirmButton = <Text style={styles.confirmText}>{confirmTextIOS}</Text>;
     }
     const cancelButton = <Text style={styles.cancelText}>{cancelTextIOS}</Text>;
