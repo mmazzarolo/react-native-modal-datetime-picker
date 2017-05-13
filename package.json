@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "moment": "^2.18.1",
+    "prop-types": "15.5.10",
     "react-native-modal": "^2.4.0"
   },
   "devDependencies": {
