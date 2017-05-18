@@ -18,6 +18,7 @@ export default class CustomDatePickerIOS extends Component {
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
+    onModalHide: PropTypes.func,
     titleIOS: PropTypes.string,
     isVisible: PropTypes.bool,
   };
@@ -29,6 +30,7 @@ export default class CustomDatePickerIOS extends Component {
     mode: 'date',
     titleIOS: 'Pick a date',
     isVisible: false,
+    onModalHide: () => {},
   };
 
   state = {
@@ -63,6 +65,7 @@ export default class CustomDatePickerIOS extends Component {
   render() {
     const {
       onCancel,
+      onModalHide,
       isVisible,
       mode,
       titleIOS,
@@ -103,7 +106,10 @@ export default class CustomDatePickerIOS extends Component {
     }
     const cancelButton = <Text style={styles.cancelText}>{cancelTextIOS}</Text>;
     return (
-      <ReactNativeModal isVisible={isVisible} style={styles.contentContainer}>
+      <ReactNativeModal
+        isVisible={isVisible}
+        style={styles.contentContainer}
+        onModalHide={onModalHide}>
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
           {customTitleContainerIOS || titleContainer}
           <View onStartShouldSetResponderCapture={this._handleUserTouchInit}>

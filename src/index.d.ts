@@ -136,6 +136,12 @@ interface DateTimePickerProps {
      * Passes the current selected date
      */
     onCancel(date: Date): void
+
+
+    /**
+     * Called when the underlying modal finishes its' closing animation.
+     */
+    onModalHide(): void
 }
 
 export default class DateTimePicker extends React.Component<DateTimePickerProps, any> { }
