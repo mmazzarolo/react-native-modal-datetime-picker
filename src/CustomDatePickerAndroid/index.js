@@ -8,8 +8,8 @@ export default class CustomDatePickerAndroid extends Component {
     date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onCancel: PropTypes.func.isRequired,
-    onHideAfterConfirm: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,
+    onHideAfterConfirm: PropTypes.func,
     is24Hour: PropTypes.bool,
     isVisible: PropTypes.bool,
     datePickerModeAndroid: PropTypes.oneOf(['calendar', 'spinner', 'default']),
@@ -57,12 +57,14 @@ export default class CustomDatePickerAndroid extends Component {
             if (timeAction !== TimePickerAndroid.dismissedAction) {
               const selectedDate = new Date(year, month, day, hour, minute);
               this.props.onConfirm(selectedDate);
+              this.props.onHideAfterConfirm(selectedDate);
             } else {
               this.props.onCancel();
             }
           });
         } else {
           this.props.onConfirm(date);
+          this.props.onHideAfterConfirm(date);
         }
       } else {
         this.props.onCancel();
@@ -82,6 +84,7 @@ export default class CustomDatePickerAndroid extends Component {
       if (action !== TimePickerAndroid.dismissedAction) {
         const date = moment({ hour, minute }).toDate();
         this.props.onConfirm(date);
+        this.props.onHideAfterConfirm(date);
       } else {
         this.props.onCancel();
       }
