@@ -17,8 +17,8 @@ export default class CustomDatePickerIOS extends Component {
     date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onConfirm: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired,
     onHideAfterConfirm: PropTypes.func,
+    onCancel: PropTypes.func.isRequired,
     titleIOS: PropTypes.string,
     isVisible: PropTypes.bool,
   };
