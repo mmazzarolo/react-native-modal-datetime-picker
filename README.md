@@ -76,7 +76,7 @@ export default class DateTimePickerTester extends Component {
 | mode | string | 'date' | Datepicker? 'date' Timepicker? 'time' Both? 'datetime' |
 | datePickerModeAndroid | string | 'calendar' | Display as 'spinner' or 'calendar'|
 | onConfirm | func | **REQUIRED** | Function called on date picked |
-| onHideAfterConfirm | func | () => {} | Function called after the hiding animation after date picked |
+| onHideAfterConfirm | func | () => {} | Called after the hiding animation if a date was picked |
 | onCancel | func | **REQUIRED** |  Function called on dismiss |
 | titleIOS | string | 'Pick a date' | The title text on iOS |
 | minimumDate | Date | undefined | Min Date
