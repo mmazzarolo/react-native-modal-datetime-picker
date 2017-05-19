@@ -18,7 +18,7 @@ export default class CustomDatePickerIOS extends Component {
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-    onConfirmAfterAnimation: PropTypes.func,
+    onHideAfterConfirm: PropTypes.func,
     titleIOS: PropTypes.string,
     isVisible: PropTypes.bool,
   };
@@ -30,7 +30,7 @@ export default class CustomDatePickerIOS extends Component {
     mode: 'date',
     titleIOS: 'Pick a date',
     isVisible: false,
-    onConfirmAfterAnimation: () => {},
+    onHideAfterConfirm: () => {},
   };
 
   state = {
@@ -49,7 +49,7 @@ export default class CustomDatePickerIOS extends Component {
   _handleConfirm = () => this.props.onConfirm(this.state.date);
 
   _handleOnModalHide = () => {
-    this.props.onConfirmAfterAnimation(this.state.date);
+    this.props.onHideAfterConfirm(this.state.date);
   }
 
   _handleDateChange = date => {
@@ -69,7 +69,6 @@ export default class CustomDatePickerIOS extends Component {
   render() {
     const {
       onCancel,
-      onConfirmAfterAnimation,
       isVisible,
       mode,
       titleIOS,

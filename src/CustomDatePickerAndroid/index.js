@@ -8,7 +8,7 @@ export default class CustomDatePickerAndroid extends Component {
     date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onCancel: PropTypes.func.isRequired,
-    onConfirmAfterAnimation: PropTypes.func,
+    onHideAfterConfirm: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,
     is24Hour: PropTypes.bool,
     isVisible: PropTypes.bool,
@@ -23,7 +23,7 @@ export default class CustomDatePickerAndroid extends Component {
     datePickerModeAndroid: 'calendar',
     is24Hour: true,
     isVisible: false,
-    onConfirmAfterAnimation: () => {},    
+    onHideAfterConfirm: () => {},    
   };
 
   componentDidUpdate = prevProps => {
