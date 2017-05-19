@@ -8,7 +8,7 @@ export default class CustomDatePickerAndroid extends Component {
     date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onCancel: PropTypes.func.isRequired,
-    onModalHide: PropTypes.func,
+    onConfirmAfterAnimation: PropTypes.func,
     onConfirm: PropTypes.func.isRequired,
     is24Hour: PropTypes.bool,
     isVisible: PropTypes.bool,
@@ -23,7 +23,7 @@ export default class CustomDatePickerAndroid extends Component {
     datePickerModeAndroid: 'calendar',
     is24Hour: true,
     isVisible: false,
-    onModalHide: () => {},    
+    onConfirmAfterAnimation: () => {},    
   };
 
   componentDidUpdate = prevProps => {
@@ -59,7 +59,6 @@ export default class CustomDatePickerAndroid extends Component {
               this.props.onConfirm(selectedDate);
             } else {
               this.props.onCancel();
-              this.props.onModalHide();
             }
           });
         } else {
@@ -67,7 +66,6 @@ export default class CustomDatePickerAndroid extends Component {
         }
       } else {
         this.props.onCancel();
-        this.props.onModalHide();
       }
     } catch ({ code, message }) {
       console.warn('Cannot open date picker', message);
@@ -86,7 +84,6 @@ export default class CustomDatePickerAndroid extends Component {
         this.props.onConfirm(date);
       } else {
         this.props.onCancel();
-        this.props.onModalHide();
       }
     } catch ({ code, message }) {
       console.warn('Cannot open time picker', message);

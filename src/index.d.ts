@@ -139,9 +139,10 @@ interface DateTimePickerProps {
 
 
     /**
-     * Called when the underlying modal finishes its' closing animation.
+     * Called when the underlying modal finishes its' closing animation
+     * after Confirm was pressed.
      */
-    onModalHide(): void
+    onConfirmAfterAnimation(date: Date): void
 }
 
 export default class DateTimePicker extends React.Component<DateTimePickerProps, any> { }
