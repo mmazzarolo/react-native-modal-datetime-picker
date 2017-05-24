@@ -50,7 +50,7 @@ export default class CustomDatePickerIOS extends Component {
 
   _handleOnModalHide = () => {
     this.props.onHideAfterConfirm(this.state.date);
-  }
+  };
 
   _handleDateChange = date => {
     this.setState({
@@ -112,7 +112,8 @@ export default class CustomDatePickerIOS extends Component {
       <ReactNativeModal
         isVisible={isVisible}
         style={styles.contentContainer}
-        onModalHide={this._handleOnModalHide}>
+        onModalHide={this._handleOnModalHide}
+      >
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
           {customTitleContainerIOS || titleContainer}
           <View onStartShouldSetResponderCapture={this._handleUserTouchInit}>
