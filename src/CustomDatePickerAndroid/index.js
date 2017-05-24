@@ -23,7 +23,7 @@ export default class CustomDatePickerAndroid extends Component {
     datePickerModeAndroid: 'calendar',
     is24Hour: true,
     isVisible: false,
-    onHideAfterConfirm: () => {},    
+    onHideAfterConfirm: () => {},
   };
 
   componentDidUpdate = prevProps => {
@@ -49,19 +49,17 @@ export default class CustomDatePickerAndroid extends Component {
 
         if (this.props.mode === 'datetime') {
           // Prepopulate and show time picker
-          const timeOptions = !this.props.date
-            ? {}
-            : { hour: this.props.date.getHours(), minute: this.props.date.getMinutes() };
-
-          TimePickerAndroid.open(timeOptions).then(({ timeAction, minute, hour }) => {
-            if (timeAction !== TimePickerAndroid.dismissedAction) {
-              const selectedDate = new Date(year, month, day, hour, minute);
-              this.props.onConfirm(selectedDate);
-              this.props.onHideAfterConfirm(selectedDate);
-            } else {
-              this.props.onCancel();
-            }
-          });
+          const timeOptions = this.props.date
+            ? { hour: this.props.date.getHours(), minute: this.props.date.getMinutes() }
+            : {};
+          const { action: timeAction, hour, minute } = await TimePickerAndroid.open(timeOptions);
+          if (timeAction !== TimePickerAndroid.dismissedAction) {
+            const selectedDate = new Date(year, month, day, hour, minute);
+            this.props.onConfirm(selectedDate);
+            this.props.onHideAfterConfirm(selectedDate);
+          } else {
+            this.props.onCancel();
+          }
         } else {
           this.props.onConfirm(date);
           this.props.onHideAfterConfirm(date);
