@@ -13,6 +13,7 @@ export default class CustomDatePickerIOS extends Component {
     customConfirmButtonIOS: PropTypes.node,
     customConfirmButtonWhileInteractingIOS: PropTypes.node,
     customTitleContainerIOS: PropTypes.node,
+    contentContainerStyleIOS: PropTypes.any,
     datePickerContainerStyleIOS: PropTypes.any,
     date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
@@ -77,6 +78,7 @@ export default class CustomDatePickerIOS extends Component {
       customCancelButtonIOS,
       customConfirmButtonIOS,
       customConfirmButtonWhileInteractingIOS,
+      contentContainerStyleIOS,
       customTitleContainerIOS,
       datePickerContainerStyleIOS,
       date,
@@ -111,7 +113,7 @@ export default class CustomDatePickerIOS extends Component {
     return (
       <ReactNativeModal
         isVisible={isVisible}
-        style={styles.contentContainer}
+        style={[styles.contentContainer, contentContainerStyleIOS]}>
         onModalHide={this._handleOnModalHide}
       >
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
