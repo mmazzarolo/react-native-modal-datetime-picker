@@ -113,7 +113,7 @@ export default class CustomDatePickerIOS extends Component {
     return (
       <ReactNativeModal
         isVisible={isVisible}
-        style={[styles.contentContainer, contentContainerStyleIOS]}>
+        style={[styles.contentContainer, contentContainerStyleIOS]}
         onModalHide={this._handleOnModalHide}
       >
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
