@@ -47,10 +47,20 @@ export default class CustomDatePickerIOS extends Component {
     }
   }
 
-  _handleConfirm = () => this.props.onConfirm(this.state.date);
+  _handleCancel = () => {
+    this.confirmed = false;
+    this.props.onCancel();
+  };
+
+  _handleConfirm = () => {
+    this.confirmed = true;
+    this.props.onConfirm(this.state.date);
+  }
 
   _handleOnModalHide = () => {
-    this.props.onHideAfterConfirm(this.state.date);
+    if (this.confirmed) {
+      this.props.onHideAfterConfirm(this.state.date);
+    }
   };
 
   _handleDateChange = date => {
@@ -69,7 +79,6 @@ export default class CustomDatePickerIOS extends Component {
 
   render() {
     const {
-      onCancel,
       isVisible,
       mode,
       titleIOS,
@@ -137,7 +146,7 @@ export default class CustomDatePickerIOS extends Component {
         </View>
 
         <View style={styles.cancelButton}>
-          <TouchableOpacity onPress={onCancel}>
+          <TouchableOpacity onPress={this._handleCancel}>
             {customCancelButtonIOS || cancelButton}
           </TouchableOpacity>
         </View>
