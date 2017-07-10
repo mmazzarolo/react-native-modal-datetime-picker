@@ -79,8 +79,8 @@ export default class DateTimePickerTester extends Component {
 | onHideAfterConfirm | func | () => {} | Called after the hiding animation if a date was picked |
 | onCancel | func | **REQUIRED** |  Function called on dismiss |
 | titleIOS | string | 'Pick a date' | The title text on iOS |
-| minimumDate | Date | undefined | Min Date
-| maximumDate | Date | undefined | Max Date
+| minimumDate | Date | undefined | Min Date. Does not work with 'time' picker on Android. |
+| maximumDate | Date | undefined | Max Date. Does not work with 'time' picker on Android. |
 | is24Hour | bool | true | If false, the picker shows an AM/PM chooser on Android |
 
 All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datepickerios.html) are also supported!  
