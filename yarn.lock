@@ -2930,7 +2930,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.5.10:
+prop-types@15.5.10, prop-types@^15.5.10:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -2981,16 +2981,18 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
-react-native-animatable@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.2.0.tgz#fd279c6ee4b49161c6cc3b951ed7765b35a73467"
+react-native-animatable@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.2.3.tgz#d0f0bd694833b934f3aaa1275739228b786ecb4b"
+  dependencies:
+    prop-types "^15.5.10"
 
-react-native-modal@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-2.4.0.tgz#ea9794f5ba9fa21476d337da291ec26930904995"
+react-native-modal@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-2.5.0.tgz#a24018ac028e84e6eb8294278fa02720d9f7f320"
   dependencies:
     prop-types "15.5.10"
-    react-native-animatable "^1.2.0"
+    react-native-animatable "^1.2.3"
 
 react-native@>=0.24.0:
   version "0.41.2"
