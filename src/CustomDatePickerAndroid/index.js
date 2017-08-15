@@ -51,7 +51,7 @@ export default class CustomDatePickerAndroid extends Component {
           // Prepopulate and show time picker
           const timeOptions = {is24Hour: this.props.is24Hour};
           if (this.props.date) {
-            timeOptions.hours = this.props.date.getHours();
+            timeOptions.hour = this.props.date.getHours();
             timeOptions.minute = this.props.date.getMinutes();
           }
           const { action: timeAction, hour, minute } = await TimePickerAndroid.open(timeOptions);
