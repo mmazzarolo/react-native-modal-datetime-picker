@@ -3,7 +3,7 @@
 // Definitions by: Kyle Roach <https://github.com/iRoachie>
 // TypeScript Version: 2.3.2
 
-import React from 'react'
+import * as React from 'react'
 import { ViewStyle } from 'react-native'
 
 interface DateTimePickerProps {
