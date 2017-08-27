@@ -45,7 +45,14 @@ export default class CustomDatePickerAndroid extends Component {
         mode: this.props.datePickerModeAndroid,
       });
       if (action !== DatePickerAndroid.dismissedAction) {
-        const date = moment({ year, month, day }).toDate();
+        let date;
+        if (this.props.date) {
+          let hour = moment(this.props.date).hour();
+          let minute = moment(this.props.date).minute();
+          date = moment({ year, month, day, hour, minute }).toDate();
+        } else {
+          date = moment({ year, month, day }).toDate();
+        }
 
         if (this.props.mode === 'datetime') {
           // Prepopulate and show time picker
@@ -82,7 +89,17 @@ export default class CustomDatePickerAndroid extends Component {
         is24Hour: this.props.is24Hour,
       });
       if (action !== TimePickerAndroid.dismissedAction) {
-        const date = moment({ hour, minute }).toDate();
+        let date;
+        if (this.props.date) {
+          // this prevents losing the Date elements
+          // not sure if this check if necessary; based on date picker above
+          year = moment(this.props.date).year();
+          month = moment(this.props.date).month();
+          day = moment(this.props.date).date();
+          date = moment({year, month, day, hour, minute}).toDate();
+        } else {
+          date = moment({hour, minute}).toDate();
+        }
         this.props.onConfirm(date);
         this.props.onHideAfterConfirm(date);
       } else {
