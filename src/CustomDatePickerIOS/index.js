@@ -22,6 +22,7 @@ export default class CustomDatePickerIOS extends Component {
     onCancel: PropTypes.func.isRequired,
     titleIOS: PropTypes.string,
     isVisible: PropTypes.bool,
+    reactNativeModalPropsIOS: PropTypes.any,
   };
 
   static defaultProps = {
@@ -32,6 +33,7 @@ export default class CustomDatePickerIOS extends Component {
     titleIOS: 'Pick a date',
     isVisible: false,
     onHideAfterConfirm: () => {},
+    reactNativeModalPropsIOS: {},
   };
 
   state = {
@@ -55,7 +57,7 @@ export default class CustomDatePickerIOS extends Component {
   _handleConfirm = () => {
     this.confirmed = true;
     this.props.onConfirm(this.state.date);
-  }
+  };
 
   _handleOnModalHide = () => {
     if (this.confirmed) {
@@ -90,6 +92,7 @@ export default class CustomDatePickerIOS extends Component {
       contentContainerStyleIOS,
       customTitleContainerIOS,
       datePickerContainerStyleIOS,
+      reactNativeModalPropsIOS,
       date,
       ...otherProps
     } = this.props;
@@ -124,6 +127,7 @@ export default class CustomDatePickerIOS extends Component {
         isVisible={isVisible}
         style={[styles.contentContainer, contentContainerStyleIOS]}
         onModalHide={this._handleOnModalHide}
+        {...reactNativeModalPropsIOS}
       >
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
           {customTitleContainerIOS || titleContainer}

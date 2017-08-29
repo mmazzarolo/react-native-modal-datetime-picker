@@ -71,6 +71,7 @@ export default class DateTimePickerTester extends Component {
 | customConfirmButtonIOS | node |  | A custom component for the confirm button on iOS |
 | customTitleContainerIOS | node |  | A custom component for the title container on iOS |
 | datePickerContainerStyleIOS | style |  | The style of the container on iOS |
+| reactNativeModalPropsIOS | object |  | Additional props for [react-native-modal](https://github.com/react-native-community/react-native-modal) on iOS |
 | date | obj | new Date() | Initial selected date/time |
 | isVisible | bool | false | Show the datetime picker? |
 | mode | string | 'date' | Datepicker? 'date' Timepicker? 'time' Both? 'datetime' |
