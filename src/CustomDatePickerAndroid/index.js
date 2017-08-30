@@ -91,14 +91,13 @@ export default class CustomDatePickerAndroid extends Component {
       if (action !== TimePickerAndroid.dismissedAction) {
         let date;
         if (this.props.date) {
-          // this prevents losing the Date elements
-          // not sure if this check if necessary; based on date picker above
-          year = moment(this.props.date).year();
-          month = moment(this.props.date).month();
-          day = moment(this.props.date).date();
-          date = moment({year, month, day, hour, minute}).toDate();
+          // This prevents losing the Date elements, see issue #71
+          const year = moment(this.props.date).year();
+          const month = moment(this.props.date).month();
+          const day = moment(this.props.date).date();
+          date = moment({ year, month, day, hour, minute }).toDate();
         } else {
-          date = moment({hour, minute}).toDate();
+          date = moment({ hour, minute }).toDate();
         }
         this.props.onConfirm(date);
         this.props.onHideAfterConfirm(date);
