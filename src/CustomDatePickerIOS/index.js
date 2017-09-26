@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { DatePickerIOS, Text, TouchableOpacity, View } from 'react-native';
+import { DatePickerIOS, Text, TouchableHighlight, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 
 import styles from './index.style';
@@ -127,6 +127,7 @@ export default class CustomDatePickerIOS extends Component {
         isVisible={isVisible}
         style={[styles.contentContainer, contentContainerStyleIOS]}
         onModalHide={this._handleOnModalHide}
+        backdropOpacity={0.4}
         {...reactNativeModalPropsIOS}
       >
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
@@ -139,21 +140,23 @@ export default class CustomDatePickerIOS extends Component {
               {...otherProps}
             />
           </View>
-          <View style={styles.confirmButton}>
-            <TouchableOpacity
-              onPress={this._handleConfirm}
-              disabled={this.state.userIsInteractingWithPicker}
-            >
-              {confirmButton}
-            </TouchableOpacity>
-          </View>
+          <TouchableHighlight
+            style={styles.confirmButton}
+            underlayColor='#ebebeb'
+            onPress={this._handleConfirm}
+            disabled={this.state.userIsInteractingWithPicker}
+          >
+            {confirmButton}
+          </TouchableHighlight>
         </View>
 
-        <View style={styles.cancelButton}>
-          <TouchableOpacity onPress={this._handleCancel}>
-            {customCancelButtonIOS || cancelButton}
-          </TouchableOpacity>
-        </View>
+        <TouchableHighlight
+          style={styles.cancelButton}
+          underlayColor='#ebebeb'
+          onPress={this._handleCancel}
+        >
+          {customCancelButtonIOS || cancelButton}
+        </TouchableHighlight>
       </ReactNativeModal>
     );
   }
