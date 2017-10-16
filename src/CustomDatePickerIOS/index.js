@@ -23,6 +23,9 @@ export default class CustomDatePickerIOS extends Component {
     titleIOS: PropTypes.string,
     isVisible: PropTypes.bool,
     reactNativeModalPropsIOS: PropTypes.any,
+    titleStyle: PropTypes.any,
+    confirmTextStyle: PropTypes.any,
+    cancelTextStyle: PropTypes.any,
   };
 
   static defaultProps = {
@@ -94,12 +97,15 @@ export default class CustomDatePickerIOS extends Component {
       datePickerContainerStyleIOS,
       reactNativeModalPropsIOS,
       date,
+      titleStyle,
+      confirmTextStyle,
+      cancelTextStyle,
       ...otherProps
     } = this.props;
 
     const titleContainer = (
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>{titleIOS}</Text>
+        <Text style={[styles.title, titleStyle]}>{titleIOS}</Text>
       </View>
     );
     let confirmButton;
@@ -119,9 +125,9 @@ export default class CustomDatePickerIOS extends Component {
         confirmButton = customConfirmButtonIOS;
       }
     } else {
-      confirmButton = <Text style={styles.confirmText}>{confirmTextIOS}</Text>;
+      confirmButton = <Text style={[styles.confirmText, confirmTextStyle]}>{confirmTextIOS}</Text>;
     }
-    const cancelButton = <Text style={styles.cancelText}>{cancelTextIOS}</Text>;
+    const cancelButton = <Text style={[styles.cancelText, cancelTextStyle]}>{cancelTextIOS}</Text>;
     return (
       <ReactNativeModal
         isVisible={isVisible}
