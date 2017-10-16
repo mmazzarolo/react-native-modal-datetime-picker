@@ -66,7 +66,9 @@ export default class DateTimePickerTester extends Component {
 | Name | Type| Default | Description |
 | --- | --- | --- | --- |
 | cancelTextIOS | string | 'Cancel' | The text on the cancel button on iOS |  
+| cancelTextStyle | style |  | The style of the cancel button text on iOS |
 | confirmTextIOS | string | 'Confirm' | The text on the confirm button on iOS |
+| confirmTextStyle | style |  | The style of the confirm button text on iOS |
 | customCancelButtonIOS | node |  | A custom component for the cancel button on iOS |
 | customConfirmButtonIOS | node |  | A custom component for the confirm button on iOS |
 | customTitleContainerIOS | node |  | A custom component for the title container on iOS |
@@ -80,6 +82,7 @@ export default class DateTimePickerTester extends Component {
 | onHideAfterConfirm | func | () => {} | Called after the hiding animation if a date was picked |
 | onCancel | func | **REQUIRED** |  Function called on dismiss |
 | titleIOS | string | 'Pick a date' | The title text on iOS |
+| titleStyle | style |  | The style of the title text on iOS |
 | minimumDate | Date | undefined | Min Date. Does not work with 'time' picker on Android. |
 | maximumDate | Date | undefined | Max Date. Does not work with 'time' picker on Android. |
 | is24Hour | bool | true | If false, the picker shows an AM/PM chooser on Android |
