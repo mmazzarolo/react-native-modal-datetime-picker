@@ -46,7 +46,7 @@ export default class CustomDatePickerAndroid extends Component {
       });
       if (action !== DatePickerAndroid.dismissedAction) {
         let date;
-        if (this.props.date) {
+        if (this.props.date && !isNaN(this.props.date.getTime())) {
           let hour = moment(this.props.date).hour();
           let minute = moment(this.props.date).minute();
           date = moment({ year, month, day, hour, minute }).toDate();
