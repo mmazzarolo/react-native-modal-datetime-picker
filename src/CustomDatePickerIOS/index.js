@@ -11,6 +11,7 @@ export default class CustomDatePickerIOS extends Component {
     confirmTextIOS: PropTypes.string,
     customCancelButtonIOS: PropTypes.node,
     customConfirmButtonIOS: PropTypes.node,
+    neverDisableConfirmIOS: PropTypes.bool,
     customConfirmButtonWhileInteractingIOS: PropTypes.node,
     customTitleContainerIOS: PropTypes.node,
     contentContainerStyleIOS: PropTypes.any,
@@ -29,6 +30,7 @@ export default class CustomDatePickerIOS extends Component {
   };
 
   static defaultProps = {
+    neverDisableConfirmIOS: false,
     cancelTextIOS: 'Cancel',
     confirmTextIOS: 'Confirm',
     date: new Date(),
@@ -91,6 +93,7 @@ export default class CustomDatePickerIOS extends Component {
       cancelTextIOS,
       customCancelButtonIOS,
       customConfirmButtonIOS,
+      neverDisableConfirmIOS,
       customConfirmButtonWhileInteractingIOS,
       contentContainerStyleIOS,
       customTitleContainerIOS,
@@ -150,7 +153,7 @@ export default class CustomDatePickerIOS extends Component {
             style={styles.confirmButton}
             underlayColor='#ebebeb'
             onPress={this._handleConfirm}
-            disabled={this.state.userIsInteractingWithPicker}
+            disabled={!neverDisableConfirmIOS && this.state.userIsInteractingWithPicker}
           >
             {confirmButton}
           </TouchableHighlight>
