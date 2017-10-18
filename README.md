@@ -71,6 +71,7 @@ export default class DateTimePickerTester extends Component {
 | confirmTextStyle | style |  | The style of the confirm button text on iOS |
 | customCancelButtonIOS | node |  | A custom component for the cancel button on iOS |
 | customConfirmButtonIOS | node |  | A custom component for the confirm button on iOS |
+| neverDisableConfirmIOS | bool | false | If true, do not disable the confirm button on any touch events; see [#82](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/82) |
 | customTitleContainerIOS | node |  | A custom component for the title container on iOS |
 | datePickerContainerStyleIOS | style |  | The style of the container on iOS |
 | reactNativeModalPropsIOS | object |  | Additional props for [react-native-modal](https://github.com/react-native-community/react-native-modal) on iOS |

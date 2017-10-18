@@ -30,6 +30,13 @@ interface DateTimePickerProps {
      * A custom component for the confirm button on iOS
      */
     customConfirmButtonIOS?: JSX.Element
+    
+    /**
+     * Never disable the confirm button on iOS, even on fling (see #82)
+     *
+     * Default is false
+     */
+     neverDisableConfirmIOS?: boolean
 
     /**
      * A custom component for the title container on iOS
