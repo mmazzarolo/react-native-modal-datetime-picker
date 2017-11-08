@@ -96,6 +96,10 @@ All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datep
 Under the hood `react-native-modal-datetime-picker` uses react-native original [DatePickerAndroid](https://facebook.github.io/react-native/docs/datepickerandroid.html), [TimePickerAndroid](https://facebook.github.io/react-native/docs/timepickerandroid.html) and [DatePickerIOS](https://facebook.github.io/react-native/docs/datepickerios.html).    
 Before reporting a bug, try swapping `react-native-datetime-picker` with react-native original date/time pickers and, if the issue persists, check if it has already been reported as a [react-native issue](https://github.com/facebook/react-native/issues).  
 
+### How do you show the timepicker instead of the datepicker?
+Just set the `mode` prop to `time`. 
+You can also display both the datepicker and the timepicker in one step by setting the `mode` prop to `datetime`.  
+
 ## Notes
 
 Just remember to always set the `isVisible` prop to `false` in both `onConfirm` and `onCancel` (like in the example above).
