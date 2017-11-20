@@ -5,7 +5,10 @@ import moment from 'moment';
 
 export default class CustomDatePickerAndroid extends Component {
   static propTypes = {
-    date: PropTypes.instanceOf(Date),
+    date: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.instanceOf(moment),
+    ]),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
