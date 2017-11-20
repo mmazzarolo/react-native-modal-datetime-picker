@@ -16,7 +16,10 @@ export default class CustomDatePickerIOS extends Component {
     customTitleContainerIOS: PropTypes.node,
     contentContainerStyleIOS: PropTypes.any,
     datePickerContainerStyleIOS: PropTypes.any,
-    date: PropTypes.instanceOf(Date),
+    date: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.instanceOf(moment),
+    ]),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onConfirm: PropTypes.func.isRequired,
     onHideAfterConfirm: PropTypes.func,
