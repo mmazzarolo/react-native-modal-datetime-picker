@@ -4,10 +4,10 @@
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 A declarative cross-platform react-native datetime-picker.
-  
+
 ## Description
 
-This library exposes a cross-platform interface for showing the native date and time pickers inside a modal.  
+This library exposes a cross-platform interface for showing the native date and time pickers inside a modal.
 You will have an unified user experience, you won't have to worry anymore about testing the device platform and you won't have to programmatically call the Android TimePicker/DatePicker APIs.
 
 
@@ -65,7 +65,7 @@ export default class DateTimePickerTester extends Component {
 
 | Name | Type| Default | Description |
 | --- | --- | --- | --- |
-| cancelTextIOS | string | 'Cancel' | The text on the cancel button on iOS |  
+| cancelTextIOS | string | 'Cancel' | The text on the cancel button on iOS |
 | cancelTextStyle | style |  | The style of the cancel button text on iOS |
 | confirmTextIOS | string | 'Confirm' | The text on the confirm button on iOS |
 | confirmTextStyle | style |  | The style of the confirm button text on iOS |
@@ -88,22 +88,45 @@ export default class DateTimePickerTester extends Component {
 | maximumDate | Date | undefined | Max Date. Does not work with 'time' picker on Android. |
 | is24Hour | bool | true | If false, the picker shows an AM/PM chooser on Android |
 
-All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datepickerios.html) are also supported!  
+All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datepickerios.html) are also supported!
 
 ## Frequently Asked Questions
 
 ### The component is not working as expected
-Under the hood `react-native-modal-datetime-picker` uses react-native original [DatePickerAndroid](https://facebook.github.io/react-native/docs/datepickerandroid.html), [TimePickerAndroid](https://facebook.github.io/react-native/docs/timepickerandroid.html) and [DatePickerIOS](https://facebook.github.io/react-native/docs/datepickerios.html).    
-Before reporting a bug, try swapping `react-native-datetime-picker` with react-native original date/time pickers and, if the issue persists, check if it has already been reported as a [react-native issue](https://github.com/facebook/react-native/issues).  
+Under the hood `react-native-modal-datetime-picker` uses react-native original [DatePickerAndroid](https://facebook.github.io/react-native/docs/datepickerandroid.html), [TimePickerAndroid](https://facebook.github.io/react-native/docs/timepickerandroid.html) and [DatePickerIOS](https://facebook.github.io/react-native/docs/datepickerios.html).
+Before reporting a bug, try swapping `react-native-datetime-picker` with react-native original date/time pickers and, if the issue persists, check if it has already been reported as a [react-native issue](https://github.com/facebook/react-native/issues).
 
 ### How do you show the timepicker instead of the datepicker?
-Just set the `mode` prop to `time`. 
-You can also display both the datepicker and the timepicker in one step by setting the `mode` prop to `datetime`.  
+Just set the `mode` prop to `time`.
+You can also display both the datepicker and the timepicker in one step by setting the `mode` prop to `datetime`.
+
+### Why is the selected start date showing in the input field of the end date?
+If you have both a start date/time and end date/time picker on the same screen, you will need to have `showDateTimePicker`, `hideDateTimePicker`, and `handleDatePicked` functions for both.
+
+```javascript
+showStartDateTimePicker = () => { this.setState({ startDateTimePickerVisible: true });
+
+showEndDateTimePicker = () => this.setState({ endDateTimePickerVisible: true });
+
+hideStartDateTimePicker = () => this.setState({ startDateTimePickerVisible: false });
+
+hideEndDateTimePicker = () => this.setState({ endDateTimePickerVisible: false });
+
+handleStartDatePicked = (date) => {
+  console.log('A date has been picked: ', date);
+  this.hideStartDateTimePicker();
+};
+
+handleEndDatePicked = (date) => {
+  console.log('A date has been picked: ', date);
+  this.hideEndDateTimePicker();
+};
+```
 
 ## Notes
 
 Just remember to always set the `isVisible` prop to `false` in both `onConfirm` and `onCancel` (like in the example above).
 
-Under the hood this library is using [react-native-modal](https://github.com/react-native-community/react-native-modal) for the iOS modal implementation.  
+Under the hood this library is using [react-native-modal](https://github.com/react-native-community/react-native-modal) for the iOS modal implementation.
 
 Pull requests and suggestions are welcome!
