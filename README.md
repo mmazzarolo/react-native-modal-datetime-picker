@@ -47,7 +47,7 @@ export default class DateTimePickerTester extends Component {
     return (
       <View style={{ flex: 1 }}>
         <TouchableOpacity onPress={this._showDateTimePicker}>
-          <Text>Show TimePicker</Text>
+          <Text>Show DatePicker</Text>
         </TouchableOpacity>
         <DateTimePicker
           isVisible={this.state.isDateTimePickerVisible}
