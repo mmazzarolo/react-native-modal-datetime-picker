@@ -128,9 +128,8 @@ This is more a React-Native specific question than a react-native-modal-datetime
 See issue [#29](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/29) and [#106](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/106) for some solutions.  
 
 ## Notes
-
-Just remember to always set the `isVisible` prop to `false` in both `onConfirm` and `onCancel` (like in the example above).
+Just remember to always set the `isVisible` prop to `false` in both the `onConfirm` and `onCancel` props (like in the example above).
 
 Under the hood this library is using [react-native-modal](https://github.com/react-native-community/react-native-modal) for the iOS modal implementation.
 
-Pull requests and suggestions are welcome!
+Pull requests and suggestions are always welcome!
