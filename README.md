@@ -123,6 +123,10 @@ handleEndDatePicked = (date) => {
 };
 ```
 
+### How do I change the color of the Android date and time pickers?  
+This is more a React-Native specific question than a react-native-modal-datetime-picker one.  
+See issue [#29](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/29) and [#106](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/106) for some solutions.  
+
 ## Notes
 
 Just remember to always set the `isVisible` prop to `false` in both `onConfirm` and `onCancel` (like in the example above).
