@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { DatePickerIOS, Text, TouchableHighlight, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 
 import styles from './index.style';
 
-export default class CustomDatePickerIOS extends Component {
+export default class CustomDatePickerIOS extends PureComponent {
   static propTypes = {
     cancelTextIOS: PropTypes.string,
     confirmTextIOS: PropTypes.string,
@@ -151,7 +151,7 @@ export default class CustomDatePickerIOS extends Component {
           </View>
           <TouchableHighlight
             style={styles.confirmButton}
-            underlayColor='#ebebeb'
+            underlayColor="#ebebeb"
             onPress={this._handleConfirm}
             disabled={!neverDisableConfirmIOS && this.state.userIsInteractingWithPicker}
           >
@@ -161,7 +161,7 @@ export default class CustomDatePickerIOS extends Component {
 
         <TouchableHighlight
           style={styles.cancelButton}
-          underlayColor='#ebebeb'
+          underlayColor="#ebebeb"
           onPress={this._handleCancel}
         >
           {customCancelButtonIOS || cancelButton}
