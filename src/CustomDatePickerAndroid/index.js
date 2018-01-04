@@ -36,6 +36,16 @@ export default class CustomDatePickerAndroid extends PureComponent {
     }
   };
 
+  componentDidMount = () => {
+    if (this.props && this.props.isVisible) {
+      if (this.props.mode === 'date' || this.props.mode === 'datetime') {
+        this._showDatePickerAndroid();
+      } else {
+        this._showTimePickerAndroid();
+      }
+    }
+  };
+
   _showDatePickerAndroid = async () => {
     try {
       const { action, year, month, day } = await DatePickerAndroid.open({
