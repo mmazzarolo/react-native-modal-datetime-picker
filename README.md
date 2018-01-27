@@ -100,7 +100,7 @@ Before reporting a bug, try swapping `react-native-datetime-picker` with react-n
 Just set the `mode` prop to `time`.
 You can also display both the datepicker and the timepicker in one step by setting the `mode` prop to `datetime`.
 
-### Why is the selected start date showing in the input field of the end date?
+### Why is the selected start date being shown in the input field of the end date?
 If you have both a start date/time and end date/time picker on the same screen, you will need to have `showDateTimePicker`, `hideDateTimePicker`, and `handleDatePicked` functions for both.
 
 ```javascript
