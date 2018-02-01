@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { DatePickerIOS, Text, TouchableHighlight, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 
 import styles from './index.style';
 
-export default class CustomDatePickerIOS extends Component {
+export default class CustomDatePickerIOS extends PureComponent {
   static propTypes = {
     cancelTextIOS: PropTypes.string,
     confirmTextIOS: PropTypes.string,
@@ -49,6 +49,7 @@ export default class CustomDatePickerIOS extends Component {
   state = {
     date: this.props.date,
     userIsInteractingWithPicker: false,
+    minuteInterval: 1
   };
 
   componentWillReceiveProps(nextProps) {
@@ -113,6 +114,7 @@ export default class CustomDatePickerIOS extends Component {
       confirmTextStyle,
       cancelTextStyle,
       pickerRefCb,
+      minuteInterval,
       ...otherProps
     } = this.props;
 
@@ -150,6 +152,11 @@ export default class CustomDatePickerIOS extends Component {
         isVisible={isVisible}
         style={[styles.contentContainer, contentContainerStyleIOS]}
         onModalHide={this._handleOnModalHide}
+        onModalShow={() => {
+          this.setState({
+             minuteInterval
+          })
+        }}
         backdropOpacity={0.4}
         {...reactNativeModalPropsIOS}
       >
@@ -161,12 +168,13 @@ export default class CustomDatePickerIOS extends Component {
               date={this.state.date}
               mode={mode}
               onDateChange={this._handleDateChange}
+              minuteInterval={this.state.minuteInterval}
               {...otherProps}
             />
           </View>
           <TouchableHighlight
             style={styles.confirmButton}
-            underlayColor='#ebebeb'
+            underlayColor="#ebebeb"
             onPress={this._handleConfirm}
             disabled={!neverDisableConfirmIOS && this.state.userIsInteractingWithPicker}
           >
@@ -176,7 +184,7 @@ export default class CustomDatePickerIOS extends Component {
 
         <TouchableHighlight
           style={styles.cancelButton}
-          underlayColor='#ebebeb'
+          underlayColor="#ebebeb"
           onPress={this._handleCancel}
         >
           {customCancelButtonIOS || cancelButton}

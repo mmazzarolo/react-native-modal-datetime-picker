@@ -80,7 +80,7 @@ export default class DateTimePickerTester extends Component {
 | isVisible | bool | false | Show the datetime picker? |
 | mode | string | 'date' | Datepicker? 'date' Timepicker? 'time' Both? 'datetime' |
 | datePickerModeAndroid | string | 'calendar' | Display as 'spinner' or 'calendar'|
-| onConfirm | func | **REQUIRED** | Function called on date picked |
+| onConfirm | func | **REQUIRED** | Function called on date or time picked. It returns the date or time as a JavaScript Date object. |
 | onHideAfterConfirm | func | () => {} | Called after the hiding animation if a date was picked |
 | pickerRefCb | func |  | Called after picker has mounted, contains a ref |
 | onCancel | func | **REQUIRED** |  Function called on dismiss |
@@ -102,7 +102,7 @@ Before reporting a bug, try swapping `react-native-datetime-picker` with react-n
 Just set the `mode` prop to `time`.
 You can also display both the datepicker and the timepicker in one step by setting the `mode` prop to `datetime`.
 
-### Why is the selected start date showing in the input field of the end date?
+### Why is the selected start date being shown in the input field of the end date?
 If you have both a start date/time and end date/time picker on the same screen, you will need to have `showDateTimePicker`, `hideDateTimePicker`, and `handleDatePicked` functions for both.
 
 ```javascript

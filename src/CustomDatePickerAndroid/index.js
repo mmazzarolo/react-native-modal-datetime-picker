@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { DatePickerAndroid, TimePickerAndroid } from 'react-native';
 import moment from 'moment';
 
-export default class CustomDatePickerAndroid extends Component {
+export default class CustomDatePickerAndroid extends PureComponent {
   static propTypes = {
     date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
@@ -28,6 +28,16 @@ export default class CustomDatePickerAndroid extends Component {
 
   componentDidUpdate = prevProps => {
     if (!prevProps.isVisible && this.props.isVisible) {
+      if (this.props.mode === 'date' || this.props.mode === 'datetime') {
+        this._showDatePickerAndroid();
+      } else {
+        this._showTimePickerAndroid();
+      }
+    }
+  };
+
+  componentDidMount = () => {
+    if (this.props && this.props.isVisible) {
       if (this.props.mode === 'date' || this.props.mode === 'datetime') {
         this._showDatePickerAndroid();
       } else {
