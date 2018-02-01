@@ -27,6 +27,7 @@ export default class CustomDatePickerIOS extends PureComponent {
     titleStyle: PropTypes.any,
     confirmTextStyle: PropTypes.any,
     cancelTextStyle: PropTypes.any,
+    onDateChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -39,6 +40,7 @@ export default class CustomDatePickerIOS extends PureComponent {
     isVisible: false,
     onHideAfterConfirm: () => {},
     reactNativeModalPropsIOS: {},
+    onDateChange: Function.prototype,
   };
 
   state = {
@@ -76,6 +78,7 @@ export default class CustomDatePickerIOS extends PureComponent {
       date,
       userIsInteractingWithPicker: false,
     });
+    this.props.onDateChange(date);
   };
 
   _handleUserTouchInit = () => {
@@ -150,11 +153,11 @@ export default class CustomDatePickerIOS extends PureComponent {
           {customTitleContainerIOS || titleContainer}
           <View onStartShouldSetResponderCapture={this._handleUserTouchInit}>
             <DatePickerIOS
+              {...otherProps}
               date={this.state.date}
               mode={mode}
               onDateChange={this._handleDateChange}
               minuteInterval={this.state.minuteInterval}
-              {...otherProps}
             />
           </View>
           <TouchableHighlight
