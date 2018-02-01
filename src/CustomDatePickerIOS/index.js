@@ -83,9 +83,12 @@ export default class CustomDatePickerIOS extends Component {
   };
 
   _handleUserTouchInit = () => {
-    this.setState({
-      userIsInteractingWithPicker: true,
-    });
+    // custom date picker shouldn't change this param
+    if(!customDatePickerIOS){
+      this.setState({
+        userIsInteractingWithPicker: true,
+      })
+    }
     return false;
   };
 
