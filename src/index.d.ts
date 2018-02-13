@@ -44,6 +44,12 @@ interface DateTimePickerProps {
     customTitleContainerIOS?: JSX.Element
 
     /**
+     * A custom component that will replace the default DatePicker on iOS
+     */
+    customDatePickerIOS?: JSX.Element
+
+    
+    /**
      * The style of the container on iOS
      */
     datePickerContainerStyleIOS?: ViewStyle
