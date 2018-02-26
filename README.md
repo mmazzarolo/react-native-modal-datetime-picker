@@ -9,7 +9,7 @@ A declarative cross-platform react-native datetime-picker.
 
 ## Description
 
-This library exposes a cross-platform interface for showing the native date and time pickers inside a modal.
+This library exposes a cross-platform interface for showing the native date-picker and time-picker inside a modal.
 You will have an unified user experience, you won't have to worry anymore about testing the device platform and you won't have to programmatically call the Android TimePicker/DatePicker APIs.
 
 
