@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { DatePickerAndroid, TimePickerAndroid } from 'react-native';
 import moment from 'moment';
 
-export default class CustomDatePickerAndroid extends PureComponent {
+export default class CustomDatePickerAndroid extends React.PureComponent {
   static propTypes = {
     date: PropTypes.instanceOf(Date),
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),

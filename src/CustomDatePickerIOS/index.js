@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { DatePickerIOS, Text, TouchableHighlight, View } from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 
 import styles from './index.style';
 
-export default class CustomDatePickerIOS extends PureComponent {
+export default class CustomDatePickerIOS extends React.PureComponent {
   static propTypes = {
     cancelTextIOS: PropTypes.string,
     confirmTextIOS: PropTypes.string,
@@ -14,10 +14,7 @@ export default class CustomDatePickerIOS extends PureComponent {
     neverDisableConfirmIOS: PropTypes.bool,
     customConfirmButtonWhileInteractingIOS: PropTypes.node,
     customTitleContainerIOS: PropTypes.node,
-    customDatePickerIOS: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.func,
-    ]),
+    customDatePickerIOS: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     contentContainerStyleIOS: PropTypes.any,
     datePickerContainerStyleIOS: PropTypes.any,
     date: PropTypes.instanceOf(Date),
@@ -49,7 +46,7 @@ export default class CustomDatePickerIOS extends PureComponent {
   state = {
     date: this.props.date,
     userIsInteractingWithPicker: false,
-    minuteInterval: 1
+    minuteInterval: 1,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -85,10 +82,10 @@ export default class CustomDatePickerIOS extends PureComponent {
 
   _handleUserTouchInit = () => {
     // custom date picker shouldn't change this param
-    if(!customDatePickerIOS){
+    if (!this.props.customDatePickerIOS) {
       this.setState({
         userIsInteractingWithPicker: true,
-      })
+      });
     }
     return false;
   };
@@ -134,9 +131,7 @@ export default class CustomDatePickerIOS extends PureComponent {
     // We no longer allow our user to tap the confirm button unless the picker is still.
     // They can always tap the cancel button anyway.
     if (customConfirmButtonIOS) {
-      if (customConfirmButtonWhileInteractingIOS
-        && this.state.userIsInteractingWithPicker
-      ) {
+      if (customConfirmButtonWhileInteractingIOS && this.state.userIsInteractingWithPicker) {
         confirmButton = customConfirmButtonWhileInteractingIOS;
       } else {
         confirmButton = customConfirmButtonIOS;
@@ -146,7 +141,7 @@ export default class CustomDatePickerIOS extends PureComponent {
     }
     const cancelButton = <Text style={[styles.cancelText, cancelTextStyle]}>{cancelTextIOS}</Text>;
     const DatePickerComponent = customDatePickerIOS || DatePickerIOS;
-    
+
     return (
       <ReactNativeModal
         isVisible={isVisible}
@@ -154,15 +149,19 @@ export default class CustomDatePickerIOS extends PureComponent {
         onModalHide={this._handleOnModalHide}
         onModalShow={() => {
           this.setState({
-             minuteInterval
-          })
+            minuteInterval,
+          });
         }}
         backdropOpacity={0.4}
         {...reactNativeModalPropsIOS}
       >
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
           {customTitleContainerIOS || titleContainer}
-          <View onStartShouldSetResponderCapture={neverDisableConfirmIOS !== true ? this._handleUserTouchInit : null}>
+          <View
+            onStartShouldSetResponderCapture={
+              neverDisableConfirmIOS !== true ? this._handleUserTouchInit : null
+            }
+          >
             <DatePickerComponent
               ref={pickerRefCb}
               date={this.state.date}
