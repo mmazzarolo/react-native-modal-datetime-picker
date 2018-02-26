@@ -64,7 +64,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
 
   _handleConfirm = () => {
     this.confirmed = true;
-    this.props.onConfirm(this.state.date);
+    this.props.onConfirm(this.state.date, this.props.params);
   };
 
   _handleOnModalHide = () => {

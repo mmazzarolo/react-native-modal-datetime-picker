@@ -74,13 +74,13 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
           const { action: timeAction, hour, minute } = await TimePickerAndroid.open(timeOptions);
           if (timeAction !== TimePickerAndroid.dismissedAction) {
             const selectedDate = new Date(year, month, day, hour, minute);
-            this.props.onConfirm(selectedDate);
+            this.props.onConfirm(selectedDate, this.props.params);
             this.props.onHideAfterConfirm(selectedDate);
           } else {
             this.props.onCancel();
           }
         } else {
-          this.props.onConfirm(date);
+          this.props.onConfirm(date, this.props.params);
           this.props.onHideAfterConfirm(date);
         }
       } else {
@@ -109,7 +109,7 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
         } else {
           date = moment({ hour, minute }).toDate();
         }
-        this.props.onConfirm(date);
+        this.props.onConfirm(date, this.props.params);
         this.props.onHideAfterConfirm(date);
       } else {
         this.props.onCancel();
