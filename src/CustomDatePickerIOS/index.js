@@ -122,6 +122,8 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     );
     let confirmButton;
 
+    console.warn('asdfasdf');
+
     // Interested PR: https://github.com/mmazzarolo/react-native-modal-datetime-picker/pull/40
     // Issue on React-Native: https://github.com/facebook/react-native/issues/8169
     // Up until now when the user interacted with the picker, if he tapped on the confirm button,
