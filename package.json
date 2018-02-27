@@ -8,8 +8,9 @@
     "lint": "eslint src",
     "precommit": "lint-staged",
     "test": "npm run lint",
-    "prettier": "prettier --write --print-width 100 --single-quote --trailing-comma all src/**/*.js",
-    "reset": "watchman watch-del-all && rm -rf node_modules/ && npm cache clean && npm prune && yarn cache clean"
+    "prettier": "prettier --write all src/**/*.js",
+    "reset":
+      "watchman watch-del-all && rm -rf node_modules/ && npm cache clean && npm prune && yarn cache clean"
   },
   "keywords": [
     "react-native",
@@ -23,7 +24,8 @@
   ],
   "author": "Mazzarolo Matteo",
   "license": "ISC",
-  "homepage": "https://github.com/mmazzarolo/react-native-modal-datetime-picker",
+  "homepage":
+    "https://github.com/mmazzarolo/react-native-modal-datetime-picker",
   "repository": {
     "type": "git",
     "url": "https://github.com/mmazzarolo/react-native-modal-datetime-picker"
@@ -44,10 +46,6 @@
     "react-native": ">=0.24.0"
   },
   "lint-staged": {
-    "*.js": [
-      "npm run test",
-      "npm run prettier",
-      "git add"
-    ]
+    "*.js": ["npm run test", "npm run prettier", "git add"]
   }
 }

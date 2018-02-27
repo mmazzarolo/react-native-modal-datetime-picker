@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { DatePickerIOS, Text, TouchableHighlight, View } from 'react-native';
-import ReactNativeModal from 'react-native-modal';
+import React from "react";
+import PropTypes from "prop-types";
+import { DatePickerIOS, Text, TouchableHighlight, View } from "react-native";
+import ReactNativeModal from "react-native-modal";
 
-import styles from './index.style';
+import styles from "./index.style";
 
 export default class CustomDatePickerIOS extends React.PureComponent {
   static propTypes = {
@@ -18,7 +18,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     contentContainerStyleIOS: PropTypes.any,
     datePickerContainerStyleIOS: PropTypes.any,
     date: PropTypes.instanceOf(Date),
-    mode: PropTypes.oneOf(['date', 'time', 'datetime']),
+    mode: PropTypes.oneOf(["date", "time", "datetime"]),
     onConfirm: PropTypes.func.isRequired,
     onHideAfterConfirm: PropTypes.func,
     pickerRefCb: PropTypes.func,
@@ -28,31 +28,31 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     reactNativeModalPropsIOS: PropTypes.any,
     titleStyle: PropTypes.any,
     confirmTextStyle: PropTypes.any,
-    cancelTextStyle: PropTypes.any,
+    cancelTextStyle: PropTypes.any
   };
 
   static defaultProps = {
     neverDisableConfirmIOS: false,
-    cancelTextIOS: 'Cancel',
-    confirmTextIOS: 'Confirm',
+    cancelTextIOS: "Cancel",
+    confirmTextIOS: "Confirm",
     date: new Date(),
-    mode: 'date',
-    titleIOS: 'Pick a date',
+    mode: "date",
+    titleIOS: "Pick a date",
     isVisible: false,
     onHideAfterConfirm: () => {},
-    reactNativeModalPropsIOS: {},
+    reactNativeModalPropsIOS: {}
   };
 
   state = {
     date: this.props.date,
     userIsInteractingWithPicker: false,
-    minuteInterval: 1,
+    minuteInterval: 1
   };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.date !== nextProps.date) {
       this.setState({
-        date: nextProps.date,
+        date: nextProps.date
       });
     }
   }
@@ -76,7 +76,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
   _handleDateChange = date => {
     this.setState({
       date,
-      userIsInteractingWithPicker: false,
+      userIsInteractingWithPicker: false
     });
   };
 
@@ -84,7 +84,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     // custom date picker shouldn't change this param
     if (!this.props.customDatePickerIOS) {
       this.setState({
-        userIsInteractingWithPicker: true,
+        userIsInteractingWithPicker: true
       });
     }
     return false;
@@ -122,7 +122,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     );
     let confirmButton;
 
-    console.warn('asdfasdf');
+    console.warn("asdfasdf");
 
     // Interested PR: https://github.com/mmazzarolo/react-native-modal-datetime-picker/pull/40
     // Issue on React-Native: https://github.com/facebook/react-native/issues/8169
@@ -133,15 +133,24 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     // We no longer allow our user to tap the confirm button unless the picker is still.
     // They can always tap the cancel button anyway.
     if (customConfirmButtonIOS) {
-      if (customConfirmButtonWhileInteractingIOS && this.state.userIsInteractingWithPicker) {
+      if (
+        customConfirmButtonWhileInteractingIOS &&
+        this.state.userIsInteractingWithPicker
+      ) {
         confirmButton = customConfirmButtonWhileInteractingIOS;
       } else {
         confirmButton = customConfirmButtonIOS;
       }
     } else {
-      confirmButton = <Text style={[styles.confirmText, confirmTextStyle]}>{confirmTextIOS}</Text>;
+      confirmButton = (
+        <Text style={[styles.confirmText, confirmTextStyle]}>
+          {confirmTextIOS}
+        </Text>
+      );
     }
-    const cancelButton = <Text style={[styles.cancelText, cancelTextStyle]}>{cancelTextIOS}</Text>;
+    const cancelButton = (
+      <Text style={[styles.cancelText, cancelTextStyle]}>{cancelTextIOS}</Text>
+    );
     const DatePickerComponent = customDatePickerIOS || DatePickerIOS;
 
     return (
@@ -151,7 +160,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
         onModalHide={this._handleOnModalHide}
         onModalShow={() => {
           this.setState({
-            minuteInterval,
+            minuteInterval
           });
         }}
         backdropOpacity={0.4}
@@ -177,7 +186,9 @@ export default class CustomDatePickerIOS extends React.PureComponent {
             style={styles.confirmButton}
             underlayColor="#ebebeb"
             onPress={this._handleConfirm}
-            disabled={!neverDisableConfirmIOS && this.state.userIsInteractingWithPicker}
+            disabled={
+              !neverDisableConfirmIOS && this.state.userIsInteractingWithPicker
+            }
           >
             {confirmButton}
           </TouchableHighlight>
