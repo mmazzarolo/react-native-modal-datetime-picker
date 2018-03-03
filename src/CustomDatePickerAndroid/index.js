@@ -66,7 +66,10 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
 
         if (this.props.mode === "datetime") {
           // Prepopulate and show time picker
-          const timeOptions = { is24Hour: this.props.is24Hour };
+          const timeOptions = { 
+            is24Hour: this.props.is24Hour,
+            mode: this.props.datePickerModeAndroid
+          };
           if (this.props.date) {
             timeOptions.hour = moment(this.props.date).hour();
             timeOptions.minute = moment(this.props.date).minute();
@@ -100,7 +103,8 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
       const { action, hour, minute } = await TimePickerAndroid.open({
         hour: moment(this.props.date).hour(),
         minute: moment(this.props.date).minute(),
-        is24Hour: this.props.is24Hour
+        is24Hour: this.props.is24Hour,
+        mode: this.props.datePickerModeAndroid
       });
       if (action !== TimePickerAndroid.dismissedAction) {
         let date;
