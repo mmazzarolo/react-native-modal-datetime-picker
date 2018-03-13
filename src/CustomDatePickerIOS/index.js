@@ -28,7 +28,8 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     reactNativeModalPropsIOS: PropTypes.any,
     titleStyle: PropTypes.any,
     confirmTextStyle: PropTypes.any,
-    cancelTextStyle: PropTypes.any
+    cancelTextStyle: PropTypes.any,
+    onDateChange: PropTypes.func
   };
 
   static defaultProps = {
@@ -40,7 +41,8 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     titleIOS: "Pick a date",
     isVisible: false,
     onHideAfterConfirm: () => {},
-    reactNativeModalPropsIOS: {}
+    reactNativeModalPropsIOS: {},
+    onDateChange: Function.prototype
   };
 
   state = {
@@ -78,6 +80,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
       date,
       userIsInteractingWithPicker: false
     });
+    this.props.onDateChange(date);
   };
 
   _handleUserTouchInit = () => {
@@ -106,7 +109,6 @@ export default class CustomDatePickerIOS extends React.PureComponent {
       customTitleContainerIOS,
       datePickerContainerStyleIOS,
       reactNativeModalPropsIOS,
-      date,
       titleStyle,
       confirmTextStyle,
       cancelTextStyle,
