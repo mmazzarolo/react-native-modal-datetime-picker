@@ -3,11 +3,12 @@
 [![npm version](https://badge.fury.io/js/react-native-modal-datetime-picker.svg)](https://badge.fury.io/js/react-native-modal-datetime-picker)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
+
 A declarative cross-platform react-native datetime-picker.
 
 ## Description
 
-This library exposes a cross-platform interface for showing the native date and time pickers inside a modal.
+This library exposes a cross-platform interface for showing the native date-picker and time-picker inside a modal.
 You will have an unified user experience, you won't have to worry anymore about testing the device platform and you won't have to programmatically call the Android TimePicker/DatePicker APIs.
 
 
@@ -73,6 +74,7 @@ export default class DateTimePickerTester extends Component {
 | customConfirmButtonIOS | node |  | A custom component for the confirm button on iOS |
 | neverDisableConfirmIOS | bool | false | If true, do not disable the confirm button on any touch events; see [#82](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/82) |
 | customTitleContainerIOS | node |  | A custom component for the title container on iOS |
+| customDatePickerIOS | node |  | A custom component that will replace the default DatePicker on iOS [(Example)](https://github.com/mmazzarolo/react-native-modal-datetime-picker/pull/115#issue-279547697)|
 | datePickerContainerStyleIOS | style |  | The style of the container on iOS |
 | reactNativeModalPropsIOS | object |  | Additional props for [react-native-modal](https://github.com/react-native-community/react-native-modal) on iOS |
 | date | obj | new Date() | Initial selected date/time |
@@ -81,6 +83,7 @@ export default class DateTimePickerTester extends Component {
 | datePickerModeAndroid | string | 'calendar' | Display as 'spinner' or 'calendar'|
 | onConfirm | func | **REQUIRED** | Function called on date or time picked. It returns the date or time as a JavaScript Date object. |
 | onHideAfterConfirm | func | () => {} | Called after the hiding animation if a date was picked |
+| pickerRefCb | func |  | Called after picker has mounted, contains a ref |
 | onCancel | func | **REQUIRED** |  Function called on dismiss |
 | titleIOS | string | 'Pick a date' | The title text on iOS |
 | titleStyle | style |  | The style of the title text on iOS |
