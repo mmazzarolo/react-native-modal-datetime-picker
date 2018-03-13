@@ -109,7 +109,6 @@ export default class CustomDatePickerIOS extends React.PureComponent {
       customTitleContainerIOS,
       datePickerContainerStyleIOS,
       reactNativeModalPropsIOS,
-      date,
       titleStyle,
       confirmTextStyle,
       cancelTextStyle,
