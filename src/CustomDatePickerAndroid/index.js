@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { DatePickerAndroid, TimePickerAndroid } from "react-native";
-import moment from "moment";
 
 export default class CustomDatePickerAndroid extends React.PureComponent {
   static propTypes = {
@@ -57,11 +56,11 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
       if (action !== DatePickerAndroid.dismissedAction) {
         let date;
         if (this.props.date && !isNaN(this.props.date.getTime())) {
-          let hour = moment(this.props.date).hour();
-          let minute = moment(this.props.date).minute();
-          date = moment({ year, month, day, hour, minute }).toDate();
+          let hour = this.props.date.getHours();
+          let minute = this.props.date.getMinutes();
+          date = new Date(year, month, day, hour, minute);
         } else {
-          date = moment({ year, month, day }).toDate();
+          date = new Date(year, month, day);
         }
 
         if (this.props.mode === "datetime") {
@@ -71,8 +70,8 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
             mode: this.props.datePickerModeAndroid
           };
           if (this.props.date) {
-            timeOptions.hour = moment(this.props.date).hour();
-            timeOptions.minute = moment(this.props.date).minute();
+            timeOptions.hour = this.props.date.getHours();
+            timeOptions.minute = this.props.date.getMinutes();
           }
           const {
             action: timeAction,
@@ -101,8 +100,8 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
   _showTimePickerAndroid = async () => {
     try {
       const { action, hour, minute } = await TimePickerAndroid.open({
-        hour: moment(this.props.date).hour(),
-        minute: moment(this.props.date).minute(),
+        hour: this.props.date.getHours(),
+        minute: this.props.date.getMinutes(),
         is24Hour: this.props.is24Hour,
         mode: this.props.datePickerModeAndroid
       });
@@ -110,12 +109,12 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
         let date;
         if (this.props.date) {
           // This prevents losing the Date elements, see issue #71
-          const year = moment(this.props.date).year();
-          const month = moment(this.props.date).month();
-          const day = moment(this.props.date).date();
-          date = moment({ year, month, day, hour, minute }).toDate();
+          const year = this.props.date.getFullYear();
+          const month = this.props.date.getMonth();
+          const day = this.props.date.getDate();
+          date = new Date(year, month, day, hour, minute);
         } else {
-          date = moment({ hour, minute }).toDate();
+          date = new Date().setHours(hour).setMinutes(minute);
         }
         this.props.onConfirm(date);
         this.props.onHideAfterConfirm(date);
