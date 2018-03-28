@@ -1,4 +1,15 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions, Platform } from "react-native";
+
+export const isIphoneX = () => {
+  const { height, width } = Dimensions.get("window");
+
+  return (
+    Platform.OS === "ios" &&
+    !Platform.isPad &&
+    !Platform.isTVOS &&
+    (height === 812 || width === 812)
+  );
+};
 
 const BORDER_RADIUS = 13;
 const BACKGROUND_COLOR = "white";
@@ -49,6 +60,7 @@ export default StyleSheet.create({
     backgroundColor: BACKGROUND_COLOR,
     borderRadius: BORDER_RADIUS,
     height: 57,
+    marginBottom: isIphoneX() ? 20 : 0,
     justifyContent: "center"
   },
   cancelText: {

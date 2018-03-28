@@ -42,7 +42,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     isVisible: false,
     onHideAfterConfirm: () => {},
     reactNativeModalPropsIOS: {},
-    onDateChange: Function.prototype
+    onDateChange: () => {},
   };
 
   state = {
@@ -175,11 +175,11 @@ export default class CustomDatePickerIOS extends React.PureComponent {
           >
             <DatePickerComponent
               ref={pickerRefCb}
-              date={this.state.date}
               mode={mode}
-              onDateChange={this._handleDateChange}
               minuteInterval={this.state.minuteInterval}
               {...otherProps}
+              date={this.state.date}
+              onDateChange={this._handleDateChange}
             />
           </View>
           <TouchableHighlight
