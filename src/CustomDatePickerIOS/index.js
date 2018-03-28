@@ -175,10 +175,10 @@ export default class CustomDatePickerIOS extends React.PureComponent {
           >
             <DatePickerComponent
               ref={pickerRefCb}
-              date={this.state.date}
               mode={mode}
               minuteInterval={this.state.minuteInterval}
               {...otherProps}
+              date={this.state.date}
               onDateChange={this._handleDateChange}
             />
           </View>
