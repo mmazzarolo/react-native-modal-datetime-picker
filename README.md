@@ -81,14 +81,14 @@ export default class DateTimePickerTester extends Component {
 | isVisible | bool | false | Show the datetime picker? |
 | mode | string | 'date' | Datepicker? 'date' Timepicker? 'time' Both? 'datetime' |
 | datePickerModeAndroid | string | 'calendar' | Display as 'spinner' or 'calendar'|
-| onConfirm | func | **REQUIRED** | Function called on date or time picked. It returns the date or time as a JavaScript Date object. |
+| onConfirm | func | **REQUIRED** | Function called on date or time picked. It returns the date or time as a JavaScript Date object |
 | onHideAfterConfirm | func | () => {} | Called after the hiding animation if a date was picked |
 | pickerRefCb | func |  | Called after picker has mounted, contains a ref |
 | onCancel | func | **REQUIRED** |  Function called on dismiss |
 | titleIOS | string | 'Pick a date' | The title text on iOS |
 | titleStyle | style |  | The style of the title text on iOS |
-| minimumDate | Date | undefined | Min Date. Does not work with 'time' picker on Android. |
-| maximumDate | Date | undefined | Max Date. Does not work with 'time' picker on Android. |
+| minimumDate | Date | undefined | Min Date. Does not work with 'time' picker on Android |
+| maximumDate | Date | undefined | Max Date. Does not work with 'time' picker on Android |
 | is24Hour | bool | true | If false, the picker shows an AM/PM chooser on Android |
 
 All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datepickerios.html) are also supported!
@@ -131,7 +131,7 @@ This is more a React-Native specific question than a react-native-modal-datetime
 See issue [#29](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/29) and [#106](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/106) for some solutions.  
 
 ## Notes
-Just remember to always set the `isVisible` prop to `false` in both the `onConfirm` and `onCancel` props (like in the example above).
+Remember to always set the `isVisible` prop to `false` in both the `onConfirm` and `onCancel` props (like in the example above).
 
 Under the hood this library is using [react-native-modal](https://github.com/react-native-community/react-native-modal) for the iOS modal implementation.
 
