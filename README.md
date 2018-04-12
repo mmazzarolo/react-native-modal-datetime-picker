@@ -107,7 +107,7 @@ You can also display both the datepicker and the timepicker in one step by setti
 If you have both a start date/time and end date/time picker on the same screen, you will need to have `showDateTimePicker`, `hideDateTimePicker`, and `handleDatePicked` functions for both.
 
 ```javascript
-showStartDateTimePicker = () => { this.setState({ startDateTimePickerVisible: true });
+showStartDateTimePicker = () => this.setState({ startDateTimePickerVisible: true });
 
 showEndDateTimePicker = () => this.setState({ endDateTimePickerVisible: true });
 
