@@ -90,6 +90,7 @@ export default class DateTimePickerTester extends Component {
 | minimumDate | Date | undefined | Min Date. Does not work with 'time' picker on Android |
 | maximumDate | Date | undefined | Max Date. Does not work with 'time' picker on Android |
 | is24Hour | bool | true | If false, the picker shows an AM/PM chooser on Android |
+| minuteInterval | integer | 1 | Interval for [time picker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/pull/131) on iOS |
 
 All the [DatePickerIOS props](https://facebook.github.io/react-native/docs/datepickerios.html) are also supported!
 
