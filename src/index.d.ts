@@ -62,6 +62,11 @@ interface DateTimePickerProps {
     date?: Date
 
     /**
+     * The date picker locale.
+     */
+    locale?: string;
+
+    /**
      * Sets the visibility of the picker
      * 
      * Default is false
