@@ -5,6 +5,7 @@
 
 import * as React from 'react'
 import { ViewStyle } from 'react-native'
+import { ModalProps as ReactNativeModalProps } from "react-native-modal";
 
 interface DateTimePickerProps {
     /**
@@ -30,13 +31,54 @@ interface DateTimePickerProps {
      * A custom component for the confirm button on iOS
      */
     customConfirmButtonIOS?: JSX.Element
+
+    /**
+     * A custom component for the confirm button on iOS that will be shown while user interacting with the date picker
+     *
+     * Doesn't work without customConfirmButtonIOS
+     */
+    customConfirmButtonWhileInteractingIOS?: JSX.Element
+
+    /**
+     * The style of the ReactNativeModal container on iOS
+     */
+    contentContainerStyleIOS?: ViewStyle
+
+    /**
+     * Ref function for the React Native DatePickerIOS or a customDatePickerIOS
+     */
+    pickerRefCb?( ref: any ): void
+
+    /**
+     * Props for ReactNativeModal
+     */
+    reactNativeModalPropsIOS?: ReactNativeModalProps
+
+    /**
+     * A custom style for the titleIOS (Default is 'Pick a Date')
+     */
+    titleStyle?: ViewStyle
+
+    /**
+     * A custom style for the confirmTextIOS (Default is 'Confirm')
+     *
+     * Doesn't work with the customConfirmButtonIOS
+     */
+    confirmTextStyle?: ViewStyle
+
+    /**
+     * A custom style for cancelTextIOS (Default is 'Cancel')
+     *
+     * Doesn't work with the customCancelButtonIOS
+     */
+    cancelTextStyle?: ViewStyle
     
     /**
      * Never disable the confirm button on iOS, even on fling (see #82)
      *
      * Default is false
      */
-     neverDisableConfirmIOS?: boolean
+    neverDisableConfirmIOS?: boolean
 
     /**
      * A custom component for the title container on iOS
