@@ -28,9 +28,9 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
   componentDidUpdate = prevProps => {
     if (!prevProps.isVisible && this.props.isVisible) {
       if (this.props.mode === "date" || this.props.mode === "datetime") {
-        this._showDatePickerAndroid();
+        this._showDatePickerAndroid().catch(console.error);
       } else {
-        this._showTimePickerAndroid();
+        this._showTimePickerAndroid().catch(console.error);
       }
     }
   };
@@ -38,91 +38,104 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
   componentDidMount = () => {
     if (this.props && this.props.isVisible) {
       if (this.props.mode === "date" || this.props.mode === "datetime") {
-        this._showDatePickerAndroid();
+        this._showDatePickerAndroid().catch(console.error);
       } else {
-        this._showTimePickerAndroid();
+        this._showTimePickerAndroid().catch(console.error);
       }
     }
   };
 
   _showDatePickerAndroid = async () => {
+    let picked;
     try {
-      const { action, year, month, day } = await DatePickerAndroid.open({
+      picked = await DatePickerAndroid.open({
         date: this.props.date,
         minDate: this.props.minimumDate,
         maxDate: this.props.maximumDate,
         mode: this.props.datePickerModeAndroid
       });
-      if (action !== DatePickerAndroid.dismissedAction) {
-        let date;
-        if (this.props.date && !isNaN(this.props.date.getTime())) {
-          let hour = this.props.date.getHours();
-          let minute = this.props.date.getMinutes();
-          date = new Date(year, month, day, hour, minute);
-        } else {
-          date = new Date(year, month, day);
+    } catch ({ message }) {
+      console.warn("Cannot open date picker", message);
+      return;
+    }
+
+    const { action, year, month, day } = picked;
+    if (action !== DatePickerAndroid.dismissedAction) {
+      let date;
+      if (this.props.date && !isNaN(this.props.date.getTime())) {
+        let hour = this.props.date.getHours();
+        let minute = this.props.date.getMinutes();
+        date = new Date(year, month, day, hour, minute);
+      } else {
+        date = new Date(year, month, day);
+      }
+
+      if (this.props.mode === "datetime") {
+        // Prepopulate and show time picker
+        const timeOptions = {
+          is24Hour: this.props.is24Hour,
+          mode: this.props.datePickerModeAndroid
+        };
+        if (this.props.date) {
+          timeOptions.hour = this.props.date.getHours();
+          timeOptions.minute = this.props.date.getMinutes();
         }
 
-        if (this.props.mode === "datetime") {
-          // Prepopulate and show time picker
-          const timeOptions = {
-            is24Hour: this.props.is24Hour,
-            mode: this.props.datePickerModeAndroid
-          };
-          if (this.props.date) {
-            timeOptions.hour = this.props.date.getHours();
-            timeOptions.minute = this.props.date.getMinutes();
-          }
-          const {
-            action: timeAction,
-            hour,
-            minute
-          } = await TimePickerAndroid.open(timeOptions);
-          if (timeAction !== TimePickerAndroid.dismissedAction) {
-            const selectedDate = new Date(year, month, day, hour, minute);
-            this.props.onConfirm(selectedDate);
-            this.props.onHideAfterConfirm(selectedDate);
-          } else {
-            this.props.onCancel();
-          }
+        let pickedTime;
+        try {
+          pickedTime = await TimePickerAndroid.open(timeOptions);
+        } catch ({ message }) {
+          console.warn("Cannot open time picker", message);
+          return;
+        }
+
+        const { action: timeAction, hour, minute } = pickedTime;
+        if (timeAction !== TimePickerAndroid.dismissedAction) {
+          const selectedDate = new Date(year, month, day, hour, minute);
+          this.props.onConfirm(selectedDate);
+          this.props.onHideAfterConfirm(selectedDate);
         } else {
-          this.props.onConfirm(date);
-          this.props.onHideAfterConfirm(date);
+          this.props.onCancel();
         }
       } else {
-        this.props.onCancel();
+        this.props.onConfirm(date);
+        this.props.onHideAfterConfirm(date);
       }
-    } catch ({ code, message }) {
-      console.warn("Cannot open date picker", message);
+    } else {
+      this.props.onCancel();
     }
   };
 
   _showTimePickerAndroid = async () => {
+    let picked;
     try {
-      const { action, hour, minute } = await TimePickerAndroid.open({
+      picked = await TimePickerAndroid.open({
         hour: this.props.date.getHours(),
         minute: this.props.date.getMinutes(),
         is24Hour: this.props.is24Hour,
         mode: this.props.datePickerModeAndroid
       });
-      if (action !== TimePickerAndroid.dismissedAction) {
-        let date;
-        if (this.props.date) {
-          // This prevents losing the Date elements, see issue #71
-          const year = this.props.date.getFullYear();
-          const month = this.props.date.getMonth();
-          const day = this.props.date.getDate();
-          date = new Date(year, month, day, hour, minute);
-        } else {
-          date = new Date().setHours(hour).setMinutes(minute);
-        }
-        this.props.onConfirm(date);
-        this.props.onHideAfterConfirm(date);
-      } else {
-        this.props.onCancel();
-      }
-    } catch ({ code, message }) {
+    } catch ({ message }) {
       console.warn("Cannot open time picker", message);
+      return;
+    }
+
+    const { action, hour, minute } = picked;
+    if (action !== TimePickerAndroid.dismissedAction) {
+      let date;
+      if (this.props.date) {
+        // This prevents losing the Date elements, see issue #71
+        const year = this.props.date.getFullYear();
+        const month = this.props.date.getMonth();
+        const day = this.props.date.getDate();
+        date = new Date(year, month, day, hour, minute);
+      } else {
+        date = new Date().setHours(hour).setMinutes(minute);
+      }
+      this.props.onConfirm(date);
+      this.props.onHideAfterConfirm(date);
+    } else {
+      this.props.onCancel();
     }
   };
 
