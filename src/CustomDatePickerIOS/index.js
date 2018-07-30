@@ -42,7 +42,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     isVisible: false,
     onHideAfterConfirm: () => {},
     reactNativeModalPropsIOS: {},
-    onDateChange: () => {},
+    onDateChange: () => {}
   };
 
   state = {
@@ -62,11 +62,19 @@ export default class CustomDatePickerIOS extends React.PureComponent {
   _handleCancel = () => {
     this.confirmed = false;
     this.props.onCancel();
+    this._resetDate();
   };
 
   _handleConfirm = () => {
     this.confirmed = true;
     this.props.onConfirm(this.state.date);
+    this._resetDate();
+  };
+
+  _resetDate = () => {
+    this.setState({
+      date: new Date()
+    });
   };
 
   _handleOnModalHide = () => {
