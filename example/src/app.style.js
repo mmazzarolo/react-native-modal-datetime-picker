@@ -14,5 +14,8 @@ export default StyleSheet.create({
     alignItems: "center",
     borderRadius: 4,
     borderColor: "rgba(0, 0, 0, 0.1)"
+  },
+  text: {
+    marginVertical: 10
   }
 });
