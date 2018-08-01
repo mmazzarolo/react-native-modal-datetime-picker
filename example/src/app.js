@@ -5,7 +5,8 @@ import styles from "./app.style";
 
 export default class DateTimePickerTester extends Component {
   state = {
-    isDateTimePickerVisible: false
+    isDateTimePickerVisible: false,
+    selectedDate: ""
   };
 
   _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
@@ -13,11 +14,13 @@ export default class DateTimePickerTester extends Component {
   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
   _handleDatePicked = date => {
-    console.log("A date has been picked: ", date);
+    this.setState({ selectedDate: date.toString() });
     this._hideDateTimePicker();
   };
 
   render() {
+    const { isDateTimePickerVisible, selectedDate } = this.state;
+
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this._showDateTimePicker}>
@@ -25,8 +28,11 @@ export default class DateTimePickerTester extends Component {
             <Text>Show DatePicker</Text>
           </View>
         </TouchableOpacity>
+
+        <Text style={styles.text}>{selectedDate}</Text>
+
         <DateTimePicker
-          isVisible={this.state.isDateTimePickerVisible}
+          isVisible={isDateTimePickerVisible}
           onConfirm={this._handleDatePicked}
           onCancel={this._hideDateTimePicker}
         />
