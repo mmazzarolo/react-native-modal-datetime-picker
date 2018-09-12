@@ -135,6 +135,16 @@ See issue [#29](https://github.com/mmazzarolo/react-native-modal-datetime-picker
 The `is24Hour` prop is only available on Android but you use a small hack for enabling it on iOS by setting the app's default timezone as `en_GB`.
 To do so, edit your `AppDelegate.m` file, and add `[[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"en_GB"]];` to `application didFinishLaunchingWithOptions`
 
+### How to set automatic locale in iOS
+Datepicker can adjust by itself locale ("fr_FR", "en_GB"...) depending user's device locale.
+Edit your `AppDelegate.m` file, and add:
+
+```objc
+  // Force DatePicker locale to current language (for: 24h or 12h format, full day names etc...)
+  NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
+  [[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:currentLanguage]];
+```
+
 ## Notes
 Remember to always set the `isVisible` prop to `false` in both the `onConfirm` and `onCancel` props (like in the example above).
 
