@@ -84,6 +84,13 @@ interface DateTimePickerProps {
      * A custom component for the title container on iOS
      */
     customTitleContainerIOS?: JSX.Element
+    
+    /**
+     * Hide the title container on iOS
+     *
+     * Default is false
+     */
+    hideTitleContainerIOS?: boolean
 
     /**
      * A custom component that will replace the default DatePicker on iOS
