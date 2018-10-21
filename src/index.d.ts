@@ -4,7 +4,7 @@
 // TypeScript Version: 2.3.2
 
 import * as React from 'react'
-import { ViewStyle } from 'react-native'
+import { ViewStyle, TextStyle } from 'react-native'
 import { ModalProps as ReactNativeModalProps } from "react-native-modal";
 
 interface DateTimePickerProps {
@@ -57,21 +57,21 @@ interface DateTimePickerProps {
     /**
      * A custom style for the titleIOS (Default is 'Pick a Date')
      */
-    titleStyle?: ViewStyle
+    titleStyle?: TextStyle
 
     /**
      * A custom style for the confirmTextIOS (Default is 'Confirm')
      *
      * Doesn't work with the customConfirmButtonIOS
      */
-    confirmTextStyle?: ViewStyle
+    confirmTextStyle?: TextStyle
 
     /**
      * A custom style for cancelTextIOS (Default is 'Cancel')
      *
      * Doesn't work with the customCancelButtonIOS
      */
-    cancelTextStyle?: ViewStyle
+    cancelTextStyle?: TextStyle
     
     /**
      * Never disable the confirm button on iOS, even on fling (see #82)
