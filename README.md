@@ -146,6 +146,9 @@ Edit your `AppDelegate.m` file, and add:
   [[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:currentLanguage]];
 ```
 
+### How do I make it work with snapshot testing?  
+See issue [#216](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/216) for a possible workaround.
+
 ## Notes
 Remember to always set the `isVisible` prop to `false` in both the `onConfirm` and `onCancel` props (like in the example above).
 
