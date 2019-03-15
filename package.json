@@ -6,10 +6,9 @@
   "typings": "src/index.d.ts",
   "scripts": {
     "lint": "eslint src",
-    "precommit": "lint-staged",
     "test": "npm run lint",
-    "prettier": "prettier --write all src/**/*.js",
-    "reset": "watchman watch-del-all && rm -rf node_modules/ && npm cache clean && npm prune && yarn cache clean"
+    "prettier": "prettier --write src/**/*.js",
+    "reset": "watchman watch-del-all && rm -rf node_modules/"
   },
   "keywords": [
     "react-native",
@@ -33,20 +32,10 @@
     "react-native-modal": "^9.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.6",
-    "eslint": "^5.2.0",
-    "eslint-plugin-react-app": "^3.0.0",
-    "husky": "0.14.3",
-    "lint-staged": "^7.2.0",
-    "prettier": "^1.14.0",
+    "eslint": "^5.13.0",
+    "eslint-plugin-react-app": "^4.0.1",
+    "prettier": "^1.16.4",
     "react": ">=15.0.0",
     "react-native": ">=0.24.0"
-  },
-  "lint-staged": {
-    "*.js": [
-      "npm run test",
-      "npm run prettier",
-      "git add"
-    ]
   }
 }
