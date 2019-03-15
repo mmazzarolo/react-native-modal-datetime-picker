@@ -178,7 +178,8 @@ export default class CustomDatePickerIOS extends React.PureComponent {
         {...reactNativeModalPropsIOS}
       >
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
-          {!hideTitleContainerIOS && (customTitleContainerIOS || titleContainer)}
+          {!hideTitleContainerIOS &&
+            (customTitleContainerIOS || titleContainer)}
           <View
             onStartShouldSetResponderCapture={
               neverDisableConfirmIOS !== true ? this._handleUserTouchInit : null
