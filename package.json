@@ -28,11 +28,11 @@
     "url": "https://github.com/mmazzarolo/react-native-modal-datetime-picker"
   },
   "dependencies": {
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.2",
     "react-native-modal": "^9.0.0"
   },
   "devDependencies": {
-    "eslint": "^5.13.0",
+    "eslint": "^5.16.0",
     "eslint-plugin-react-app": "^4.0.1",
     "prettier": "^1.16.4",
     "react": ">=15.0.0",
