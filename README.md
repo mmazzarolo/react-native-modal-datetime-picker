@@ -81,7 +81,8 @@ export default class DateTimePickerTester extends Component {
 | date | obj | new Date() | Initial selected date/time |
 | isVisible | bool | false | Show the datetime picker? |
 | mode | string | 'date' | Datepicker? 'date' Timepicker? 'time' Both? 'datetime' |
-| datePickerModeAndroid | string | 'calendar' | Display as 'spinner' or 'calendar'|
+| datePickerModeAndroid | string | 'default' | Display as 'spinner' or 'calendar' or 'default' (based on Android version)|
+| timePickerModeAndroid | string | 'default' | Display as 'spinner' or 'clock' or 'default' (based on Android version)|
 | onConfirm | func | **REQUIRED** | Function called on date or time picked. It returns the date or time as a JavaScript Date object |
 | onHideAfterConfirm | func | () => {} | Called after the hiding animation if a date was picked |
 | pickerRefCb | func |  | Called after picker has mounted, contains a ref |

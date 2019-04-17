@@ -144,9 +144,16 @@ interface DateTimePickerProps {
   /**
    * Toggles the date mode on Android between spinner and calendar views
    *
-   * Default is 'calendar'
+   * Default is 'default' which shows either spinner or calendar based on Android version
    */
-  datePickerModeAndroid?: "spinner" | "calendar";
+  datePickerModeAndroid?: "spinner" | "calendar" | "default";
+
+  /**
+   * Toggles the time mode on Android between spinner and clock views
+   *
+   * Default is 'default' which shows either spinner or clock based on Android version
+   */
+  timePickerModeAndroid?: "spinner" | "clock" | "default";
 
   /**
    * Title text for the Picker on iOS
