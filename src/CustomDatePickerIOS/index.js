@@ -75,7 +75,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
 
   _resetDate = () => {
     this.setState({
-      date: new Date()
+      date: this.props.date
     });
   };
 
