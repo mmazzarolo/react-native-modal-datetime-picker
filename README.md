@@ -13,8 +13,8 @@ You will have an unified user experience, you won't have to worry anymore about 
 ## Demo
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/datetimepicker-android.gif" />
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/extras/datetimepicker-ios.gif" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/.github/datetimepicker-android.gif" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/.github/datetimepicker-ios.gif" />
 </p>
 
 ## Setup
