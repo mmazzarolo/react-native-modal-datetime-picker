@@ -3,10 +3,13 @@
   "version": "7.1.0",
   "description": "A react-native datetime-picker for Android and iOS",
   "main": "src/index.js",
+  "files": [
+    "src/"
+  ],
   "typings": "src/index.d.ts",
   "scripts": {
     "lint": "eslint src",
-    "test": "npm run lint",
+    "test": "yarn run lint",
     "prettier": "prettier --write src/**/*.js",
     "reset": "watchman watch-del-all && rm -rf node_modules/"
   },
