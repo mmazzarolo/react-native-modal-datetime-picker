@@ -11,3 +11,4 @@ npm-debug.log
 example/
 .eslintrc
 yarn.lock
+package-lock.json
