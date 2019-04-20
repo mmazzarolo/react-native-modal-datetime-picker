@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { DatePickerIOS, Text, TouchableHighlight, View } from "react-native";
+import {
+  DatePickerIOS,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View
+} from "react-native";
 import ReactNativeModal from "react-native-modal";
-
-import styles from "./index.style";
+import { isIphoneX } from "./utils";
 
 export default class CustomDatePickerIOS extends React.PureComponent {
   static propTypes = {
@@ -61,31 +66,35 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     }
   }
 
-  _handleCancel = () => {
+  handleCancel = () => {
     this.confirmed = false;
     this.props.onCancel();
-    this._resetDate();
+    this.resetDate();
   };
 
-  _handleConfirm = () => {
+  handleConfirm = () => {
     this.confirmed = true;
     this.props.onConfirm(this.state.date);
-    this._resetDate();
+    this.resetDate();
   };
 
-  _resetDate = () => {
+  resetDate = () => {
     this.setState({
       date: this.props.date
     });
   };
 
-  _handleOnModalHide = () => {
+  handleModalShow = () => {
+    this.setState({ minuteInterval: this.props.minuteInterval });
+  };
+
+  handleModalHide = () => {
     if (this.confirmed) {
       this.props.onHideAfterConfirm(this.state.date);
     }
   };
 
-  _handleDateChange = date => {
+  handleDateChange = date => {
     this.setState({
       date,
       userIsInteractingWithPicker: false
@@ -93,7 +102,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     this.props.onDateChange(date);
   };
 
-  _handleUserTouchInit = () => {
+  handleUserTouchInit = () => {
     // custom date picker shouldn't change this param
     if (!this.props.customDatePickerIOS) {
       this.setState({
@@ -168,12 +177,8 @@ export default class CustomDatePickerIOS extends React.PureComponent {
       <ReactNativeModal
         isVisible={isVisible}
         style={[styles.contentContainer, contentContainerStyleIOS]}
-        onModalHide={this._handleOnModalHide}
-        onModalShow={() => {
-          this.setState({
-            minuteInterval
-          });
-        }}
+        onModalHide={this.handleModalHide}
+        onModalShow={this.handleModalShow}
         backdropOpacity={0.4}
         {...reactNativeModalPropsIOS}
       >
@@ -182,7 +187,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
             (customTitleContainerIOS || titleContainer)}
           <View
             onStartShouldSetResponderCapture={
-              neverDisableConfirmIOS !== true ? this._handleUserTouchInit : null
+              neverDisableConfirmIOS !== true ? this.handleUserTouchInit : null
             }
           >
             <DatePickerComponent
@@ -191,13 +196,13 @@ export default class CustomDatePickerIOS extends React.PureComponent {
               minuteInterval={this.state.minuteInterval}
               {...otherProps}
               date={this.state.date}
-              onDateChange={this._handleDateChange}
+              onDateChange={this.handleDateChange}
             />
           </View>
           <TouchableHighlight
             style={styles.confirmButton}
-            underlayColor="#ebebeb"
-            onPress={this._handleConfirm}
+            underlayColor={HIGHLIGHT_COLOR}
+            onPress={this.handleConfirm}
             disabled={
               !neverDisableConfirmIOS && this.state.userIsInteractingWithPicker
             }
@@ -208,8 +213,8 @@ export default class CustomDatePickerIOS extends React.PureComponent {
 
         <TouchableHighlight
           style={styles.cancelButton}
-          underlayColor="#ebebeb"
-          onPress={this._handleCancel}
+          underlayColor={HIGHLIGHT_COLOR}
+          onPress={this.handleCancel}
         >
           {customCancelButtonIOS || cancelButton}
         </TouchableHighlight>
@@ -217,3 +222,66 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     );
   }
 }
+
+const BORDER_RADIUS = 13;
+const BACKGROUND_COLOR = "white";
+const BORDER_COLOR = "#d5d5d5";
+const TITLE_FONT_SIZE = 13;
+const TITLE_COLOR = "#8f8f8f";
+const BUTTON_FONT_WEIGHT = "normal";
+const BUTTON_FONT_COLOR = "#007ff9";
+const BUTTON_FONT_SIZE = 20;
+const HIGHLIGHT_COLOR = "#ebebeb";
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    justifyContent: "flex-end",
+    margin: 10
+  },
+  datepickerContainer: {
+    backgroundColor: BACKGROUND_COLOR,
+    borderRadius: BORDER_RADIUS,
+    marginBottom: 8,
+    overflow: "hidden"
+  },
+  titleContainer: {
+    borderBottomColor: BORDER_COLOR,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    padding: 14,
+    backgroundColor: "transparent"
+  },
+  title: {
+    textAlign: "center",
+    color: TITLE_COLOR,
+    fontSize: TITLE_FONT_SIZE
+  },
+  confirmButton: {
+    borderColor: BORDER_COLOR,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    backgroundColor: "transparent",
+    height: 57,
+    justifyContent: "center"
+  },
+  confirmText: {
+    textAlign: "center",
+    color: BUTTON_FONT_COLOR,
+    fontSize: BUTTON_FONT_SIZE,
+    fontWeight: BUTTON_FONT_WEIGHT,
+    backgroundColor: "transparent"
+  },
+  cancelButton: {
+    backgroundColor: BACKGROUND_COLOR,
+    borderRadius: BORDER_RADIUS,
+    height: 57,
+    marginBottom: isIphoneX() ? 20 : 0,
+    justifyContent: "center"
+  },
+  cancelText: {
+    padding: 10,
+    textAlign: "center",
+    color: BUTTON_FONT_COLOR,
+    fontSize: BUTTON_FONT_SIZE,
+    fontWeight: "600",
+    backgroundColor: "transparent"
+  }
+});

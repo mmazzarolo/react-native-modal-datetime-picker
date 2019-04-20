@@ -30,9 +30,9 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
   componentDidUpdate = prevProps => {
     if (!prevProps.isVisible && this.props.isVisible) {
       if (this.props.mode === "date" || this.props.mode === "datetime") {
-        this._showDatePickerAndroid().catch(console.error);
+        this.showDatePickerAndroid().catch(console.error);
       } else {
-        this._showTimePickerAndroid().catch(console.error);
+        this.showTimePickerAndroid().catch(console.error);
       }
     }
   };
@@ -40,14 +40,14 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
   componentDidMount = () => {
     if (this.props && this.props.isVisible) {
       if (this.props.mode === "date" || this.props.mode === "datetime") {
-        this._showDatePickerAndroid().catch(console.error);
+        this.showDatePickerAndroid().catch(console.error);
       } else {
-        this._showTimePickerAndroid().catch(console.error);
+        this.showTimePickerAndroid().catch(console.error);
       }
     }
   };
 
-  _showDatePickerAndroid = async () => {
+  showDatePickerAndroid = async () => {
     let picked;
     try {
       picked = await DatePickerAndroid.open({
@@ -108,7 +108,7 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
     }
   };
 
-  _showTimePickerAndroid = async () => {
+  showTimePickerAndroid = async () => {
     let picked;
     try {
       picked = await TimePickerAndroid.open({
