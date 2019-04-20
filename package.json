@@ -6,13 +6,7 @@
   "files": [
     "src/"
   ],
-  "typings": "src/index.d.ts",
-  "scripts": {
-    "lint": "eslint src",
-    "test": "yarn run lint",
-    "prettier": "prettier --write src/**/*.js",
-    "reset": "watchman watch-del-all && rm -rf node_modules/"
-  },
+  "typings": "typings/index.d.ts",
   "keywords": [
     "react-native",
     "react",
@@ -29,6 +23,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mmazzarolo/react-native-modal-datetime-picker"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "test": "yarn run lint",
+    "prettier": "prettier --write src/**/*.js"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
