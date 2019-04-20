@@ -4,7 +4,8 @@
   "description": "A react-native datetime-picker for Android and iOS",
   "main": "src/index.js",
   "files": [
-    "src/"
+    "src/",
+    "typings/"
   ],
   "typings": "typings/index.d.ts",
   "keywords": [
