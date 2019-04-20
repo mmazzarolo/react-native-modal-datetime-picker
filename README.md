@@ -25,7 +25,7 @@ This library is available on npm, install it with `npm install --save react-nati
 
 ```javascript
 import React, { Component } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Button, , View } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
 
 export default class DateTimePickerTester extends Component {
@@ -33,9 +33,13 @@ export default class DateTimePickerTester extends Component {
     isDateTimePickerVisible: false
   };
 
-  showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+  showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  }
 
-  hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+  hideDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: false });
+  }
 
   handleDatePicked = date => {
     console.log("A date has been picked: ", date);
@@ -44,16 +48,14 @@ export default class DateTimePickerTester extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <TouchableOpacity onPress={this._showDateTimePicker}>
-          <Text>Show DatePicker</Text>
-        </TouchableOpacity>
+      <>
+        <Button title="Show DatePicker" onPress={this.showDateTimePicker} />
         <DateTimePicker
-          isVisible={this.state.isDateTimePickerVisible}
+          isVisible={isDateTimePickerVisible}
           onConfirm={this.handleDatePicked}
           onCancel={this.hideDateTimePicker}
         />
-      </View>
+      </>
     );
   }
 }

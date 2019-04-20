@@ -1,25 +1,25 @@
 {
-  "name": "react-natvie-modal-datetime-picker-example",
+  "name": "Example",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "reset": "watchman watch-del-all && rm -rf node_modules/ && npm cache clean && npm prune && yarn cache clean"
+    "test": "jest"
   },
   "dependencies": {
-    "react": "^16.4.1",
-    "react-native": "^0.56.0",
-    "react-native-modal-datetime-picker": "^6.0.0"
-  },
-  "jest": {
-    "preset": "jest-react-native"
+    "react": "16.8.3",
+    "react-native": "0.59.5",
+    "react-native-datetime-picker": "*"
   },
   "devDependencies": {
-    "babel-jest": "^23.4.2",
-    "babel-preset-react-native": "^5.0.2",
-    "jest": "^23.4.2",
-    "jest-react-native": "^18.0.0",
-    "react-test-renderer": "^16.4.1"
+    "@babel/core": "^7.4.3",
+    "@babel/runtime": "^7.4.3",
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
