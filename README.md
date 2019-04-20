@@ -156,9 +156,9 @@ Datepicker can adjust by itself locale ("fr_FR", "en_GB"...) depending user's de
 Edit your `AppDelegate.m` file, and add:
 
 ```objc
-  // Force DatePicker locale to current language (for: 24h or 12h format, full day names etc...)
-  NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
-  [[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:currentLanguage]];
+// Force DatePicker locale to current language (for: 24h or 12h format, full day names etc...)
+NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
+[[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:currentLanguage]];
 ```
 
 ### How do I make it work with snapshot testing?
