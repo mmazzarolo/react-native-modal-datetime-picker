@@ -1,7 +1,3 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 
 defaults: &defaults
@@ -10,55 +6,58 @@ defaults: &defaults
     - image: circleci/node:10
 
 jobs:
-  test:
+  setup:
     <<: *defaults
     steps:
       - checkout
-
       - restore_cache:
+          name: Restore node modules
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: yarn install
+            - node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
       - run:
-          name: Run tests
-          command: yarn test
-
+          name: Install dependencies
+          command: yarn --pure-lockfile
       - save_cache:
+          name: Save node modules
+          key: node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
 
-      - persist_to_workspace:
-          root: ~/repo
-          paths: .
-  deploy:
+  tests:
+  <<: *defaults
+  steps:
+    - checkout
+    - restore_cache:
+        name: Restore node modules
+        keys:
+          - node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
+    - run:
+        name: Run Tests
+        command: yarn test
+
+  publish:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - checkout
+      - restore_cache:
+          name: Restore node modules
+          keys:
+            - node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
       - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-      - run:
-          name: Publish package
-          command: yarn publish
+          name: Publish to NPM
+          command: yarn run release
 
 workflows:
   version: 2
-  test-deploy:
+  ci:
     jobs:
-      - test:
-          filters:
-            tags:
-              only: /^v.*/
-      - deploy:
+      - setup
+      - tests:
           requires:
-            - test
+            - setup
+      - publish:
+          requires:
+            - tests
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only: master

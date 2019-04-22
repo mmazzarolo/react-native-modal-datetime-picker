@@ -19,7 +19,7 @@
     "ios"
   ],
   "author": "Mazzarolo Matteo",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/mmazzarolo/react-native-modal-datetime-picker",
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   "scripts": {
     "lint": "eslint src",
     "test": "yarn run lint",
+    "release": "yarn semantic-release",
     "prettier": "prettier --write src/**/*.js"
   },
   "dependencies": {
@@ -35,10 +36,12 @@
     "react-native-modal": "^9.0.0"
   },
   "devDependencies": {
+    "@semantic-release/git": "^7.0.8",
     "eslint": "^5.16.0",
     "eslint-plugin-react-app": "^4.0.1",
     "prettier": "^1.16.4",
     "react": ">=15.0.0",
-    "react-native": ">=0.24.0"
+    "react-native": ">=0.24.0",
+    "semantic-release": "^15.13.3"
   }
 }
