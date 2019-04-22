@@ -13,43 +13,45 @@ import { isIphoneX } from "./utils";
 export default class CustomDatePickerIOS extends React.PureComponent {
   static propTypes = {
     cancelTextIOS: PropTypes.string,
+    cancelTextStyle: PropTypes.any,
     confirmTextIOS: PropTypes.string,
+    confirmTextStyle: PropTypes.any,
+    contentContainerStyleIOS: PropTypes.any,
     customCancelButtonIOS: PropTypes.node,
     customConfirmButtonIOS: PropTypes.node,
-    neverDisableConfirmIOS: PropTypes.bool,
     customConfirmButtonWhileInteractingIOS: PropTypes.node,
-    customTitleContainerIOS: PropTypes.node,
-    hideTitleContainerIOS: PropTypes.bool,
     customDatePickerIOS: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-    contentContainerStyleIOS: PropTypes.any,
-    datePickerContainerStyleIOS: PropTypes.any,
+    customTitleContainerIOS: PropTypes.node,
+    dismissOnBackdropPressIOS: PropTypes.bool,
+    hideTitleContainerIOS: PropTypes.bool,
+    isVisible: PropTypes.bool,
     date: PropTypes.instanceOf(Date),
+    datePickerContainerStyleIOS: PropTypes.any,
     mode: PropTypes.oneOf(["date", "time", "datetime"]),
+    neverDisableConfirmIOS: PropTypes.bool,
+    onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
+    onDateChange: PropTypes.func,
     onHideAfterConfirm: PropTypes.func,
     pickerRefCb: PropTypes.func,
-    onCancel: PropTypes.func.isRequired,
-    titleIOS: PropTypes.string,
-    isVisible: PropTypes.bool,
     reactNativeModalPropsIOS: PropTypes.any,
-    titleStyle: PropTypes.any,
-    confirmTextStyle: PropTypes.any,
-    cancelTextStyle: PropTypes.any,
-    onDateChange: PropTypes.func
+    titleIOS: PropTypes.string,
+    titleStyle: PropTypes.any
   };
 
   static defaultProps = {
-    neverDisableConfirmIOS: false,
-    hideTitleContainerIOS: false,
     cancelTextIOS: "Cancel",
     confirmTextIOS: "Confirm",
     date: new Date(),
-    mode: "date",
-    titleIOS: "Pick a date",
+    dismissOnBackdropPressIOS: true,
+    hideTitleContainerIOS: false,
     isVisible: false,
+    mode: "date",
+    neverDisableConfirmIOS: false,
     onHideAfterConfirm: () => {},
+    onDateChange: () => {},
     reactNativeModalPropsIOS: {},
-    onDateChange: () => {}
+    titleIOS: "Pick a date"
   };
 
   state = {
@@ -114,26 +116,27 @@ export default class CustomDatePickerIOS extends React.PureComponent {
 
   render() {
     const {
-      isVisible,
-      mode,
-      titleIOS,
-      confirmTextIOS,
       cancelTextIOS,
+      cancelTextStyle,
+      confirmTextIOS,
+      confirmTextStyle,
+      contentContainerStyleIOS,
       customCancelButtonIOS,
       customConfirmButtonIOS,
-      neverDisableConfirmIOS,
       customConfirmButtonWhileInteractingIOS,
       customDatePickerIOS,
-      contentContainerStyleIOS,
       customTitleContainerIOS,
-      hideTitleContainerIOS,
       datePickerContainerStyleIOS,
-      reactNativeModalPropsIOS,
-      titleStyle,
-      confirmTextStyle,
-      cancelTextStyle,
-      pickerRefCb,
+      dismissOnBackdropPressIOS,
+      hideTitleContainerIOS,
+      isVisible,
       minuteInterval,
+      mode,
+      neverDisableConfirmIOS,
+      pickerRefCb,
+      reactNativeModalPropsIOS,
+      titleIOS,
+      titleStyle,
       ...otherProps
     } = this.props;
 
@@ -173,6 +176,13 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     );
     const DatePickerComponent = customDatePickerIOS || DatePickerIOS;
 
+    const reactNativeModalProps = {
+      onBackdropPress: dismissOnBackdropPressIOS
+        ? this.handleCancel
+        : () => null,
+      reactNativeModalPropsIOS
+    };
+
     return (
       <ReactNativeModal
         isVisible={isVisible}
@@ -180,7 +190,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
         onModalHide={this.handleModalHide}
         onModalShow={this.handleModalShow}
         backdropOpacity={0.4}
-        {...reactNativeModalPropsIOS}
+        {...reactNativeModalProps}
       >
         <View style={[styles.datepickerContainer, datePickerContainerStyleIOS]}>
           {!hideTitleContainerIOS &&

@@ -86,6 +86,13 @@ interface DateTimePickerProps {
   customTitleContainerIOS?: JSX.Element;
 
   /**
+   * Dismiss the date-picker/time-picker when pressing on the backdrop (on iOS)?
+   *
+   * Default is true
+   */
+  dismissOnBackdropPressIOS?: boolean;
+
+  /**
    * Hide the title container on iOS
    *
    * Default is false
