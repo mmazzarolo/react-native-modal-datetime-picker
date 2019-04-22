@@ -10,8 +10,7 @@ A declarative cross-platform react-native datetime-picker.
 <img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/.github/datetimepicker-ios.gif" />
 </p>
 
-This library exposes a cross-platform interface for showing the native date-picker and time-picker inside a modal.
-You will have an unified user experience, you won't have to worry anymore about testing the device platform and you won't have to programmatically call the Android TimePicker/DatePicker APIs.
+This library exposes a cross-platform interface for showing the native date-picker and time-picker inside a modal, providing a unified user and developer experience.
 
 ## Setup
 
@@ -31,7 +30,7 @@ yarn add react-native-modal-datetime-picker
 
 ```javascript
 import React, { Component } from "react";
-import { Button, , View } from "react-native";
+import { Button, View } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
 
 export default class DateTimePickerTester extends Component {
@@ -41,11 +40,11 @@ export default class DateTimePickerTester extends Component {
 
   showDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: true });
-  }
+  };
 
   hideDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: false });
-  }
+  };
 
   handleDatePicked = date => {
     console.log("A date has been picked: ", date);
