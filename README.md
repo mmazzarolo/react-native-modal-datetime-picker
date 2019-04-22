@@ -14,16 +14,14 @@ This library exposes a cross-platform interface for showing the native date-pick
 
 ## Setup
 
-This library is available on NPM, just run:
+Install the library using npm or yarn:
 
 ```bash
-npm install --save react-native-modal-datetime-picker
-```
+# using npm
+$ npm install react-native-dialog --save
 
-Or, if you prefer Yarn, run:
-
-```bash
-yarn add react-native-modal-datetime-picker
+# using yarn
+$ yarn add react-native-dialog
 ```
 
 ## Usage
