@@ -24,16 +24,16 @@ jobs:
             - node_modules
 
   tests:
-  <<: *defaults
-  steps:
-    - checkout
-    - restore_cache:
-        name: Restore node modules
-        keys:
-          - node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
-    - run:
-        name: Run Tests
-        command: yarn test
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore node modules
+          keys:
+            - node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Run Tests
+          command: yarn test
 
   publish:
     <<: *defaults
