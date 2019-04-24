@@ -18,10 +18,10 @@ Install the library using npm or yarn:
 
 ```bash
 # using npm
-$ npm install react-native-dialog --save
+$ npm install react-native-modal-datetime-picker --save
 
 # using yarn
-$ yarn add react-native-dialog
+$ yarn add react-native-modal-datetime-picker
 ```
 
 ## Usage
@@ -32,9 +32,12 @@ import { Button, View } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
 
 export default class DateTimePickerTester extends Component {
-  state = {
-    isDateTimePickerVisible: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDateTimePickerVisible: false
+    };
+  }
 
   showDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: true });
@@ -54,7 +57,7 @@ export default class DateTimePickerTester extends Component {
       <>
         <Button title="Show DatePicker" onPress={this.showDateTimePicker} />
         <DateTimePicker
-          isVisible={isDateTimePickerVisible}
+          isVisible={this.state.isDateTimePickerVisible}
           onConfirm={this.handleDatePicked}
           onCancel={this.hideDateTimePicker}
         />
