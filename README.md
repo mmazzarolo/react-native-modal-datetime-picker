@@ -1,7 +1,6 @@
 # react-native-modal-datetime-picker
 
-[![npm version](https://badge.fury.io/js/react-native-modal-datetime-picker.svg)](https://badge.fury.io/js/react-native-modal-datetime-picker)
-[![CircleCI](https://circleci.com/gh/mmazzarolo/react-native-modal-datetime-picker.svg?style=svg)](https://circleci.com/gh/mmazzarolo/react-native-modal-datetime-picker)
+![npm version](https://badge.fury.io/js/react-native-modal-datetime-picker.svg)](https://badge.fury.io/js/react-native-modal-datetime-picker)
 ![Supports Android and iOS](https://img.shields.io/badge/platforms-android%20|%20ios-lightgrey.svg)
 
 A declarative cross-platform react-native datetime-picker.
