@@ -1,7 +1,8 @@
 # react-native-modal-datetime-picker
 
 [![npm version](https://badge.fury.io/js/react-native-modal-datetime-picker.svg)](https://badge.fury.io/js/react-native-modal-datetime-picker)
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![CircleCI](https://circleci.com/gh/mmazzarolo/react-native-modal-datetime-picker.svg?style=svg)](https://circleci.com/gh/mmazzarolo/react-native-modal-datetime-picker)
+![Supports Android and iOS](https://img.shields.io/badge/platforms-android%20|%20ios-lightgrey.svg)
 
 A declarative cross-platform react-native datetime-picker.
 
@@ -170,8 +171,8 @@ See issue [#216](https://github.com/mmazzarolo/react-native-modal-datetime-picke
 
 ## Contributing
 
-Please see the [contributing guide](/CONTRIBUTING.md).
+Please see the [contributing guide](./.github/CONTRIBUTING.md).
 
 ## License
 
-The library is released under the MIT license. For more information see [`LICENSE`](/LICENSE).
+The library is released under the MIT license. For more information see [`LICENSE`](/LICENSE.md).
