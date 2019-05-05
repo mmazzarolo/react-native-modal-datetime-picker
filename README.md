@@ -6,11 +6,13 @@
 A declarative cross-platform react-native datetime-picker.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/.github/datetimepicker-android.gif" />
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-modal-datetime-picker/master/.github/datetimepicker-ios.gif" />
+<img src="./.github/images/datetimepicker-android.gif" />
+<img src="./.github/images/datetimepicker-ios.gif" />
 </p>
 
 This library exposes a cross-platform interface for showing the native date-picker and time-picker inside a modal, providing a unified user and developer experience.
+
+Under the hood this library is using [react-native-modal](https://github.com/react-native-community/react-native-modal) for the iOS modal implementation.
 
 ## Setup
 
@@ -166,10 +168,10 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 
 See issue [#216](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/216) for a possible workaround.
 
-## Notes
+## Contributing
 
-Remember to always set the `isVisible` prop to `false` in both the `onConfirm` and `onCancel` props (like in the example above).
+Please see the [contributing guide](/CONTRIBUTING.md).
 
-Under the hood this library is using [react-native-modal](https://github.com/react-native-community/react-native-modal) for the iOS modal implementation.
+## License
 
-Pull requests and suggestions are always welcome!
+The library is released under the MIT license. For more information see [`LICENSE`](/LICENSE).
