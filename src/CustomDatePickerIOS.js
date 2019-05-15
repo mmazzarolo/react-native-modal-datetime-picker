@@ -61,7 +61,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.date !== nextProps.date) {
+    if (this.props.date.valueOf() !== nextProps.date.valueOf()) {
       this.setState({
         date: nextProps.date
       });
