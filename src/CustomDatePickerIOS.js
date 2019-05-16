@@ -180,7 +180,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
       onBackdropPress: dismissOnBackdropPressIOS
         ? this.handleCancel
         : () => null,
-      reactNativeModalPropsIOS
+      ...reactNativeModalPropsIOS
     };
 
     return (
