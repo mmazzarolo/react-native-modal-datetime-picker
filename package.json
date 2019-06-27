@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "react-native-modal": "^9.0.0"
+    "react-native-modal": "^11.0.2"
   },
   "devDependencies": {
     "@semantic-release/git": "^7.0.8",
