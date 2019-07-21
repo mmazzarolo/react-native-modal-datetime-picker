@@ -155,7 +155,7 @@ To do so, edit your `AppDelegate.m` file, and add `[[UIDatePicker appearance] se
 
 ### How to set automatic locale in iOS
 
-Datepicker can adjust by itself locale ("fr_FR", "en_GB"...) depending user's device locale.
+Datepicker can adjust by itself locale (`fr_FR`, `en_GB`...) depending user's device locale.
 Edit your `AppDelegate.m` file, and add:
 
 ```objc

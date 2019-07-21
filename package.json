@@ -1,6 +1,6 @@
 {
   "name": "react-native-modal-datetime-picker",
-  "version": "1.0.0",
+  "version": "7.5.0",
   "description": "A react-native datetime-picker for Android and iOS",
   "main": "src/index.js",
   "files": [
@@ -32,8 +32,7 @@
     "prettier": "prettier --write src/**/*.js"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "react-native-modal": "^9.0.0"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "@semantic-release/git": "^7.0.8",
