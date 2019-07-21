@@ -1,50 +1,47 @@
-import React, { Component } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import DateTimePicker from "react-native-modal-datetime-picker";
+import React, { useState } from "react";
+import { Button, StyleSheet, View } from "react-native";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-export default class DateTimePickerTester extends Component {
-  state = {
-    isDateTimePickerVisible: false,
-    selectedDate: ""
+const App = () => {
+  const [pickerMode, setPickerMode] = useState(null);
+
+  const showDatePicker = () => setPickerMode("date");
+
+  const showTimePicker = () => setPickerMode("time");
+
+  const showDateTimePicker = () => setPickerMode("datetime");
+
+  const showCountdownPicker = () => setPickerMode("countdown");
+
+  const hidePicker = () => setPickerMode(null);
+
+  const handleConfirm = date => {
+    console.warn("A date has been picked: ", date);
+    hidePicker();
   };
 
-  showDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: true });
-  };
+  return (
+    <View style={style.root}>
+      <Button title="Show Date Picker" onPress={showDatePicker} />
+      <Button title="Show Time Picker" onPress={showTimePicker} />
+      <Button title="Show DateTime Picker" onPress={showDateTimePicker} />
+      <Button title="Show Countdown Picker" onPress={showCountdownPicker} />
+      <DateTimePickerModal
+        isVisible={pickerMode !== null}
+        mode={pickerMode}
+        onConfirm={handleConfirm}
+        onCancel={hidePicker}
+      />
+    </View>
+  );
+};
 
-  hideDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: false });
-  };
-
-  handleDatePicked = date => {
-    this.setState({ selectedDate: date.toString() });
-    this.hideDateTimePicker();
-  };
-
-  render() {
-    const { isDateTimePickerVisible, selectedDate } = this.state;
-
-    return (
-      <View style={styles.container}>
-        <Button title="Show DatePicker" onPress={this.showDateTimePicker} />
-        <Text style={styles.text}>{selectedDate}</Text>
-        <DateTimePicker
-          isVisible={isDateTimePickerVisible}
-          onConfirm={this.handleDatePicked}
-          onCancel={this.hideDateTimePicker}
-        />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
+const style = StyleSheet.create({
+  root: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
-  },
-  text: {
-    marginVertical: 10
   }
 });
+
+export default App;
