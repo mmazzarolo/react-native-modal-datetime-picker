@@ -19,18 +19,19 @@ export default class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
     cancelLabelIOS: PropTypes.string,
     confirmLabelIOS: PropTypes.string,
-    customCancelButtonIOS: PropTypes.node,
-    customConfirmButtonIOS: PropTypes.node,
-    customHeaderIOS: PropTypes.node,
+    cancelButtonComponentIOS: PropTypes.node,
+    configComponentIOS: PropTypes.node,
+    headerComponentIOS: PropTypes.node,
     date: PropTypes.instanceOf(Date),
     headerLabelIOS: PropTypes.string,
     modalStyleIOS: PropTypes.any,
     isVisible: PropTypes.bool,
     pickerContainerStyleIOS: PropTypes.any,
+    pickerComponentIOS: PropTypes.node,
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     onChange: PropTypes.func,
-    onPickerHide: PropTypes.func
+    onHide: PropTypes.func
   };
 
   static defaultProps = {
@@ -45,7 +46,7 @@ export default class DateTimePickerModal extends React.PureComponent {
   state = {
     currentDate: this.props.date,
     isPickerVisible: this.props.isVisible,
-    isUserInteractingWithPicker: false
+    isPickerSpinning: false
   };
 
   didPressConfirm = false;
@@ -68,8 +69,8 @@ export default class DateTimePickerModal extends React.PureComponent {
   };
 
   handleModalHide = () => {
-    if (this.props.onPickerHide) {
-      this.props.onPickerHide(this.didPressConfirm, this.state.currentDate);
+    if (this.props.onHide) {
+      this.props.onHide(this.didPressConfirm, this.state.currentDate);
     }
     this.setState({ isPickerVisible: false });
   };
@@ -78,11 +79,11 @@ export default class DateTimePickerModal extends React.PureComponent {
     if (this.props.onChange) {
       this.props.onChange(date);
     }
-    this.setState({ currentDate: date, isUserInteractingWithPicker: false });
+    this.setState({ currentDate: date, isPickerSpinning: false });
   };
 
   handleUserTouchInit = () => {
-    this.setState({ isUserInteractingWithPicker: true });
+    this.setState({ isPickerSpinning: true });
     return false;
   };
 
@@ -90,43 +91,45 @@ export default class DateTimePickerModal extends React.PureComponent {
     const {
       cancelLabelIOS,
       confirmLabelIOS,
-      customCancelButtonIOS,
-      customConfirmButtonIOS,
-      customHeaderIOS,
+      cancelButtonComponentIOS,
+      confirmButtonComponentIOS,
+      headerComponentIOS,
       date,
       headerLabelIOS,
       isVisible,
       modalStyleIOS,
       pickerContainerStyleIOS,
+      pickerComponentIOS,
       onCancel,
       onConfirm,
       onChange,
-      onPickerHide,
+      onHide,
       ...otherProps
     } = this.props;
 
-    const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
-    const CancelButtonComponent = customCancelButtonIOS || CancelButton;
-    const HeaderComponent = customHeaderIOS || Header;
+    const ConfirmButtonComponent = confirmButtonComponentIOS || ConfirmButton;
+    const CancelButtonComponent = cancelButtonComponentIOS || CancelButton;
+    const HeaderComponent = headerComponentIOS || Header;
+    const PickerComponent = pickerComponentIOS || DateTimePicker;
 
     return (
       <Modal
         isVisible={isVisible}
-        style={pickerStyles.modal}
+        style={[pickerStyles.modal, modalStyleIOS]}
         onBackdropPress={this.handleCancel}
         onModalHide={this.handleModalHide}
       >
         <View style={[pickerStyles.container, pickerContainerStyleIOS]}>
           <HeaderComponent label={headerLabelIOS} />
           <View onStartShouldSetResponderCapture={this.handleUserTouchInit}>
-            <DateTimePicker
+            <PickerComponent
               {...otherProps}
               value={this.state.currentDate}
               onChange={this.handleChange}
             />
           </View>
           <ConfirmButtonComponent
-            disabled={this.state.isUserInteractingWithPicker}
+            disabled={this.state.isPickerSpinning}
             onPress={this.handleConfirm}
             label={confirmLabelIOS}
           />
@@ -153,10 +156,10 @@ const pickerStyles = StyleSheet.create({
   }
 });
 
-export const Header = ({ label, textStyle = {} }) => {
+export const Header = ({ label }) => {
   return (
     <View style={headerStyles.root}>
-      <Text style={[headerStyles.text, textStyle]}>{label}</Text>
+      <Text style={headerStyles.text}>{label}</Text>
     </View>
   );
 };
@@ -175,29 +178,15 @@ const headerStyles = StyleSheet.create({
   }
 });
 
-export const ConfirmButton = ({
-  disabled,
-  onPress,
-  label,
-  buttonStyle = {},
-  textStyle = {}
-}) => {
+export const ConfirmButton = ({ disabled, onPress, label }) => {
   return (
     <TouchableHighlight
-      style={[confirmButtonStyles.button, buttonStyle]}
+      style={confirmButtonStyles.button}
       underlayColor={HIGHLIGHT_COLOR}
       onPress={onPress}
       disabled={disabled}
     >
-      <Text
-        style={[
-          confirmButtonStyles.text,
-          disabled && confirmButtonStyles.textDisabled,
-          textStyle
-        ]}
-      >
-        {label}
-      </Text>
+      <Text style={confirmButtonStyles.text}>{label}</Text>
     </TouchableHighlight>
   );
 };
@@ -216,26 +205,17 @@ const confirmButtonStyles = StyleSheet.create({
     fontSize: BUTTON_FONT_SIZE,
     fontWeight: BUTTON_FONT_WEIGHT,
     backgroundColor: "transparent"
-  },
-  textDisabled: {
-    opacity: 0.4
   }
 });
 
-export const CancelButton = ({
-  disabled,
-  onPress,
-  label,
-  buttonStyle = {},
-  textStyle = {}
-}) => {
+export const CancelButton = ({ disabled, onPress, label }) => {
   return (
     <TouchableHighlight
-      style={[cancelButtonStyles.button, buttonStyle]}
+      style={cancelButtonStyles.button}
       underlayColor={HIGHLIGHT_COLOR}
       onPress={onPress}
     >
-      <Text style={[cancelButtonStyles.text, textStyle]}>{label}</Text>
+      <Text style={cancelButtonStyles.text}>{label}</Text>
     </TouchableHighlight>
   );
 };
