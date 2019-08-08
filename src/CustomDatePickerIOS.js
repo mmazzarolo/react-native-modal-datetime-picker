@@ -36,7 +36,8 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     pickerRefCb: PropTypes.func,
     reactNativeModalPropsIOS: PropTypes.any,
     titleIOS: PropTypes.string,
-    titleStyle: PropTypes.any
+    titleStyle: PropTypes.any,
+    compareByValue: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -51,7 +52,8 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     onHideAfterConfirm: () => {},
     onDateChange: () => {},
     reactNativeModalPropsIOS: {},
-    titleIOS: "Pick a date"
+    titleIOS: "Pick a date",
+    compareByValue: true,
   };
 
   state = {
@@ -61,10 +63,18 @@ export default class CustomDatePickerIOS extends React.PureComponent {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.date.valueOf() !== nextProps.date.valueOf()) {
-      this.setState({
-        date: nextProps.date
-      });
+    if (this.props.compareByValue) {
+      if (this.props.date.valueOf() !== nextProps.date.valueOf()) {
+        this.setState({
+          date: nextProps.date
+        });
+      }
+    } else {
+      if (this.props.date !== nextProps.date) {
+        this.setState({
+          date: nextProps.date
+        });
+      }
     }
   }
 
