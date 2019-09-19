@@ -17,6 +17,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     confirmTextIOS: PropTypes.string,
     confirmTextStyle: PropTypes.any,
     contentContainerStyleIOS: PropTypes.any,
+    cancelButtonContainerStyleIOS: PropTypes.any,
     customCancelButtonIOS: PropTypes.node,
     customConfirmButtonIOS: PropTypes.node,
     customConfirmButtonWhileInteractingIOS: PropTypes.node,
@@ -121,6 +122,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
       confirmTextIOS,
       confirmTextStyle,
       contentContainerStyleIOS,
+      cancelButtonContainerStyleIOS,
       customCancelButtonIOS,
       customConfirmButtonIOS,
       customConfirmButtonWhileInteractingIOS,
@@ -222,7 +224,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
         </View>
 
         <TouchableHighlight
-          style={styles.cancelButton}
+          style={[styles.cancelButton, cancelButtonContainerStyleIOS]}
           underlayColor={HIGHLIGHT_COLOR}
           onPress={this.handleCancel}
         >
