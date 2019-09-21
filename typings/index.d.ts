@@ -45,6 +45,11 @@ interface DateTimePickerProps {
   contentContainerStyleIOS?: ViewStyle;
 
   /**
+   * The style of the cancel button container on iOS
+   */
+  cancelButtonContainerStyleIOS?: ViewStyle;
+
+  /**
    * Ref function for the React Native DatePickerIOS or a customDatePickerIOS
    */
   pickerRefCb?(ref: any): void;
