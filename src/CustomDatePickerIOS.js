@@ -237,7 +237,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
 }
 const DEVICE_THEME = Appearance.getColorScheme();
 const BORDER_RADIUS = 13;
-const BACKGROUND_COLOR = DEVICE_THEME ? 'black' : "white";
+const BACKGROUND_COLOR = DEVICE_THEME === 'dark' ? 'black' : "white";
 const BORDER_COLOR = "#d5d5d5";
 const TITLE_FONT_SIZE = 13;
 const TITLE_COLOR = "#8f8f8f";
