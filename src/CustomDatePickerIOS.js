@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import ReactNativeModal from "react-native-modal";
 import { isIphoneX } from "./utils";
+import { Appearance } from 'react-native-appearance';
 
 export default class CustomDatePickerIOS extends React.PureComponent {
   static propTypes = {
@@ -234,9 +235,9 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     );
   }
 }
-
+const DEVICE_THEME = Appearance.getColorScheme();
 const BORDER_RADIUS = 13;
-const BACKGROUND_COLOR = "white";
+const BACKGROUND_COLOR = DEVICE_THEME ? 'black' : "white";
 const BORDER_COLOR = "#d5d5d5";
 const TITLE_FONT_SIZE = 13;
 const TITLE_COLOR = "#8f8f8f";
