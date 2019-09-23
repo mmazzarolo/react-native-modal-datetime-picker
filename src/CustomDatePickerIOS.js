@@ -67,6 +67,11 @@ export default class CustomDatePickerIOS extends React.PureComponent {
         date: nextProps.date
       });
     }
+    if(nextProps.maximumDate && (!this.state.date || this.state.date > nextProps.maximumDate)){
+      this.setState({
+        date: nextProps.maximumDate
+      });
+    }
   }
 
   handleCancel = () => {
