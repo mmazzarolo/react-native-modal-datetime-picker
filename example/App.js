@@ -31,7 +31,6 @@ const App = () => {
         mode={pickerMode}
         onConfirm={handleConfirm}
         onCancel={hidePicker}
-        isDarkModeEnabled={true}
       />
     </View>
   );
