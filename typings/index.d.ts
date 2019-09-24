@@ -127,6 +127,13 @@ interface DateTimePickerProps {
   locale?: string;
 
   /**
+   * Toggles the dark mode style of the picker
+   *
+   * Default is false
+   */
+  isDarkModeEnabled?: boolean;
+
+  /**
    * Sets the visibility of the picker
    *
    * Default is false
