@@ -5,7 +5,10 @@
 
 import * as React from "react";
 import { ViewStyle, TextStyle } from "react-native";
-import { ModalProps as ReactNativeModalProps } from "react-native-modal";
+import { ModalProps } from "react-native-modal";
+
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+type ReactNativeModalProps = Omit<ModalProps, "children" | "isVisible">;
 
 interface DateTimePickerProps {
   /**
@@ -232,4 +235,4 @@ interface DateTimePickerProps {
 export default class DateTimePicker extends React.Component<
   DateTimePickerProps,
   any
-> {}
+  > { }
