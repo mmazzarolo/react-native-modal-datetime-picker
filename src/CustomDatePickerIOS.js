@@ -242,7 +242,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
 
 const BORDER_RADIUS = 13;
 const BACKGROUND_COLOR_LIGHT = "white";
-const BACKGROUND_COLOR_DARK = "black";
+const BACKGROUND_COLOR_DARK = "#0E0E0E";
 const BORDER_COLOR = "#d5d5d5";
 const TITLE_FONT_SIZE = 13;
 const TITLE_COLOR = "#8f8f8f";
