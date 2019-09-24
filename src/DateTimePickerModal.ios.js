@@ -6,7 +6,8 @@ import Modal from "./Modal";
 import { isIphoneX } from "./utils";
 
 const BORDER_RADIUS = 13;
-const BACKGROUND_COLOR = "white";
+const BACKGROUND_COLOR_LIGHT = "white";
+const BACKGROUND_COLOR_DARK = "#0E0E0E";
 const BORDER_COLOR = "#d5d5d5";
 const TITLE_FONT_SIZE = 20;
 const TITLE_COLOR = "#8f8f8f";
@@ -25,6 +26,7 @@ export default class DateTimePickerModal extends React.PureComponent {
     date: PropTypes.instanceOf(Date),
     headerLabelIOS: PropTypes.string,
     modalStyleIOS: PropTypes.any,
+    isDarkModeEnabled: PropTypes.bool,
     isVisible: PropTypes.bool,
     pickerContainerStyleIOS: PropTypes.any,
     pickerComponentIOS: PropTypes.node,
@@ -39,6 +41,7 @@ export default class DateTimePickerModal extends React.PureComponent {
     confirmLabelIOS: "Confirm",
     headerLabelIOS: "Pick a date",
     date: new Date(),
+    isDarkModeEnabled: false,
     isVisible: false,
     pickerContainerStyleIOS: {}
   };
@@ -96,6 +99,7 @@ export default class DateTimePickerModal extends React.PureComponent {
       headerComponentIOS,
       date,
       headerLabelIOS,
+      isDarkModeEnabled,
       isVisible,
       modalStyleIOS,
       pickerContainerStyleIOS,
@@ -112,6 +116,10 @@ export default class DateTimePickerModal extends React.PureComponent {
     const HeaderComponent = headerComponentIOS || Header;
     const PickerComponent = pickerComponentIOS || DateTimePicker;
 
+    const themedContainerStyle = isDarkModeEnabled 
+      ? pickerStyles.containerDark 
+      : pickerStyles.containerLight;
+
     return (
       <Modal
         isVisible={isVisible}
@@ -119,7 +127,11 @@ export default class DateTimePickerModal extends React.PureComponent {
         onBackdropPress={this.handleCancel}
         onModalHide={this.handleModalHide}
       >
-        <View style={[pickerStyles.container, pickerContainerStyleIOS]}>
+        <View style={[
+          pickerStyles.container, 
+          themedContainerStyle, 
+          pickerContainerStyleIOS
+        ]}>
           <HeaderComponent label={headerLabelIOS} />
           <View onStartShouldSetResponderCapture={this.handleUserTouchInit}>
             <PickerComponent
@@ -129,12 +141,13 @@ export default class DateTimePickerModal extends React.PureComponent {
             />
           </View>
           <ConfirmButtonComponent
-            disabled={this.state.isPickerSpinning}
+            isDisabled={this.state.isPickerSpinning}
             onPress={this.handleConfirm}
             label={confirmLabelIOS}
           />
         </View>
         <CancelButtonComponent
+          isDarkModeEnabled={isDarkModeEnabled}
           onPress={this.handleCancel}
           label={cancelLabelIOS}
         />
@@ -149,10 +162,15 @@ const pickerStyles = StyleSheet.create({
     margin: 10
   },
   container: {
-    backgroundColor: BACKGROUND_COLOR,
     borderRadius: BORDER_RADIUS,
     marginBottom: 8,
     overflow: "hidden"
+  },
+  containerLight: {
+    backgroundColor: BACKGROUND_COLOR_LIGHT,
+  },
+  containerDark: {
+    backgroundColor: BACKGROUND_COLOR_DARK
   }
 });
 
@@ -178,13 +196,13 @@ const headerStyles = StyleSheet.create({
   }
 });
 
-export const ConfirmButton = ({ disabled, onPress, label }) => {
+export const ConfirmButton = ({ isDisabled, onPress, label }) => {
   return (
     <TouchableHighlight
       style={confirmButtonStyles.button}
       underlayColor={HIGHLIGHT_COLOR}
       onPress={onPress}
-      disabled={disabled}
+      disabled={isDisabled}
     >
       <Text style={confirmButtonStyles.text}>{label}</Text>
     </TouchableHighlight>
@@ -208,10 +226,17 @@ const confirmButtonStyles = StyleSheet.create({
   }
 });
 
-export const CancelButton = ({ disabled, onPress, label }) => {
+export const CancelButton = ({ 
+  isDarkModeEnabled, 
+  onPress, 
+  label 
+}) => {
+  const themedButtonStyle = isDarkModeEnabled 
+    ? cancelButtonStyles.buttonDark
+    : cancelButtonStyles.buttonLight
   return (
     <TouchableHighlight
-      style={cancelButtonStyles.button}
+      style={[cancelButtonStyles.button, themedButtonStyle]}
       underlayColor={HIGHLIGHT_COLOR}
       onPress={onPress}
     >
@@ -222,11 +247,16 @@ export const CancelButton = ({ disabled, onPress, label }) => {
 
 const cancelButtonStyles = StyleSheet.create({
   button: {
-    backgroundColor: BACKGROUND_COLOR,
     borderRadius: BORDER_RADIUS,
     height: 57,
     marginBottom: isIphoneX() ? 20 : 0,
     justifyContent: "center"
+  },
+  buttonLight: {
+    backgroundColor: BACKGROUND_COLOR_LIGHT,
+  },
+  buttonDark: {
+    backgroundColor: BACKGROUND_COLOR_DARK,
   },
   text: {
     padding: 10,

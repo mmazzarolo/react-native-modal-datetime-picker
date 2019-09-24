@@ -5,15 +5,17 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 const App = () => {
   const [pickerMode, setPickerMode] = useState(null);
 
-  const showDatePicker = () => setPickerMode("date");
+  const showDatePicker = () => {
+    setPickerMode("date");
+  }
 
-  const showTimePicker = () => setPickerMode("time");
+  const showTimePicker = () => {
+    setPickerMode("time");
+  }
 
-  const showDateTimePicker = () => setPickerMode("datetime");
-
-  const showCountdownPicker = () => setPickerMode("countdown");
-
-  const hidePicker = () => setPickerMode(null);
+  const hidePicker = () => {
+    setPickerMode(null);
+  }
 
   const handleConfirm = date => {
     console.warn("A date has been picked: ", date);
@@ -24,13 +26,12 @@ const App = () => {
     <View style={style.root}>
       <Button title="Show Date Picker" onPress={showDatePicker} />
       <Button title="Show Time Picker" onPress={showTimePicker} />
-      <Button title="Show DateTime Picker" onPress={showDateTimePicker} />
-      <Button title="Show Countdown Picker" onPress={showCountdownPicker} />
       <DateTimePickerModal
         isVisible={pickerMode !== null}
         mode={pickerMode}
         onConfirm={handleConfirm}
         onCancel={hidePicker}
+        isDarkModeEnabled={true}
       />
     </View>
   );

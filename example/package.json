@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "postinstall": "rm -rf node_modules/react-native-permissions/{example,node_modules}",
+    "postinstall": "node ../scripts/examples_postinstall.js",
     "reinstall": "rm -rf node_modules ios/Pods && yarn install && cd ios && pod install"
   },
   "dependencies": {
