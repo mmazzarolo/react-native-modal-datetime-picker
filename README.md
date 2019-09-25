@@ -91,11 +91,11 @@ export default class DateTimePickerTester extends Component {
 | maximumDate                 | Date   | undefined     | Max Date. Does not work with 'time' picker on Android                                                                                                                     |
 | minimumDate                 | Date   | undefined     | Min Date. Does not work with 'time' picker on Android                                                                                                                     |
 | minuteInterval              | number | 1             | Interval for [time picker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/pull/131) on iOS                                                              |
+| mode                        | string | 'datetime'    | Choose between 'date', 'time', and 'datetime'                                                                                                                     |
 | neverDisableConfirmIOS      | bool   | false         | If true, do not disable the confirm button on any touch events; see [#82](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/82)                     |
 | onCancel                    | func   | **REQUIRED**  | Function called on dismiss                                                                                                                                                |
 | onConfirm                   | func   | **REQUIRED**  | Function called on date or time picked. It returns the date or time as a JavaScript Date object                                                                           |
 | onHideAfterConfirm          | func   | () => {}      | Called after the hiding animation if a date was picked                                                                                                                    |
-| mode                        | string | 'date'        | Datepicker? 'date' Timepicker? 'time' Both? 'datetime'                                                                                                                    |
 | pickerRefCb                 | func   |               | Called after picker has mounted, contains a ref                                                                                                                           |
 | reactNativeModalPropsIOS    | object |               | Additional props for [react-native-modal](https://github.com/react-native-community/react-native-modal) on iOS                                                            |
 | timePickerModeAndroid       | string | 'default'     | Display as 'spinner' or 'clock' or 'default' (based on Android version)                                                                                                   |
@@ -150,8 +150,14 @@ See issue [#29](https://github.com/mmazzarolo/react-native-modal-datetime-picker
 
 ### How to set 24 hours in iOS ?
 
-The `is24Hour` prop is only available on Android but you use a small hack for enabling it on iOS by setting the app's default timezone as `en_GB`.
-To do so, edit your `AppDelegate.m` file, and add `[[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"en_GB"]];` to `application didFinishLaunchingWithOptions`
+The `is24Hour` prop is only available on Android but you can use a small hack for enabling it on iOS by setting the picker timezone to `en_GB`:
+```js
+<DatePicker
+  mode="time"
+  locale="en_GB" // Use "en_GB" here
+  date={new Date()}
+/>
+```
 
 ### How to set automatic locale in iOS
 
