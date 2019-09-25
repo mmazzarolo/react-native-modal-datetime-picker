@@ -28,16 +28,17 @@
   "scripts": {
     "lint": "eslint src",
     "test": "yarn run lint",
-    "release": "yarn semantic-release",
-    "prettier": "prettier --write src/**/*.js"
+    "release": "yarn semantic-release"
   },
   "dependencies": {
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "@semantic-release/git": "^7.0.8",
-    "eslint": "^5.16.0",
-    "eslint-plugin-react-app": "^4.0.1",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react-app": "^6.0.3",
     "prettier": "^1.16.4",
     "semantic-release": "^15.13.3"
   },

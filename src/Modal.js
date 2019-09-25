@@ -15,7 +15,7 @@ export class Modal extends Component {
     onBackdropPress: PropTypes.func,
     onHide: PropTypes.func,
     isVisible: PropTypes.bool,
-    style: PropTypes.any
+    contentStyle: PropTypes.any
   };
 
   static defaultProps = {
@@ -91,13 +91,13 @@ export class Modal extends Component {
       toValue: 0
     }).start(() => {
       if (this._isMounted) {
-        this.setState({ isVisible: false });
+        this.setState({ isVisible: false }, this.props.onHide);
       }
     });
   };
 
   render() {
-    const { children, onBackdropPress, style } = this.props;
+    const { children, onBackdropPress, contentStyle } = this.props;
     const { deviceHeight, deviceWidth, isVisible } = this.state;
     const backdropAnimatedStyle = {
       opacity: this.animVal.interpolate({
@@ -117,12 +117,7 @@ export class Modal extends Component {
       ]
     };
     return (
-      <ReactNativeModal
-        transparent
-        animationType="none"
-        visible={isVisible}
-        onDismiss={this.props.onHide}
-      >
+      <ReactNativeModal transparent animationType="none" visible={isVisible}>
         <TouchableWithoutFeedback onPress={onBackdropPress}>
           <Animated.View
             style={[
@@ -136,7 +131,7 @@ export class Modal extends Component {
         </TouchableWithoutFeedback>
         {isVisible && (
           <Animated.View
-            style={[styles.content, contentAnimatedStyle, style]}
+            style={[styles.content, contentAnimatedStyle, contentStyle]}
             pointerEvents="box-none"
           >
             {children}

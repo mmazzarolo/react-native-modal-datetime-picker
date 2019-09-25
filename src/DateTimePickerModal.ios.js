@@ -18,18 +18,18 @@ const HIGHLIGHT_COLOR = "#ebebeb";
 
 export default class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
-    cancelLabelIOS: PropTypes.string,
-    confirmLabelIOS: PropTypes.string,
-    cancelButtonComponentIOS: PropTypes.node,
-    configComponentIOS: PropTypes.node,
-    headerComponentIOS: PropTypes.node,
+    cancelTextIOS: PropTypes.string,
+    confirmTextIOS: PropTypes.string,
+    customCancelButtonIOS: PropTypes.node,
+    customConfirmButtonIOS: PropTypes.node,
+    customHeaderIOS: PropTypes.node,
+    customPickerIOS: PropTypes.node,
     date: PropTypes.instanceOf(Date),
-    headerLabelIOS: PropTypes.string,
+    headerTextIOS: PropTypes.string,
     modalStyleIOS: PropTypes.any,
     isDarkModeEnabled: PropTypes.bool,
     isVisible: PropTypes.bool,
     pickerContainerStyleIOS: PropTypes.any,
-    pickerComponentIOS: PropTypes.node,
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     onChange: PropTypes.func,
@@ -37,9 +37,9 @@ export default class DateTimePickerModal extends React.PureComponent {
   };
 
   static defaultProps = {
-    cancelLabelIOS: "Cancel",
-    confirmLabelIOS: "Confirm",
-    headerLabelIOS: "Pick a date",
+    cancelTextIOS: "Cancel",
+    confirmTextIOS: "Confirm",
+    headerTextIOS: "Pick a date",
     date: new Date(),
     isDarkModeEnabled: false,
     isVisible: false,
@@ -92,18 +92,18 @@ export default class DateTimePickerModal extends React.PureComponent {
 
   render() {
     const {
-      cancelLabelIOS,
-      confirmLabelIOS,
-      cancelButtonComponentIOS,
-      confirmButtonComponentIOS,
-      headerComponentIOS,
+      cancelTextIOS,
+      confirmTextIOS,
+      customCancelButtonIOS,
+      customConfirmButtonIOS,
+      customHeaderIOS,
+      customPickerIOS,
       date,
-      headerLabelIOS,
+      headerTextIOS,
       isDarkModeEnabled,
       isVisible,
       modalStyleIOS,
       pickerContainerStyleIOS,
-      pickerComponentIOS,
       onCancel,
       onConfirm,
       onChange,
@@ -111,13 +111,13 @@ export default class DateTimePickerModal extends React.PureComponent {
       ...otherProps
     } = this.props;
 
-    const ConfirmButtonComponent = confirmButtonComponentIOS || ConfirmButton;
-    const CancelButtonComponent = cancelButtonComponentIOS || CancelButton;
-    const HeaderComponent = headerComponentIOS || Header;
-    const PickerComponent = pickerComponentIOS || DateTimePicker;
+    const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
+    const CancelButtonComponent = customCancelButtonIOS || CancelButton;
+    const HeaderComponent = customHeaderIOS || Header;
+    const PickerComponent = customPickerIOS || DateTimePicker;
 
-    const themedContainerStyle = isDarkModeEnabled 
-      ? pickerStyles.containerDark 
+    const themedContainerStyle = isDarkModeEnabled
+      ? pickerStyles.containerDark
       : pickerStyles.containerLight;
 
     return (
@@ -127,12 +127,14 @@ export default class DateTimePickerModal extends React.PureComponent {
         onBackdropPress={this.handleCancel}
         onModalHide={this.handleModalHide}
       >
-        <View style={[
-          pickerStyles.container, 
-          themedContainerStyle, 
-          pickerContainerStyleIOS
-        ]}>
-          <HeaderComponent label={headerLabelIOS} />
+        <View
+          style={[
+            pickerStyles.container,
+            themedContainerStyle,
+            pickerContainerStyleIOS
+          ]}
+        >
+          <HeaderComponent label={headerTextIOS} />
           <View onStartShouldSetResponderCapture={this.handleUserTouchInit}>
             <PickerComponent
               {...otherProps}
@@ -143,13 +145,13 @@ export default class DateTimePickerModal extends React.PureComponent {
           <ConfirmButtonComponent
             isDisabled={this.state.isPickerSpinning}
             onPress={this.handleConfirm}
-            label={confirmLabelIOS}
+            label={confirmTextIOS}
           />
         </View>
         <CancelButtonComponent
           isDarkModeEnabled={isDarkModeEnabled}
           onPress={this.handleCancel}
-          label={cancelLabelIOS}
+          label={cancelTextIOS}
         />
       </Modal>
     );
@@ -167,7 +169,7 @@ const pickerStyles = StyleSheet.create({
     overflow: "hidden"
   },
   containerLight: {
-    backgroundColor: BACKGROUND_COLOR_LIGHT,
+    backgroundColor: BACKGROUND_COLOR_LIGHT
   },
   containerDark: {
     backgroundColor: BACKGROUND_COLOR_DARK
@@ -226,14 +228,10 @@ const confirmButtonStyles = StyleSheet.create({
   }
 });
 
-export const CancelButton = ({ 
-  isDarkModeEnabled, 
-  onPress, 
-  label 
-}) => {
-  const themedButtonStyle = isDarkModeEnabled 
+export const CancelButton = ({ isDarkModeEnabled, onPress, label }) => {
+  const themedButtonStyle = isDarkModeEnabled
     ? cancelButtonStyles.buttonDark
-    : cancelButtonStyles.buttonLight
+    : cancelButtonStyles.buttonLight;
   return (
     <TouchableHighlight
       style={[cancelButtonStyles.button, themedButtonStyle]}
@@ -253,10 +251,10 @@ const cancelButtonStyles = StyleSheet.create({
     justifyContent: "center"
   },
   buttonLight: {
-    backgroundColor: BACKGROUND_COLOR_LIGHT,
+    backgroundColor: BACKGROUND_COLOR_LIGHT
   },
   buttonDark: {
-    backgroundColor: BACKGROUND_COLOR_DARK,
+    backgroundColor: BACKGROUND_COLOR_DARK
   },
   text: {
     padding: 10,
