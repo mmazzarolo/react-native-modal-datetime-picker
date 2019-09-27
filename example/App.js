@@ -7,15 +7,15 @@ const App = () => {
 
   const showDatePicker = () => {
     setPickerMode("date");
-  }
+  };
 
   const showTimePicker = () => {
     setPickerMode("time");
-  }
+  };
 
   const hidePicker = () => {
     setPickerMode(null);
-  }
+  };
 
   const handleConfirm = date => {
     console.warn("A date has been picked: ", date);

@@ -16,6 +16,24 @@ const BUTTON_FONT_COLOR = "#007ff9";
 const BUTTON_FONT_SIZE = 20;
 const HIGHLIGHT_COLOR = "#ebebeb";
 
+const deprecatedPropsInfo = [
+  { prop: "titleIOS", newProp: "headerTextIOS" },
+  { prop: "customTitleContainerIOS", newProp: "customHeaderIOS" },
+  { prop: "onHideAfterConfirm", newProp: "onHide" },
+  { prop: "customDatePickerIOS", newProp: "customPickerIOS" }
+];
+
+const unsopportedPropsInfo = [
+  { prop: "cancelTextStyle" },
+  { prop: "confirmTextStyle" },
+  { prop: "datePickerModeAndroid" },
+  { prop: "dismissOnBackdropPressIOS" },
+  { prop: "hideTitleContainerIOS" },
+  { prop: "neverDisableConfirmIOS" },
+  { prop: "pickerRefCb" },
+  { prop: "reactNativeModalPropsIOS" }
+];
+
 export default class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
     cancelTextIOS: PropTypes.string,
@@ -54,6 +72,25 @@ export default class DateTimePickerModal extends React.PureComponent {
 
   didPressConfirm = false;
 
+  componentDidMount() {
+    Object.keys(this.props).forEach(prop => {
+      // Show a warning if a deprecated prop is being used
+      const deprecationInfo = deprecatedPropsInfo.find(x => x.prop === prop);
+      if (deprecationInfo) {
+        console.warn(
+          `react-native-modal-datetime-picker: The "${deprecationInfo.prop}" prop is deprecated. Please use the ${deprecationInfo.newProp} prop instead.`
+        );
+      }
+      // Show a warning if a prop that is not supported anymore is being used
+      const unsopportInfo = unsopportedPropsInfo.find(x => x.prop === prop);
+      if (unsopportInfo) {
+        console.warn(
+          `react-native-modal-datetime-picker: The "${unsopportInfo.prop}" prop is not supported anymore.`
+        );
+      }
+    });
+  }
+
   static getDerivedStateFromProps(props, state) {
     if (props.isVisible && !state.isPickerVisible) {
       return { currentDate: props.date, isPickerVisible: true };
@@ -72,8 +109,15 @@ export default class DateTimePickerModal extends React.PureComponent {
   };
 
   handleModalHide = () => {
-    if (this.props.onHide) {
-      this.props.onHide(this.didPressConfirm, this.state.currentDate);
+    // Deprecated
+    const {
+      onModalHide, // Deprecated
+      onHide
+    } = this.props;
+    if (onModalHide) {
+      onModalHide(this.didPressConfirm, this.state.currentDate);
+    } else if (onHide) {
+      onHide(this.didPressConfirm, this.state.currentDate);
     }
     this.setState({ isPickerVisible: false });
   };
@@ -96,8 +140,10 @@ export default class DateTimePickerModal extends React.PureComponent {
       confirmTextIOS,
       customCancelButtonIOS,
       customConfirmButtonIOS,
+      customDatePickerIOS, // Deprecated
       customHeaderIOS,
       customPickerIOS,
+      customTitleContainerIOS, // Deprecated
       date,
       headerTextIOS,
       isDarkModeEnabled,
@@ -108,13 +154,17 @@ export default class DateTimePickerModal extends React.PureComponent {
       onConfirm,
       onChange,
       onHide,
+      onHideAfterConfirm, // Deprecated
+      titleIOS, // Deprecated
       ...otherProps
     } = this.props;
 
     const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;
-    const HeaderComponent = customHeaderIOS || Header;
-    const PickerComponent = customPickerIOS || DateTimePicker;
+    const HeaderComponent =
+      customTitleContainerIOS || customHeaderIOS || Header;
+    const PickerComponent =
+      customDatePickerIOS || customPickerIOS || DateTimePicker;
 
     const themedContainerStyle = isDarkModeEnabled
       ? pickerStyles.containerDark
@@ -134,7 +184,7 @@ export default class DateTimePickerModal extends React.PureComponent {
             pickerContainerStyleIOS
           ]}
         >
-          <HeaderComponent label={headerTextIOS} />
+          <HeaderComponent label={titleIOS || headerTextIOS} />
           <View onStartShouldSetResponderCapture={this.handleUserTouchInit}>
             <PickerComponent
               {...otherProps}
