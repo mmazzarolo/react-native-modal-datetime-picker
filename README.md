@@ -16,15 +16,17 @@ Under the hood this library is using [`@react-native-community/react-native-date
 
 ## Setup
 
-Install the library using npm or yarn:
+Install the library and the community datetime picker using npm or yarn:
 
 ```bash
 # using npm
-$ npm install react-native-modal-datetime-picker --save
+$ npm i react-native-modal-datetime-picker @react-native-community/react-native-datetimepicker
 
 # using yarn
-$ yarn add react-native-modal-datetime-picker
+$ yarn add react-native-modal-datetime-picker @react-native-community/react-native-datetimepicker
 ```
+
+Please notice that the `@react-native-community/react-native-datetimepicker` package is a native module so [**it might require manual linking**](https://github.com/react-native-community/react-native-datetimepicker#getting-started).  
 
 ## Usage
 
