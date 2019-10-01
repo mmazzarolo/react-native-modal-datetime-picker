@@ -169,14 +169,15 @@ Edit your `AppDelegate.m` file, and add:
 // Force DatePicker locale to current language (for: 24h or 12h format, full day names etc...)
 NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 [[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:currentLanguage]];
+```
 
 ### Is the iOS dark mode supported?
 
 iOS 13 dark mode is not supported out-of-the-box yet and requires a bit of manual setup:
 1. Install and link [react-native-appearance](https://github.com/expo/react-native-appearance)
 2. Use it to detect the device color scheme: `const colorScheme = Appearance.getColorScheme();`
-3. Use the color scheme to enable/disable the `react-native-modal-datetime-picker` dark mode trough the `isDarkModeEnabled` prop: `isDarkModeEnabled: colorScheme === 'dark'`
-
+3. Use the color scheme to enable/disable the `react-native-modal-datetime-picker` dark mode trough the `isDarkModeEnabled` prop: `isDarkModeEnabled: colorScheme === 'dark'`  
+  
 ### How do I make it work with snapshot testing?
 
 See issue [#216](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/216) for a possible workaround.
