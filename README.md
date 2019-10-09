@@ -171,6 +171,11 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 [[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:currentLanguage]];
 ```
 
+### I can't see the picker on iOS / the picker is white on iOS
+
+You're app is probably running in dark mode, which is [not supported by React-Native for the pickers yet](https://github.com/facebook/react-native/issues/26299).   
+For a workaround, see the "Is the iOS dark mode supported?" section below 👇
+
 ### Is the iOS dark mode supported?
 
 iOS 13 dark mode is not supported out-of-the-box yet and requires a bit of manual setup:
