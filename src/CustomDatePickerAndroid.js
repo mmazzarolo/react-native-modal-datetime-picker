@@ -73,7 +73,6 @@ export default class CustomDatePickerAndroid extends React.PureComponent {
       }
 
       if (this.props.mode === "datetime") {
-        // Prepopulate and show time picker
         const timeOptions = {
           is24Hour: this.props.is24Hour,
           mode: this.props.timePickerModeAndroid

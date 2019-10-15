@@ -57,7 +57,7 @@ export default class DateTimePickerTester extends Component {
   render() {
     return (
       <>
-        <Button title="Show DatePicker" onPress={this.showDateTimePicker} />
+        <Button title="Show DatePicker" onPress={this.showDateTimePicker()} />
         <DateTimePicker
           isVisible={this.state.isDateTimePickerVisible}
           onConfirm={this.handleDatePicked}
@@ -193,4 +193,4 @@ Please see the [contributing guide](./.github/CONTRIBUTING.md).
 
 ## License
 
-The library is released under the MIT license. For more information see [`LICENSE`](/LICENSE.md).
+The library is released under the ['MIT'](https://opensource.org/licenses/MIT) license. For more information see [`LICENSE`](/LICENSE.md).

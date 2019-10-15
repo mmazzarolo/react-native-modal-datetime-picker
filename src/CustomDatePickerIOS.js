@@ -108,7 +108,6 @@ export default class CustomDatePickerIOS extends React.PureComponent {
   };
 
   handleUserTouchInit = () => {
-    // custom date picker shouldn't change this param
     if (!this.props.customDatePickerIOS) {
       this.setState({
         userIsInteractingWithPicker: true
@@ -215,6 +214,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
               date={this.state.date}
               onDateChange={this.handleDateChange}
             />
+            
           </View>
           <TouchableHighlight
             style={styles.confirmButton}
