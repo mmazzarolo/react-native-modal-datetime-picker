@@ -131,6 +131,18 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 [[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:currentLanguage]];
 ```
 
+### I can't see the picker on iOS / the picker is white on iOS
+
+You're app is probably running in dark mode, which is [not supported by React-Native for the pickers yet](https://github.com/facebook/react-native/issues/26299).   
+For a workaround, see the "Is the iOS dark mode supported?" section below 👇
+
+### Is the iOS dark mode supported?
+
+iOS 13 dark mode is not supported out-of-the-box yet and requires a bit of manual setup:
+1. Install and link [react-native-appearance](https://github.com/expo/react-native-appearance)
+2. Use it to detect the device color scheme: `const colorScheme = Appearance.getColorScheme();`
+3. Use the color scheme to enable/disable the `react-native-modal-datetime-picker` dark mode trough the `isDarkModeEnabled` prop: `isDarkModeEnabled: colorScheme === 'dark'`  
+  
 ### How do I make it work with snapshot testing?
 
 See issue [#216](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/216) for a possible workaround.
