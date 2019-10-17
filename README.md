@@ -20,10 +20,10 @@ Install the library and the community datetime picker using npm or yarn:
 
 ```bash
 # using npm
-$ npm i react-native-modal-datetime-picker @react-native-community/react-native-datetimepicker
+$ npm i react-native-modal-datetime-picker@latest @react-native-community/react-native-datetimepicker
 
 # using yarn
-$ yarn add react-native-modal-datetime-picker @react-native-community/react-native-datetimepicker
+$ yarn add react-native-modal-datetime-picker@latest @react-native-community/react-native-datetimepicker
 ```
 
 Please notice that the `@react-native-community/react-native-datetimepicker` package is a native module so [**it might require manual linking**](https://github.com/react-native-community/react-native-datetimepicker#getting-started).  
@@ -89,7 +89,7 @@ export default Example;
 | pickerContainerStyleIOS | style     |               | The style of the picker container (iOS)                                                         |
 | titleStyle              | style     |               | The style of the title text (iOS)                                                               |
 
-👉Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) are also supported**!
+👉Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) props are also supported**!
 
 ## Frequently Asked Questions
 
