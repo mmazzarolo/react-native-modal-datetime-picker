@@ -26,7 +26,7 @@ $ npm i react-native-modal-datetime-picker@latest @react-native-community/dateti
 $ yarn add react-native-modal-datetime-picker@latest @react-native-community/datetimepicker
 ```
 
-Please notice that the `@react-native-community/react-native-datetimepicker` package is a native module so [**it might require manual linking**](https://github.com/react-native-community/react-native-datetimepicker#getting-started).  
+Please notice that the `@react-native-community/datetimepicker` package is a native module so [**it might require manual linking**](https://github.com/react-native-community/react-native-datetimepicker#getting-started).  
 
 ## Usage
 
