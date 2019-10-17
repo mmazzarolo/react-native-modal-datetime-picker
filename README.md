@@ -14,6 +14,20 @@ This library exposes a cross-platform interface for showing the native date-pick
 
 Under the hood this library is using [react-native-modal](https://github.com/react-native-community/react-native-modal) for the iOS modal implementation.
 
+# ⚠️ NEW RELEASE INCOMING (v8)
+
+Hey 👋!  
+The react-native date and time pickers have recently been moved to a new [`@react-native-community`](https://github.com/react-native-community/react-native-datetimepicker) repository.  
+If you're installing `react-native-modal-datetime-picker` for the first time it is highly recommended to install the new latest pre-release, which is compatible with the `@react-native-community` pickers.  
+To do so, please follow [this README.md](https://github.com/mmazzarolo/react-native-modal-datetime-picker/blob/next-major/README.md) instructions and ignore all the steps below.  
+
+If you're a long-time `react-native-modal-datetime-picker` user, please notice that there are some breaking changes in the new release.  
+
+For more info please see #301. 
+
+
+# V7 (Stable version) Instructions
+
 ## Setup
 
 Install the library using npm or yarn:
