@@ -28,20 +28,21 @@
   "scripts": {
     "lint": "eslint src",
     "test": "yarn run lint",
-    "release": "yarn semantic-release",
-    "prettier": "prettier --write src/**/*.js"
+    "release": "yarn semantic-release"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "react-native-modal": "^11.0.2"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "@semantic-release/git": "^7.0.8",
-    "eslint": "^5.16.0",
-    "eslint-plugin-react-app": "^4.0.1",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react-app": "^6.0.3",
     "prettier": "^1.16.4",
-    "react": ">=15.0.0",
-    "react-native": ">=0.24.0",
-    "semantic-release": "^15.13.3"
+    "semantic-release": "^16.0.0-beta.26"
+  },
+  "peerDependencies": {
+    "@react-native-community/datetimepicker": ">=1.0.0"
   }
 }
