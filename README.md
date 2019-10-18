@@ -23,7 +23,7 @@ To do so, please follow [this README.md](https://github.com/mmazzarolo/react-nat
 
 If you're a long-time `react-native-modal-datetime-picker` user, please notice that there are some breaking changes in the new release.  
 
-For more info please see #301. 
+For more info please see [#301](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/301). 
 
 
 # V7 (Stable version) Instructions
