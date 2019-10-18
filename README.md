@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/react-native-modal-datetime-picker.svg)](https://badge.fury.io/js/react-native-modal-datetime-picker)
 ![Supports Android and iOS](https://img.shields.io/badge/platforms-android%20|%20ios-lightgrey.svg)
 
-A declarative cross-platform react-native datetime picker.
+A declarative cross-platform react-native date and time picker.
 
 <p align="center">
 <img src="./.github/images/datetimepicker-android.gif" height="400" />
@@ -16,7 +16,7 @@ Under the hood this library is using [`@react-native-community/datetimepicker`](
 
 ## Setup
 
-Install the library and the community datetime picker using npm or yarn:
+Install the library and the community date/time picker using npm or yarn:
 
 ```bash
 # using npm
@@ -78,11 +78,11 @@ export default Example;
 | customHeaderIOS         | component |               | Overrides the default header component (iOS)                                                    |
 | customPickerIOS         | component |               | Overrides the default native picker component (iOS)                                             |
 | date                    | obj       | new Date()    | Initial selected date/time                                                                      |
-| headerTextIOS           | string    | 'Pick a date' | The title text of header (iOS)                                                                  |
+| headerTextIOS           | string    | "Pick a date" | The title text of header (iOS)                                                                  |
 | isDarkModeEnabled       | bool      | false         | Is the device using a dark theme?                                                               |
 | isVisible               | bool      | false         | Show the datetime picker?                                                                       |
 | modalStyleIOS           | style     |               | Style of the modal content (iOS)                                                                |
-| mode                    | string    | 'datetime'    | Choose between 'date', 'time', and 'datetime'                                                   |
+| mode                    | string    | "date"    | Choose between 'date', 'time', and 'datetime'                                                   |
 | onCancel                | func      | **REQUIRED**  | Function called on dismiss                                                                      |
 | onConfirm               | func      | **REQUIRED**  | Function called on date or time picked. It returns the date or time as a JavaScript Date object |
 | onHide                  | func      | () => null    | Called after the hide animation                                                                 |
@@ -95,12 +95,12 @@ export default Example;
 
 ### The component is not working as expected
 
-Under the hood `react-native-modal-datetime-picker` uses [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
-Before reporting a bug, try swapping `react-native-datetime-picker` with [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) and, if the issue persists, check if it has already been reported as a an issue there.
+Under the hood `react-native-modal-datetime-picker` uses [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
+Before reporting a bug, try swapping `react-native-datetime-picker` with [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) and, if the issue persists, check if it has already been reported as a an issue there.
 
 ### How can I show the timepicker instead of the datepicker?
 
-Just set the `mode` prop to `time`.
+Set the `mode` prop to `time`.
 You can also display both the datepicker and the timepicker in one step by setting the `mode` prop to `datetime`.
 
 ### How do I change the color of the Android date and time pickers?
@@ -120,10 +120,10 @@ The `is24Hour` prop is only available on Android but you can use a small hack fo
 />
 ```
 
-### How to set automatic locale in iOS
+### How can I set an automatic locale in iOS
 
-Datepicker can adjust by itself locale (`fr_FR`, `en_GB`...) depending user's device locale.
-Edit your `AppDelegate.m` file, and add:
+The datepicker can adjust by itself the locale (`fr_FR`, `en_GB`...) depending on the user's device locale.
+To do so, edit your `AppDelegate.m` file adding:
 
 ```objc
 // Force DatePicker locale to current language (for: 24h or 12h format, full day names etc...)
@@ -131,10 +131,16 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 [[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:currentLanguage]];
 ```
 
-### I can't see the picker on iOS / the picker is white on iOS
+### I can't see the picker on iOS/the picker is white on iOS
 
 You're app is probably running in dark mode, which is [not supported by React-Native for the pickers yet](https://github.com/facebook/react-native/issues/26299).   
-For a workaround, see the "Is the iOS dark mode supported?" section below 👇
+If you're not planning to support the iOS dark mode in your app, add the following to your `info.plist`:
+```xml
+<key>UIUserInterfaceStyle</key>
+<string>Light</string>
+```
+
+Otherwise, see the "Is the iOS dark mode supported?" section below 👇
 
 ### Is the iOS dark mode supported?
 
