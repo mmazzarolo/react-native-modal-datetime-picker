@@ -173,7 +173,7 @@ export default class DateTimePickerModal extends React.PureComponent {
     return (
       <Modal
         isVisible={isVisible}
-        style={[pickerStyles.modal, modalStyleIOS]}
+        contentStyle={[pickerStyles.modal, modalStyleIOS]}
         onBackdropPress={this.handleCancel}
         onModalHide={this.handleModalHide}
       >
