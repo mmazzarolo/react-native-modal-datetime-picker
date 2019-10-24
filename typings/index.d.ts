@@ -1,14 +1,12 @@
 // Type definitions for react-native-modal-datetime-picker
 // Project: https://github.com/mmazzarolo/react-native-modal-datetime-picker
-// Definitions by: Kyle Roach <https://github.com/iRoachie>
+// Definitions by:
+// Kyle Roach <https://github.com/iRoachie>
+// Michiel De Mey <https://github.com/MichielDeMey>
 // TypeScript Version: 2.3.2
 
 import * as React from "react";
 import { ViewStyle, TextStyle } from "react-native";
-import { ModalProps } from "react-native-modal";
-
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-type ReactNativeModalProps = Omit<ModalProps, "children" | "isVisible">;
 
 interface DateTimePickerProps {
   /**
@@ -53,64 +51,19 @@ interface DateTimePickerProps {
   cancelButtonContainerStyleIOS?: ViewStyle;
 
   /**
-   * Ref function for the React Native DatePickerIOS or a customDatePickerIOS
-   */
-  pickerRefCb?(ref: any): void;
-
-  /**
-   * Props for ReactNativeModal
-   */
-  reactNativeModalPropsIOS?: ReactNativeModalProps;
-
-  /**
    * A custom style for the titleIOS (Default is 'Pick a Date')
    */
   titleStyle?: TextStyle;
 
   /**
-   * A custom style for the confirmTextIOS (Default is 'Confirm')
-   *
-   * Doesn't work with the customConfirmButtonIOS
-   */
-  confirmTextStyle?: TextStyle;
-
-  /**
-   * A custom style for cancelTextIOS (Default is 'Cancel')
-   *
-   * Doesn't work with the customCancelButtonIOS
-   */
-  cancelTextStyle?: TextStyle;
-
-  /**
-   * Never disable the confirm button on iOS, even on fling (see #82)
-   *
-   * Default is false
-   */
-  neverDisableConfirmIOS?: boolean;
-
-  /**
    * A custom component for the title container on iOS
    */
-  customTitleContainerIOS?: JSX.Element;
-
-  /**
-   * Dismiss the date-picker/time-picker when pressing on the backdrop (on iOS)?
-   *
-   * Default is true
-   */
-  dismissOnBackdropPressIOS?: boolean;
-
-  /**
-   * Hide the title container on iOS
-   *
-   * Default is false
-   */
-  hideTitleContainerIOS?: boolean;
+  customHeaderIOS?: JSX.Element;
 
   /**
    * A custom component that will replace the default DatePicker on iOS
    */
-  customDatePickerIOS?: JSX.Element;
+  customPickerIOS?: JSX.Element;
 
   /**
    * The style of the container on iOS
@@ -164,13 +117,6 @@ interface DateTimePickerProps {
   mode?: "date" | "time" | "datetime";
 
   /**
-   * Toggles the date mode on Android between spinner and calendar views
-   *
-   * Default is 'default' which shows either spinner or calendar based on Android version
-   */
-  datePickerModeAndroid?: "spinner" | "calendar" | "default";
-
-  /**
    * Toggles the time mode on Android between spinner and clock views
    *
    * Default is 'default' which shows either spinner or clock based on Android version
@@ -182,7 +128,7 @@ interface DateTimePickerProps {
    *
    * Default is 'Pick a Date'
    */
-  titleIOS?: string;
+  headerTextIOS?: string;
 
   /**
    * Minimum date the picker can go back to
@@ -236,7 +182,7 @@ interface DateTimePickerProps {
    * Called when the underlying modal finishes its' closing animation
    * after Confirm was pressed.
    */
-  onHideAfterConfirm?(date: Date): void;
+  onHide?(date: Date): void;
 }
 
 export default class DateTimePicker extends React.Component<
