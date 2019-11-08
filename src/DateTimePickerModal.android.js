@@ -46,7 +46,7 @@ export default class DateTimePickerModal extends React.PureComponent {
       } else if (this.state.currentMode === "time") {
         const year = this.currentDate.getFullYear();
         const month = this.currentDate.getMonth();
-        const day = this.currentDate.getDay();
+        const day = this.currentDate.getDate();
         const hours = date.getHours();
         const minutes = date.getMinutes();
         this.currentDate = new Date(year, month, day, hours, minutes);
