@@ -26,12 +26,12 @@ interface DateTimePickerProps {
   /**
    * A custom component for the cancel button on iOS
    */
-  customCancelButtonIOS?: JSX.Element;
+  customCancelButtonIOS?: React.ComponentType;
 
   /**
    * A custom component for the confirm button on iOS
    */
-  customConfirmButtonIOS?: JSX.Element;
+  customConfirmButtonIOS?: React.ComponentType;
 
   /**
    * A custom component for the confirm button on iOS that will be shown while user interacting with the date picker
@@ -58,12 +58,12 @@ interface DateTimePickerProps {
   /**
    * A custom component for the title container on iOS
    */
-  customHeaderIOS?: JSX.Element;
+  customHeaderIOS?: React.ComponentType;
 
   /**
    * A custom component that will replace the default DatePicker on iOS
    */
-  customPickerIOS?: JSX.Element;
+  customPickerIOS?: React.ComponentType;
 
   /**
    * The style of the container on iOS
