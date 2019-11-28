@@ -108,7 +108,7 @@ export default class DateTimePickerModal extends React.PureComponent {
     this.props.onConfirm(this.state.currentDate);
   };
 
-  handleModalHide = () => {
+  handleHide = () => {
     // Deprecated
     const {
       onModalHide, // Deprecated
@@ -175,7 +175,7 @@ export default class DateTimePickerModal extends React.PureComponent {
         isVisible={isVisible}
         contentStyle={[pickerStyles.modal, modalStyleIOS]}
         onBackdropPress={this.handleCancel}
-        onModalHide={this.handleModalHide}
+        onHide={this.handleHide}
       >
         <View
           style={[
