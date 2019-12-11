@@ -34,7 +34,7 @@ const unsopportedPropsInfo = [
   { prop: "reactNativeModalPropsIOS" }
 ];
 
-export default class DateTimePickerModal extends React.PureComponent {
+export default class PickerModal extends React.PureComponent {
   static propTypes = {
     cancelTextIOS: PropTypes.string,
     confirmTextIOS: PropTypes.string,
@@ -42,11 +42,12 @@ export default class DateTimePickerModal extends React.PureComponent {
     customConfirmButtonIOS: PropTypes.elementType,
     customHeaderIOS: PropTypes.elementType,
     customPickerIOS: PropTypes.elementType,
-    date: PropTypes.instanceOf(Date),
+    value: PropTypes.any.isRequired,
     headerTextIOS: PropTypes.string,
     modalStyleIOS: PropTypes.any,
     isDarkModeEnabled: PropTypes.bool,
     isVisible: PropTypes.bool,
+    PickerComponent: PropTypes.elementType.isRequired,
     pickerContainerStyleIOS: PropTypes.any,
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
@@ -57,15 +58,14 @@ export default class DateTimePickerModal extends React.PureComponent {
   static defaultProps = {
     cancelTextIOS: "Cancel",
     confirmTextIOS: "Confirm",
-    headerTextIOS: "Pick a date",
-    date: new Date(),
+    headerTextIOS: "Pick a value",
     isDarkModeEnabled: false,
     isVisible: false,
     pickerContainerStyleIOS: {}
   };
 
   state = {
-    currentDate: this.props.date,
+    currentValue: this.props.value,
     isPickerVisible: this.props.isVisible,
     isPickerSpinning: false
   };
@@ -93,7 +93,7 @@ export default class DateTimePickerModal extends React.PureComponent {
 
   static getDerivedStateFromProps(props, state) {
     if (props.isVisible && !state.isPickerVisible) {
-      return { currentDate: props.date, isPickerVisible: true };
+      return { currentValue: props.value, isPickerVisible: true };
     }
     return null;
   }
@@ -105,7 +105,7 @@ export default class DateTimePickerModal extends React.PureComponent {
 
   handleConfirm = () => {
     this.didPressConfirm = true;
-    this.props.onConfirm(this.state.currentDate);
+    this.props.onConfirm(this.state.currentValue);
   };
 
   handleHide = () => {
@@ -115,18 +115,18 @@ export default class DateTimePickerModal extends React.PureComponent {
       onHide
     } = this.props;
     if (onModalHide) {
-      onModalHide(this.didPressConfirm, this.state.currentDate);
+      onModalHide(this.didPressConfirm, this.state.currentValue);
     } else if (onHide) {
-      onHide(this.didPressConfirm, this.state.currentDate);
+      onHide(this.didPressConfirm, this.state.currentValue);
     }
     this.setState({ isPickerVisible: false });
   };
 
-  handleChange = (event, date) => {
-    if (this.props.onChange) {
-      this.props.onChange(date);
+  handleValueChange = value => {
+    if (this.props.onValueChange) {
+      this.props.onValueChange(value);
     }
-    this.setState({ currentDate: date, isPickerSpinning: false });
+    this.setState({ currentValue: value, isPickerSpinning: false });
   };
 
   handleUserTouchInit = () => {
@@ -144,11 +144,12 @@ export default class DateTimePickerModal extends React.PureComponent {
       customHeaderIOS,
       customPickerIOS,
       customTitleContainerIOS, // Deprecated
-      date,
+      value,
       headerTextIOS,
       isDarkModeEnabled,
       isVisible,
       modalStyleIOS,
+      PickerComponent,
       pickerContainerStyleIOS,
       onCancel,
       onConfirm,
@@ -163,8 +164,6 @@ export default class DateTimePickerModal extends React.PureComponent {
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;
     const HeaderComponent =
       customTitleContainerIOS || customHeaderIOS || Header;
-    const PickerComponent =
-      customDatePickerIOS || customPickerIOS || DateTimePicker;
 
     const themedContainerStyle = isDarkModeEnabled
       ? pickerStyles.containerDark
@@ -188,8 +187,8 @@ export default class DateTimePickerModal extends React.PureComponent {
           <View onStartShouldSetResponderCapture={this.handleUserTouchInit}>
             <PickerComponent
               {...otherProps}
-              value={this.state.currentDate}
-              onChange={this.handleChange}
+              value={this.state.currentValue}
+              onValueChange={this.handleValueChange}
             />
           </View>
           <ConfirmButtonComponent
