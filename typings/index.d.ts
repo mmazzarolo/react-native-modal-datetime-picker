@@ -10,7 +10,7 @@ import { ModalProps } from "react-native-modal";
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 type ReactNativeModalProps = Omit<ModalProps, "children" | "isVisible">;
 
-interface DateTimePickerProps {
+export interface DateTimePickerProps {
   /**
    * The text on the cancel button on iOS
    *
