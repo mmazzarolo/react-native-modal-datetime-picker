@@ -8,7 +8,7 @@
 import * as React from "react";
 import { ViewStyle, TextStyle } from "react-native";
 
-interface DateTimePickerProps {
+export interface DateTimePickerProps {
   /**
    * The text on the cancel button on iOS
    *
