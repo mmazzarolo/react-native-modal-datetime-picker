@@ -12,11 +12,11 @@ A declarative cross-platform react-native date and time picker.
 
 This library exposes a cross-platform interface for showing the native date-picker and time-picker inside a modal, providing a unified user and developer experience.
 
-Under the hood this library is using [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
+Under the hood this library is using [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).  
 
-## Setup
+## Setup (for non-Expo projects)
 
-Install the library and the community date/time picker using npm or yarn:
+If your project is not using [Expo](https://expo.io/), install the library and the community date/time picker using npm or yarn:
 
 ```bash
 # using npm
@@ -27,6 +27,14 @@ $ yarn add react-native-modal-datetime-picker@8.x.x @react-native-community/date
 ```
 
 Please notice that the `@react-native-community/datetimepicker` package is a native module so [**it might require manual linking**](https://github.com/react-native-community/react-native-datetimepicker#getting-started).  
+
+## Setup (for Expo projects)
+
+If your project is using [Expo](https://expo.io/), install the library and the community date/time picker using the [Expo CLI](https://docs.expo.io/versions/latest/workflow/expo-cli/):
+
+```bash
+expo install react-native-modal-datetime-picker @react-native-community/datetimepicker
+```
 
 ## Usage
 
