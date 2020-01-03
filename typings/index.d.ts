@@ -7,6 +7,25 @@
 
 import * as React from "react";
 import { ViewStyle, TextStyle } from "react-native";
+import { IOSNativeProps } from '@react-native-community/react-native-datetimepicker'
+
+export type CancelButtonComponent = React.ComponentType<{
+  isDarkModeEnabled: boolean;
+  onPress(): void;
+  label: string;
+}>
+
+export type ConfirmButtonComponent = React.ComponentType<{
+  isDisabled: boolean;
+  onPress(): void;
+  label: string;
+}>
+
+export type HeaderComponent = React.ComponentType<{
+  label: string;
+}>
+
+export type PickerComponent = React.ComponentType<IOSNativeProps>
 
 export interface DateTimePickerProps {
   /**
@@ -26,12 +45,12 @@ export interface DateTimePickerProps {
   /**
    * A custom component for the cancel button on iOS
    */
-  customCancelButtonIOS?: React.ComponentType;
+  customCancelButtonIOS?: CancelButtonComponent;
 
   /**
    * A custom component for the confirm button on iOS
    */
-  customConfirmButtonIOS?: React.ComponentType;
+  customConfirmButtonIOS?: ConfirmButtonComponent;
 
   /**
    * A custom component for the confirm button on iOS that will be shown while user interacting with the date picker
@@ -58,12 +77,12 @@ export interface DateTimePickerProps {
   /**
    * A custom component for the title container on iOS
    */
-  customHeaderIOS?: React.ComponentType;
+  customHeaderIOS?: HeaderComponent;
 
   /**
    * A custom component that will replace the default DatePicker on iOS
    */
-  customPickerIOS?: React.ComponentType;
+  customPickerIOS?: PickerComponent;
 
   /**
    * The style of the container on iOS
