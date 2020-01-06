@@ -63,10 +63,10 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     minuteInterval: this.props.minuteInterval || 1
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.date.valueOf() !== nextProps.date.valueOf()) {
+  componentDidUpdate(prevProps) {
+    if (this.props.date.valueOf() !== prevProps.date.valueOf()) {
       this.setState({
-        date: nextProps.date
+        date: this.props.date
       });
     }
   }
@@ -188,7 +188,9 @@ export default class CustomDatePickerIOS extends React.PureComponent {
       ...reactNativeModalPropsIOS
     };
 
-    const backgroundColor = isDarkModeEnabled ? BACKGROUND_COLOR_DARK : BACKGROUND_COLOR_LIGHT;
+    const backgroundColor = isDarkModeEnabled
+      ? BACKGROUND_COLOR_DARK
+      : BACKGROUND_COLOR_LIGHT;
 
     return (
       <ReactNativeModal
@@ -199,7 +201,13 @@ export default class CustomDatePickerIOS extends React.PureComponent {
         backdropOpacity={0.4}
         {...reactNativeModalProps}
       >
-        <View style={[styles.datepickerContainer, { backgroundColor }, datePickerContainerStyleIOS]}>
+        <View
+          style={[
+            styles.datepickerContainer,
+            { backgroundColor },
+            datePickerContainerStyleIOS
+          ]}
+        >
           {!hideTitleContainerIOS &&
             (customTitleContainerIOS || titleContainer)}
           <View
@@ -229,7 +237,11 @@ export default class CustomDatePickerIOS extends React.PureComponent {
         </View>
 
         <TouchableHighlight
-          style={[styles.cancelButton, { backgroundColor }, cancelButtonContainerStyleIOS]}
+          style={[
+            styles.cancelButton,
+            { backgroundColor },
+            cancelButtonContainerStyleIOS
+          ]}
           underlayColor={HIGHLIGHT_COLOR}
           onPress={this.handleCancel}
         >
