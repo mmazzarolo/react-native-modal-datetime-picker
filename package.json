@@ -1,5 +1,5 @@
 {
-  "name": "react-native-modal-datetime-picker-r17",
+  "name": "react-native-modal-datetime-picker",
   "version": "7.6.2",
   "description": "A react-native datetime-picker for Android and iOS",
   "main": "src/index.js",
