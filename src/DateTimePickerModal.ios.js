@@ -162,7 +162,9 @@ export default class DateTimePickerModal extends React.PureComponent {
     const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;
     const HeaderComponent =
-      customTitleContainerIOS || customHeaderIOS || Header;
+      typeof (customTitleContainerIOS || customHeaderIOS) === "undefined"
+        ? Header
+        : customTitleContainerIOS || customHeaderIOS;
     const PickerComponent =
       customDatePickerIOS || customPickerIOS || DateTimePicker;
 
