@@ -189,6 +189,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
     };
 
     const backgroundColor = isDarkModeEnabled ? BACKGROUND_COLOR_DARK : BACKGROUND_COLOR_LIGHT;
+    const underlayColor = isDarkModeEnabled ? HIGHLIGHT_COLOR_DARK : HIGHLIGHT_COLOR_LIGHT
 
     return (
       <ReactNativeModal
@@ -218,7 +219,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
           </View>
           <TouchableHighlight
             style={styles.confirmButton}
-            underlayColor={HIGHLIGHT_COLOR}
+            underlayColor={underlayColor}
             onPress={this.handleConfirm}
             disabled={
               !neverDisableConfirmIOS && this.state.userIsInteractingWithPicker
@@ -230,7 +231,7 @@ export default class CustomDatePickerIOS extends React.PureComponent {
 
         <TouchableHighlight
           style={[styles.cancelButton, { backgroundColor }, cancelButtonContainerStyleIOS]}
-          underlayColor={HIGHLIGHT_COLOR}
+          underlayColor={underlayColor}
           onPress={this.handleCancel}
         >
           {customCancelButtonIOS || cancelButton}
@@ -242,14 +243,15 @@ export default class CustomDatePickerIOS extends React.PureComponent {
 
 const BORDER_RADIUS = 13;
 const BACKGROUND_COLOR_LIGHT = "white";
-const BACKGROUND_COLOR_DARK = "#0E0E0E";
+const BACKGROUND_COLOR_DARK = "#2a2a2a";
 const BORDER_COLOR = "#d5d5d5";
 const TITLE_FONT_SIZE = 13;
 const TITLE_COLOR = "#8f8f8f";
 const BUTTON_FONT_WEIGHT = "normal";
 const BUTTON_FONT_COLOR = "#007ff9";
 const BUTTON_FONT_SIZE = 20;
-const HIGHLIGHT_COLOR = "#ebebeb";
+const HIGHLIGHT_COLOR_LIGHT = "#ebebeb";
+const HIGHLIGHT_COLOR_DARK = "#444444";
 
 const styles = StyleSheet.create({
   contentContainer: {
