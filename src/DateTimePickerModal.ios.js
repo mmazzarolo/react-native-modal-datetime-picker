@@ -196,6 +196,7 @@ export default class DateTimePickerModal extends React.PureComponent {
             />
           </View>
           <ConfirmButtonComponent
+            isDarkModeEnabled={isDarkModeEnabled}
             isDisabled={this.state.isPickerSpinning}
             onPress={this.handleConfirm}
             label={confirmTextIOS}
@@ -251,9 +252,14 @@ const headerStyles = StyleSheet.create({
   }
 });
 
-export const ConfirmButton = ({ isDisabled, onPress, label }) => {
-  const underlayColor = isDarkModeEnabled 
-    ? HIGHLIGHT_COLOR_DARK 
+export const ConfirmButton = ({
+  isDarkModeEnabled,
+  isDisabled,
+  onPress,
+  label
+}) => {
+  const underlayColor = isDarkModeEnabled
+    ? HIGHLIGHT_COLOR_DARK
     : HIGHLIGHT_COLOR_LIGHT;
   return (
     <TouchableHighlight
@@ -288,8 +294,8 @@ export const CancelButton = ({ isDarkModeEnabled, onPress, label }) => {
   const themedButtonStyle = isDarkModeEnabled
     ? cancelButtonStyles.buttonDark
     : cancelButtonStyles.buttonLight;
-  const underlayColor = isDarkModeEnabled 
-    ? HIGHLIGHT_COLOR_DARK 
+  const underlayColor = isDarkModeEnabled
+    ? HIGHLIGHT_COLOR_DARK
     : HIGHLIGHT_COLOR_LIGHT;
   return (
     <TouchableHighlight
