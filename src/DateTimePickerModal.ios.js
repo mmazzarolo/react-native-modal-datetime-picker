@@ -14,7 +14,8 @@ const TITLE_COLOR = "#8f8f8f";
 const BUTTON_FONT_WEIGHT = "normal";
 const BUTTON_FONT_COLOR = "#007ff9";
 const BUTTON_FONT_SIZE = 20;
-const HIGHLIGHT_COLOR = "#ebebeb";
+const HIGHLIGHT_COLOR_LIGHT = "#ebebeb";
+const HIGHLIGHT_COLOR_DARK = "#444444";
 
 const deprecatedPropsInfo = [
   { prop: "titleIOS", newProp: "headerTextIOS" },
@@ -251,10 +252,13 @@ const headerStyles = StyleSheet.create({
 });
 
 export const ConfirmButton = ({ isDisabled, onPress, label }) => {
+  const underlayColor = isDarkModeEnabled 
+    ? HIGHLIGHT_COLOR_DARK 
+    : HIGHLIGHT_COLOR_LIGHT;
   return (
     <TouchableHighlight
       style={confirmButtonStyles.button}
-      underlayColor={HIGHLIGHT_COLOR}
+      underlayColor={underlayColor}
       onPress={onPress}
       disabled={isDisabled}
     >
@@ -284,10 +288,13 @@ export const CancelButton = ({ isDarkModeEnabled, onPress, label }) => {
   const themedButtonStyle = isDarkModeEnabled
     ? cancelButtonStyles.buttonDark
     : cancelButtonStyles.buttonLight;
+  const underlayColor = isDarkModeEnabled 
+    ? HIGHLIGHT_COLOR_DARK 
+    : HIGHLIGHT_COLOR_LIGHT;
   return (
     <TouchableHighlight
       style={[cancelButtonStyles.button, themedButtonStyle]}
-      underlayColor={HIGHLIGHT_COLOR}
+      underlayColor={underlayColor}
       onPress={onPress}
     >
       <Text style={cancelButtonStyles.text}>{label}</Text>

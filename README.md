@@ -20,10 +20,10 @@ If your project is not using [Expo](https://expo.io/), install the library and t
 
 ```bash
 # using npm
-$ npm i react-native-modal-datetime-picker@8.x.x @react-native-community/datetimepicker
+$ npm i react-native-modal-datetime-picker @react-native-community/datetimepicker
 
 # using yarn
-$ yarn add react-native-modal-datetime-picker@8.x.x @react-native-community/datetimepicker
+$ yarn add react-native-modal-datetime-picker @react-native-community/datetimepicker
 ```
 
 Please notice that the `@react-native-community/datetimepicker` package is a native module so [**it might require manual linking**](https://github.com/react-native-community/react-native-datetimepicker#getting-started).  
@@ -33,7 +33,7 @@ Please notice that the `@react-native-community/datetimepicker` package is a nat
 If your project is using [Expo](https://expo.io/), install the library and the community date/time picker using the [Expo CLI](https://docs.expo.io/versions/latest/workflow/expo-cli/):
 
 ```bash
-expo install react-native-modal-datetime-picker@8.x.x @react-native-community/datetimepicker
+expo install react-native-modal-datetime-picker @react-native-community/datetimepicker
 ```
 
 ## Usage
