@@ -12,7 +12,7 @@ A declarative cross-platform react-native date and time picker.
 
 This library exposes a cross-platform interface for showing the native date-picker and time-picker inside a modal, providing a unified user and developer experience.
 
-Under the hood this library is using [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).  
+Under the hood this library is using [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
 
 ## Setup (for non-Expo projects)
 
@@ -20,20 +20,20 @@ If your project is not using [Expo](https://expo.io/), install the library and t
 
 ```bash
 # using npm
-$ npm i react-native-modal-datetime-picker@8.x.x @react-native-community/datetimepicker
+$ npm i react-native-modal-datetime-picker @react-native-community/datetimepicker
 
 # using yarn
-$ yarn add react-native-modal-datetime-picker@8.x.x @react-native-community/datetimepicker
+$ yarn add react-native-modal-datetime-picker @react-native-community/datetimepicker
 ```
 
-Please notice that the `@react-native-community/datetimepicker` package is a native module so [**it might require manual linking**](https://github.com/react-native-community/react-native-datetimepicker#getting-started).  
+Please notice that the `@react-native-community/datetimepicker` package is a native module so [**it might require manual linking**](https://github.com/react-native-community/react-native-datetimepicker#getting-started).
 
 ## Setup (for Expo projects)
 
 If your project is using [Expo](https://expo.io/), install the library and the community date/time picker using the [Expo CLI](https://docs.expo.io/versions/latest/workflow/expo-cli/):
 
 ```bash
-expo install react-native-modal-datetime-picker@8.x.x @react-native-community/datetimepicker
+expo install react-native-modal-datetime-picker @react-native-community/datetimepicker
 ```
 
 ## Usage
@@ -90,7 +90,7 @@ export default Example;
 | isDarkModeEnabled       | bool      | false         | Is the device using a dark theme?                                                               |
 | isVisible               | bool      | false         | Show the datetime picker?                                                                       |
 | modalStyleIOS           | style     |               | Style of the modal content (iOS)                                                                |
-| mode                    | string    | "date"    | Choose between 'date', 'time', and 'datetime'                                                   |
+| mode                    | string    | "date"        | Choose between 'date', 'time', and 'datetime'                                                   |
 | onCancel                | func      | **REQUIRED**  | Function called on dismiss                                                                      |
 | onConfirm               | func      | **REQUIRED**  | Function called on date or time picked. It returns the date or time as a JavaScript Date object |
 | onHide                  | func      | () => null    | Called after the hide animation                                                                 |
@@ -141,8 +141,9 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 
 ### I can't see the picker on iOS/the picker is white on iOS
 
-You're app is probably running in dark mode, which is [not supported by React-Native for the pickers yet](https://github.com/facebook/react-native/issues/26299).   
+You're app is probably running in dark mode, which is [not supported by React-Native for the pickers yet](https://github.com/facebook/react-native/issues/26299).  
 If you're not planning to support the iOS dark mode in your app, add the following to your `info.plist`:
+
 ```xml
 <key>UIUserInterfaceStyle</key>
 <string>Light</string>
@@ -153,10 +154,11 @@ Otherwise, see the "Is the iOS dark mode supported?" section below 👇
 ### Is the iOS dark mode supported?
 
 iOS 13 dark mode is not supported out-of-the-box yet and requires a bit of manual setup:
+
 1. Install and link [react-native-appearance](https://github.com/expo/react-native-appearance)
 2. Use it to detect the device color scheme: `const colorScheme = Appearance.getColorScheme();`
-3. Use the color scheme to enable/disable the `react-native-modal-datetime-picker` dark mode trough the `isDarkModeEnabled` prop: `isDarkModeEnabled: colorScheme === 'dark'`  
-  
+3. Use the color scheme to enable/disable the `react-native-modal-datetime-picker` dark mode trough the `isDarkModeEnabled` prop: `isDarkModeEnabled: colorScheme === 'dark'`
+
 ### How do I make it work with snapshot testing?
 
 See issue [#216](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/216) for a possible workaround.

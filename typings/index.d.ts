@@ -7,25 +7,25 @@
 
 import * as React from "react";
 import { ViewStyle, TextStyle } from "react-native";
-import { IOSNativeProps } from '@react-native-community/react-native-datetimepicker'
+import { IOSNativeProps } from "@react-native-community/react-native-datetimepicker";
 
 export type CancelButtonComponent = React.ComponentType<{
   isDarkModeEnabled: boolean;
   onPress(): void;
   label: string;
-}>
+}>;
 
 export type ConfirmButtonComponent = React.ComponentType<{
   isDisabled: boolean;
   onPress(): void;
   label: string;
-}>
+}>;
 
 export type HeaderComponent = React.ComponentType<{
   label: string;
-}>
+}>;
 
-export type PickerComponent = React.ComponentType<IOSNativeProps>
+export type PickerComponent = React.ComponentType<IOSNativeProps>;
 
 export interface DateTimePickerProps {
   /**
@@ -207,4 +207,4 @@ export interface DateTimePickerProps {
 export default class DateTimePicker extends React.Component<
   DateTimePickerProps,
   any
-  > { }
+> {}
