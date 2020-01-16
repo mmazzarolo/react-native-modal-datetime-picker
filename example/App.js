@@ -1,50 +1,47 @@
-import React, { Component } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import DateTimePicker from "react-native-modal-datetime-picker";
+import React, { useState } from "react";
+import { Button, StyleSheet, View } from "react-native";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-export default class DateTimePickerTester extends Component {
-  state = {
-    isDateTimePickerVisible: false,
-    selectedDate: ""
+const App = () => {
+  const [pickerMode, setPickerMode] = useState(null);
+
+  const showDatePicker = () => {
+    setPickerMode("date");
   };
 
-  showDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: true });
+  const showTimePicker = () => {
+    setPickerMode("time");
   };
 
-  hideDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: false });
+  const hidePicker = () => {
+    setPickerMode(null);
   };
 
-  handleDatePicked = date => {
-    this.setState({ selectedDate: date.toString() });
-    this.hideDateTimePicker();
+  const handleConfirm = date => {
+    console.warn("A date has been picked: ", date);
+    hidePicker();
   };
 
-  render() {
-    const { isDateTimePickerVisible, selectedDate } = this.state;
+  return (
+    <View style={style.root}>
+      <Button title="Show Date Picker" onPress={showDatePicker} />
+      <Button title="Show Time Picker" onPress={showTimePicker} />
+      <DateTimePickerModal
+        isVisible={pickerMode !== null}
+        mode={pickerMode}
+        onConfirm={handleConfirm}
+        onCancel={hidePicker}
+      />
+    </View>
+  );
+};
 
-    return (
-      <View style={styles.container}>
-        <Button title="Show DatePicker" onPress={this.showDateTimePicker} />
-        <Text style={styles.text}>{selectedDate}</Text>
-        <DateTimePicker
-          isVisible={isDateTimePickerVisible}
-          onConfirm={this.handleDatePicked}
-          onCancel={this.hideDateTimePicker}
-        />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
+const style = StyleSheet.create({
+  root: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
-  },
-  text: {
-    marginVertical: 10
   }
 });
+
+export default App;

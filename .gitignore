@@ -44,3 +44,6 @@ android/keystores/debug.keystore
 .vscode
 jsconfig.json
 npm-debug.log.*
+
+# yarn
+yarn-error.log
