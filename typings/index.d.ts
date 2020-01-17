@@ -202,6 +202,11 @@ export interface DateTimePickerProps {
    * after Confirm was pressed.
    */
   onHide?(date: Date): void;
+  
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string;
 }
 
 export default class DateTimePicker extends React.Component<
