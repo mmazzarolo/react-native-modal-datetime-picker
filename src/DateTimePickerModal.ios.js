@@ -68,12 +68,13 @@ export default class DateTimePickerModal extends React.PureComponent {
   state = {
     currentDate: this.props.date,
     isPickerVisible: this.props.isVisible,
-    isPickerSpinning: false
+    isPickerSpinning: false,
+    initialized: false
   };
 
   didPressConfirm = false;
-
   componentDidMount() {
+    console.log("Did Mount");
     Object.keys(this.props).forEach(prop => {
       // Show a warning if a deprecated prop is being used
       const deprecationInfo = deprecatedPropsInfo.find(x => x.prop === prop);
@@ -91,8 +92,23 @@ export default class DateTimePickerModal extends React.PureComponent {
       }
     });
   }
-
+  componentDidUpdate(prevProps, prevState) {
+    /* console.log(
+     *   `Did Update: Mode: ${this.props.mode}, Visible: ${this.props.isVisible}, prevVisible: ${prevProps.isVisible}`
+     * );*/
+    if (
+      this.props.mode === "countdown" &&
+      this.props.isVisible &&
+      !prevProps.isVisible
+    ) {
+      setTimeout(() => this.setState({ initialized: true }), 0);
+      /*       console.log("Visible");*/
+    }
+  }
   static getDerivedStateFromProps(props, state) {
+    /* console.log(
+     *   `Derived State:  Mode: ${props.mode}, Visible: ${props.isVisible}, stateVisible: ${state.isPickerVisible}`
+     * );*/
     if (props.isVisible && !state.isPickerVisible) {
       return { currentDate: props.date, isPickerVisible: true };
     }
@@ -120,7 +136,7 @@ export default class DateTimePickerModal extends React.PureComponent {
     } else if (onHide) {
       onHide(this.didPressConfirm, this.state.currentDate);
     }
-    this.setState({ isPickerVisible: false });
+    this.setState({ isPickerVisible: false, initialized: false });
   };
 
   handleChange = (event, date) => {
@@ -191,7 +207,11 @@ export default class DateTimePickerModal extends React.PureComponent {
           <View onStartShouldSetResponderCapture={this.handleUserTouchInit}>
             <PickerComponent
               {...otherProps}
-              value={this.state.currentDate}
+              value={
+                this.props.mode !== "countdown" || this.state.initialized
+                  ? this.state.currentDate
+                  : new Date(this.props.date.getTime() + 1000)
+              }
               onChange={this.handleChange}
             />
           </View>

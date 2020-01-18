@@ -90,7 +90,7 @@ export default Example;
 | isDarkModeEnabled       | bool      | false         | Is the device using a dark theme?                                                               |
 | isVisible               | bool      | false         | Show the datetime picker?                                                                       |
 | modalStyleIOS           | style     |               | Style of the modal content (iOS)                                                                |
-| mode                    | string    | "date"        | Choose between 'date', 'time', and 'datetime'                                                   |
+| mode                    | string    | "date"        | Choose between 'date', 'time', 'datetime', and 'countdown' (datetime and countdown on iOS only)                                                   |
 | onCancel                | func      | **REQUIRED**  | Function called on dismiss                                                                      |
 | onConfirm               | func      | **REQUIRED**  | Function called on date or time picked. It returns the date or time as a JavaScript Date object |
 | onHide                  | func      | () => null    | Called after the hide animation                                                                 |

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, View } from "react-native";
+import { Button, Platform, StyleSheet, View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const App = () => {
@@ -12,6 +12,9 @@ const App = () => {
   const showTimePicker = () => {
     setPickerMode("time");
   };
+  const showDurationPicker = () => {
+    setPickerMode("countdown");
+  };
 
   const hidePicker = () => {
     setPickerMode(null);
@@ -22,15 +25,28 @@ const App = () => {
     hidePicker();
   };
 
+  const durationButton =
+    Platform.OS === "ios" ? (
+      <Button title="Show Duration Picker" onPress={showDurationPicker} />
+    ) : (
+      <View />
+    );
   return (
     <View style={style.root}>
       <Button title="Show Date Picker" onPress={showDatePicker} />
       <Button title="Show Time Picker" onPress={showTimePicker} />
+      {durationButton}
       <DateTimePickerModal
         isVisible={pickerMode !== null}
         mode={pickerMode}
         onConfirm={handleConfirm}
         onCancel={hidePicker}
+        headerTextIOS={`Pick a ${
+          pickerMode === "countdown"
+            ? "Duration"
+            : pickerMode &&
+              pickerMode.charAt(0).toUpperCase() + pickerMode.slice(1)
+        }`}
       />
     </View>
   );
