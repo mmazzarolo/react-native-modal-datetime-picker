@@ -74,7 +74,6 @@ export default class DateTimePickerModal extends React.PureComponent {
 
   didPressConfirm = false;
   componentDidMount() {
-    console.log("Did Mount");
     Object.keys(this.props).forEach(prop => {
       // Show a warning if a deprecated prop is being used
       const deprecationInfo = deprecatedPropsInfo.find(x => x.prop === prop);
