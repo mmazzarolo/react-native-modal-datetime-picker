@@ -7,7 +7,7 @@
 
 import * as React from "react";
 import { ViewStyle, TextStyle } from "react-native";
-import { IOSNativeProps } from "@react-native-community/react-native-datetimepicker";
+import { IOSNativeProps } from "@react-native-community/datetimepicker";
 
 export type CancelButtonComponent = React.ComponentType<{
   isDarkModeEnabled: boolean;
@@ -202,7 +202,7 @@ export interface DateTimePickerProps {
    * after Confirm was pressed.
    */
   onHide?(date: Date): void;
-  
+
   /**
    * Used to locate this view in end-to-end tests.
    */
