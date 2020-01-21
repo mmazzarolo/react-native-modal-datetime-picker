@@ -27,7 +27,7 @@ const App = () => {
 
   const durationButton =
     Platform.OS === "ios" ? (
-      <Button title="Show Duration Picker" onPress={showDurationPicker} />
+      <Button title="Show Countdown Picker" onPress={showDurationPicker} />
     ) : (
       <View />
     );
@@ -38,15 +38,11 @@ const App = () => {
       {durationButton}
       <DateTimePickerModal
         isVisible={pickerMode !== null}
+        date={pickerMode === "countdown" ? new Date(1000) : new Date()}
         mode={pickerMode}
+        timeZoneOffsetInMinutes={0}
         onConfirm={handleConfirm}
         onCancel={hidePicker}
-        headerTextIOS={`Pick a ${
-          pickerMode === "countdown"
-            ? "Duration"
-            : pickerMode &&
-              pickerMode.charAt(0).toUpperCase() + pickerMode.slice(1)
-        }`}
       />
     </View>
   );

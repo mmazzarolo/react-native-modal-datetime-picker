@@ -69,7 +69,7 @@ export default class DateTimePickerModal extends React.PureComponent {
     currentDate: this.props.date,
     isPickerVisible: this.props.isVisible,
     isPickerSpinning: false,
-    initialized: false
+    isInitialized: false
   };
 
   didPressConfirm = false;
@@ -92,22 +92,15 @@ export default class DateTimePickerModal extends React.PureComponent {
     });
   }
   componentDidUpdate(prevProps, prevState) {
-    /* console.log(
-     *   `Did Update: Mode: ${this.props.mode}, Visible: ${this.props.isVisible}, prevVisible: ${prevProps.isVisible}`
-     * );*/
     if (
       this.props.mode === "countdown" &&
       this.props.isVisible &&
       !prevProps.isVisible
     ) {
-      setTimeout(() => this.setState({ initialized: true }), 0);
-      /*       console.log("Visible");*/
+      setTimeout(() => this.setState({ isInitialized: true }), 0);
     }
   }
   static getDerivedStateFromProps(props, state) {
-    /* console.log(
-     *   `Derived State:  Mode: ${props.mode}, Visible: ${props.isVisible}, stateVisible: ${state.isPickerVisible}`
-     * );*/
     if (props.isVisible && !state.isPickerVisible) {
       return { currentDate: props.date, isPickerVisible: true };
     }
@@ -135,7 +128,7 @@ export default class DateTimePickerModal extends React.PureComponent {
     } else if (onHide) {
       onHide(this.didPressConfirm, this.state.currentDate);
     }
-    this.setState({ isPickerVisible: false, initialized: false });
+    this.setState({ isPickerVisible: false, isInitialized: false });
   };
 
   handleChange = (event, date) => {
@@ -207,7 +200,7 @@ export default class DateTimePickerModal extends React.PureComponent {
             <PickerComponent
               {...otherProps}
               value={
-                this.props.mode !== "countdown" || this.state.initialized
+                this.props.mode !== "countdown" || this.state.isInitialized
                   ? this.state.currentDate
                   : new Date(this.props.date.getTime() + 1000)
               }
