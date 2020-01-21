@@ -131,7 +131,7 @@ The `is24Hour` prop is only available on Android but you can use a small hack fo
 ### How can I set an automatic locale in iOS
 
 The datepicker can adjust by itself the locale (`fr_FR`, `en_GB`...) depending on the user's device locale.
-To do so, edit your `AppDelegate.m` file adding:
+To do so, edit your `AppDelegate.m` file and add the following to `didFinishLaunchingWithOptions`.
 
 ```objc
 // Force DatePicker locale to current language (for: 24h or 12h format, full day names etc...)
