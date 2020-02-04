@@ -52,7 +52,9 @@ export default class DateTimePickerModal extends React.PureComponent {
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     onChange: PropTypes.func,
-    onHide: PropTypes.func
+    onHide: PropTypes.func,
+    maximumDate: PropTypes.instanceOf(Date),
+    minimumDate: PropTypes.instanceOf(Date)
   };
 
   static defaultProps = {
