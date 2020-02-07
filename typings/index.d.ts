@@ -70,11 +70,6 @@ export interface DateTimePickerProps {
   cancelButtonContainerStyleIOS?: ViewStyle;
 
   /**
-   * A custom style for the titleIOS (Default is 'Pick a Date')
-   */
-  titleStyle?: TextStyle;
-
-  /**
    * A custom component for the title container on iOS
    */
   customHeaderIOS?: HeaderComponent;
