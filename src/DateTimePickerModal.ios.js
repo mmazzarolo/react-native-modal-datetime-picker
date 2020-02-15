@@ -245,11 +245,7 @@ const headerStyles = StyleSheet.create({
   }
 });
 
-export const ConfirmButton = ({
-  isDarkModeEnabled,
-  onPress,
-  label
-}) => {
+export const ConfirmButton = ({ isDarkModeEnabled, onPress, label }) => {
   const underlayColor = isDarkModeEnabled
     ? HIGHLIGHT_COLOR_DARK
     : HIGHLIGHT_COLOR_LIGHT;
