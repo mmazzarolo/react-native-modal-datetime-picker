@@ -35,7 +35,7 @@ const unsopportedPropsInfo = [
   { prop: "reactNativeModalPropsIOS" }
 ];
 
-export default class DateTimePickerModal extends React.PureComponent {
+export class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
     cancelTextIOS: PropTypes.string,
     confirmTextIOS: PropTypes.string,
