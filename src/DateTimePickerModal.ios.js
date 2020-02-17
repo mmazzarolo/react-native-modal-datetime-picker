@@ -5,17 +5,17 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import Modal from "./Modal";
 import { isIphoneX } from "./utils";
 
-const BORDER_RADIUS = 13;
-const BACKGROUND_COLOR_LIGHT = "white";
-const BACKGROUND_COLOR_DARK = "#0E0E0E";
-const BORDER_COLOR = "#d5d5d5";
-const TITLE_FONT_SIZE = 20;
-const TITLE_COLOR = "#8f8f8f";
-const BUTTON_FONT_WEIGHT = "normal";
-const BUTTON_FONT_COLOR = "#007ff9";
-const BUTTON_FONT_SIZE = 20;
-const HIGHLIGHT_COLOR_LIGHT = "#ebebeb";
-const HIGHLIGHT_COLOR_DARK = "#444444";
+export const BORDER_RADIUS = 13;
+export const BACKGROUND_COLOR_LIGHT = "white";
+export const BACKGROUND_COLOR_DARK = "#0E0E0E";
+export const BORDER_COLOR = "#d5d5d5";
+export const TITLE_FONT_SIZE = 20;
+export const TITLE_COLOR = "#8f8f8f";
+export const BUTTON_FONT_WEIGHT = "normal";
+export const BUTTON_FONT_COLOR = "#007ff9";
+export const BUTTON_FONT_SIZE = 20;
+export const HIGHLIGHT_COLOR_LIGHT = "#ebebeb";
+export const HIGHLIGHT_COLOR_DARK = "#444444";
 
 const deprecatedPropsInfo = [
   { prop: "titleIOS", newProp: "headerTextIOS" },
@@ -35,7 +35,7 @@ const unsopportedPropsInfo = [
   { prop: "reactNativeModalPropsIOS" }
 ];
 
-export default class DateTimePickerModal extends React.PureComponent {
+export class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
     cancelTextIOS: PropTypes.string,
     confirmTextIOS: PropTypes.string,
@@ -232,15 +232,15 @@ const pickerStyles = StyleSheet.create({
   }
 });
 
-export const Header = ({ label }) => {
+export const Header = ({ label, style = headerStyles }) => {
   return (
-    <View style={headerStyles.root}>
-      <Text style={headerStyles.text}>{label}</Text>
+    <View style={style.root}>
+      <Text style={style.text}>{label}</Text>
     </View>
   );
 };
 
-const headerStyles = StyleSheet.create({
+export const headerStyles = StyleSheet.create({
   root: {
     borderBottomColor: BORDER_COLOR,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -258,24 +258,25 @@ export const ConfirmButton = ({
   isDarkModeEnabled,
   isDisabled,
   onPress,
-  label
+  label,
+  style = confirmButtonStyles
 }) => {
   const underlayColor = isDarkModeEnabled
     ? HIGHLIGHT_COLOR_DARK
     : HIGHLIGHT_COLOR_LIGHT;
   return (
     <TouchableHighlight
-      style={confirmButtonStyles.button}
+      style={style.button}
       underlayColor={underlayColor}
       onPress={onPress}
       disabled={isDisabled}
     >
-      <Text style={confirmButtonStyles.text}>{label}</Text>
+      <Text style={style.text}>{label}</Text>
     </TouchableHighlight>
   );
 };
 
-const confirmButtonStyles = StyleSheet.create({
+export const confirmButtonStyles = StyleSheet.create({
   button: {
     borderColor: BORDER_COLOR,
     borderTopWidth: StyleSheet.hairlineWidth,
@@ -292,7 +293,12 @@ const confirmButtonStyles = StyleSheet.create({
   }
 });
 
-export const CancelButton = ({ isDarkModeEnabled, onPress, label }) => {
+export const CancelButton = ({
+  isDarkModeEnabled,
+  onPress,
+  label,
+  style = cancelButtonStyles
+}) => {
   const themedButtonStyle = isDarkModeEnabled
     ? cancelButtonStyles.buttonDark
     : cancelButtonStyles.buttonLight;
@@ -301,16 +307,16 @@ export const CancelButton = ({ isDarkModeEnabled, onPress, label }) => {
     : HIGHLIGHT_COLOR_LIGHT;
   return (
     <TouchableHighlight
-      style={[cancelButtonStyles.button, themedButtonStyle]}
+      style={[style.button, themedButtonStyle]}
       underlayColor={underlayColor}
       onPress={onPress}
     >
-      <Text style={cancelButtonStyles.text}>{label}</Text>
+      <Text style={style.text}>{label}</Text>
     </TouchableHighlight>
   );
 };
 
-const cancelButtonStyles = StyleSheet.create({
+export const cancelButtonStyles = StyleSheet.create({
   button: {
     borderRadius: BORDER_RADIUS,
     height: 57,
