@@ -69,8 +69,7 @@ export class DateTimePickerModal extends React.PureComponent {
 
   state = {
     currentDate: this.props.date,
-    isPickerVisible: this.props.isVisible,
-    isPickerSpinning: false
+    isPickerVisible: this.props.isVisible
   };
 
   didPressConfirm = false;
@@ -129,12 +128,7 @@ export class DateTimePickerModal extends React.PureComponent {
     if (this.props.onChange) {
       this.props.onChange(date);
     }
-    this.setState({ currentDate: date, isPickerSpinning: false });
-  };
-
-  handleUserTouchInit = () => {
-    this.setState({ isPickerSpinning: true });
-    return false;
+    this.setState({ currentDate: date });
   };
 
   render() {
@@ -190,16 +184,13 @@ export class DateTimePickerModal extends React.PureComponent {
           ]}
         >
           <HeaderComponent label={titleIOS || headerTextIOS} />
-          <View onStartShouldSetResponderCapture={this.handleUserTouchInit}>
-            <PickerComponent
-              {...otherProps}
-              value={this.state.currentDate}
-              onChange={this.handleChange}
-            />
-          </View>
+          <PickerComponent
+            {...otherProps}
+            value={this.state.currentDate}
+            onChange={this.handleChange}
+          />
           <ConfirmButtonComponent
             isDarkModeEnabled={isDarkModeEnabled}
-            isDisabled={this.state.isPickerSpinning}
             onPress={this.handleConfirm}
             label={confirmTextIOS}
           />
@@ -256,7 +247,6 @@ export const headerStyles = StyleSheet.create({
 
 export const ConfirmButton = ({
   isDarkModeEnabled,
-  isDisabled,
   onPress,
   label,
   style = confirmButtonStyles
@@ -269,7 +259,6 @@ export const ConfirmButton = ({
       style={style.button}
       underlayColor={underlayColor}
       onPress={onPress}
-      disabled={isDisabled}
     >
       <Text style={style.text}>{label}</Text>
     </TouchableHighlight>
