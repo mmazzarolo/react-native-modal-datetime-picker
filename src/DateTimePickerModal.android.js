@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-export default class DateTimePickerModal extends React.PureComponent {
+export class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
     date: PropTypes.instanceOf(Date),
     isVisible: PropTypes.bool,
