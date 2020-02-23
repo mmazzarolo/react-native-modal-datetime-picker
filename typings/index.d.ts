@@ -3,11 +3,14 @@
 // Definitions by:
 // Kyle Roach <https://github.com/iRoachie>
 // Michiel De Mey <https://github.com/MichielDeMey>
-// TypeScript Version: 2.3.2
+// TypeScript Version: 3.5
 
 import * as React from "react";
-import { ViewStyle, TextStyle } from "react-native";
-import { IOSNativeProps } from "@react-native-community/datetimepicker";
+import { ViewStyle } from "react-native";
+import {
+  IOSNativeProps,
+  AndroidNativeProps
+} from "@react-native-community/datetimepicker";
 
 export type CancelButtonComponent = React.ComponentType<{
   isDarkModeEnabled: boolean;
@@ -205,6 +208,8 @@ export interface DateTimePickerProps {
 }
 
 export default class DateTimePicker extends React.Component<
-  DateTimePickerProps,
+  DateTimePickerProps &
+    Omit<IOSNativeProps, "value"> &
+    Omit<AndroidNativeProps, "value">,
   any
 > {}
