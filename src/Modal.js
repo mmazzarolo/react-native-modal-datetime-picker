@@ -61,8 +61,8 @@ export class Modal extends Component {
   }
 
   handleDimensionsUpdate = dimensionsUpdate => {
-    const deviceWidth = Dimensions.get("window").width;
-    const deviceHeight = Dimensions.get("window").height;
+    const deviceWidth = dimensionsUpdate.width;
+    const deviceHeight = dimensionsUpdate.height;
     if (
       deviceWidth !== this.state.deviceWidth ||
       deviceHeight !== this.state.deviceHeight
@@ -123,9 +123,7 @@ export class Modal extends Component {
             style={[
               styles.backdrop,
               backdropAnimatedStyle,
-              // Multiplied by 2 to make sure the backdrop covers the entire
-              // screen even while changing orientation
-              { width: deviceWidth * 2, height: deviceHeight * 2 }
+              { width: deviceWidth, height: deviceHeight }
             ]}
           />
         </TouchableWithoutFeedback>
