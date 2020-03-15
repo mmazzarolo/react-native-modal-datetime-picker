@@ -1,9 +1,8 @@
----
 name: 💬 Question
-about: You need help with the library.
+about: Need a new feature? Have a quick question about the library?
 labels: "question"
 ---
 
 ## Ask your Question
 
-<!-- Ask your question -->
+<!-- Ask your question. Please notice that the more detailed the question is, the higher the chances we'll answer soon. Also, for troubleshooting support use StackOverflow. -->
