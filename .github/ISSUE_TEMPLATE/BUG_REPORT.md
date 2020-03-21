@@ -4,8 +4,8 @@ about: Report a reproducible or regression bug.
 labels: "bug"
 ---
 
-<!-- NOTE: Under the hood react-native-modal-datetime-picker uses react-native original DatePickerAndroid, TimePickerAndroid and DatePickerIOS.
-Before reporting a bug, try swapping react-native-datetime-picker with react-native original date/time pickers to check if the problem persists. If it does please report the issue in the react-native repo instead. -->
+<!-- NOTE: Under the hood react-native-modal-datetime-picker uses [react-native-community/datetimepicker](https://github.com/react-native-community/datetimepicker).
+Before reporting a bug, swap react-native-datetime-picker with [react-native-community/datetimepicker](https://github.com/react-native-community/datetimepicker) to check if the problem persists. If it does please report the issue in the [react-native-community/datetimepicker](https://github.com/react-native-community/datetimepicker) repo instead. -->
 
 ## Environment
 
@@ -22,6 +22,7 @@ Before reporting a bug, try swapping react-native-datetime-picker with react-nat
 - Android:
 - iOS:
 - react-native-modal-datetime-picker:
+- [react-native-community/datetimepicker](https://github.com/react-native-community/datetimepicker):
 - react-native:
 - react:
 
