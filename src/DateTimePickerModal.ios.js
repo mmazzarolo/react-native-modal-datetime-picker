@@ -177,6 +177,11 @@ export class DateTimePickerModal extends React.PureComponent {
         onHide={this.handleHide}
       >
         <View
+          style={{
+            width: Dimensions.get('screen').width > Dimensions.get('screen').height ? '40%' : '90%',
+            alignSelf: 'center',
+          }}>
+          <View
           style={[
             pickerStyles.container,
             themedContainerStyle,
@@ -184,23 +189,41 @@ export class DateTimePickerModal extends React.PureComponent {
           ]}
         >
           <HeaderComponent label={titleIOS || headerTextIOS} />
-          <PickerComponent
-            {...otherProps}
-            value={this.state.currentDate}
-            onChange={this.handleChange}
-          />
-          <ConfirmButtonComponent
-            isDarkModeEnabled={isDarkModeEnabled}
-            onPress={this.handleConfirm}
-            label={confirmTextIOS}
-          />
+          <View onStartShouldSetResponderCapture={this.handleUserTouchInit}>
+            <PickerComponent
+              {...otherProps}
+              value={this.state.currentDate}
+              onChange={this.handleChange}
+            />
+          </View>
+          <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+            {Dimensions.get('screen').width > Dimensions.get('screen').height &&
+              <>
+                <CancelButtonComponent
+                  isDarkModeEnabled={isDarkModeEnabled}
+                  onPress={this.handleCancel}
+                  label={cancelTextIOS}
+                />
+                <View style={{ width: 30 }} />
+              </>
+            }
+            <ConfirmButtonComponent
+              isDarkModeEnabled={isDarkModeEnabled}
+              isDisabled={this.state.isPickerSpinning}
+              onPress={this.handleConfirm}
+              label={confirmTextIOS}
+            />
+          </View>
         </View>
-        <CancelButtonComponent
-          isDarkModeEnabled={isDarkModeEnabled}
-          onPress={this.handleCancel}
-          label={cancelTextIOS}
-        />
-      </Modal>
+        {Dimensions.get('screen').width < Dimensions.get('screen').height &&
+          <CancelButtonComponent
+            isDarkModeEnabled={isDarkModeEnabled}
+            onPress={this.handleCancel}
+            label={cancelTextIOS}
+          />
+        }
+      </View>
+      </Modal >
     );
   }
 }
