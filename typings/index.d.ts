@@ -56,23 +56,6 @@ export interface DateTimePickerProps {
   customConfirmButtonIOS?: ConfirmButtonComponent;
 
   /**
-   * A custom component for the confirm button on iOS that will be shown while user interacting with the date picker
-   *
-   * Doesn't work without customConfirmButtonIOS
-   */
-  customConfirmButtonWhileInteractingIOS?: JSX.Element;
-
-  /**
-   * The style of the ReactNativeModal container on iOS
-   */
-  contentContainerStyleIOS?: ViewStyle;
-
-  /**
-   * The style of the cancel button container on iOS
-   */
-  cancelButtonContainerStyleIOS?: ViewStyle;
-
-  /**
    * A custom component for the title container on iOS
    */
   customHeaderIOS?: HeaderComponent;
@@ -83,9 +66,14 @@ export interface DateTimePickerProps {
   customPickerIOS?: PickerComponent;
 
   /**
-   * The style of the container on iOS
+   * Style of the modal content (iOS)
    */
-  datePickerContainerStyleIOS?: ViewStyle;
+  modalStyleIOS?: ViewStyle;
+
+  /**
+   * The style of the picker container (iOS)
+   */
+  pickerContainerStyleIOS?: ViewStyle;
 
   /**
    * Initial selected date/time
