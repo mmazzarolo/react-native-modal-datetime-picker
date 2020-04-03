@@ -110,6 +110,14 @@ Before reporting a bug, try swapping `react-native-datetime-picker` with [`@reac
 Set the `mode` prop to `time`.
 You can also display both the datepicker and the timepicker in one step by setting the `mode` prop to `datetime`.
 
+### I can't set the initial date on the picker
+
+Please make sure you're using the `date` props (and not the `value` one). 
+
+### The picker shows up twice on Android
+
+This seems to be a known issue of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker/issues/54). Please see [this thread](https://github.com/react-native-community/datetimepicker/issues/54) for a couple of workarounds.  
+
 ### How do I change the color of the Android date and time pickers?
 
 This is more a React-Native specific question than a react-native-modal-datetime-picker one.  
