@@ -148,7 +148,7 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 
 ### I can't see the picker on iOS/the picker is white on iOS
 
-You're app is probably running in dark mode, which is [not supported by React-Native for the pickers yet](https://github.com/facebook/react-native/issues/26299).  
+Your app is probably running in dark mode, which is [not supported by React-Native for the pickers yet](https://github.com/facebook/react-native/issues/26299).  
 If you're not planning to support the iOS dark mode in your app, add the following to your `info.plist`:
 
 ```xml
