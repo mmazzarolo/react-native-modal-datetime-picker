@@ -10,6 +10,9 @@ import {
   TouchableWithoutFeedback
 } from "react-native";
 
+const MODAL_ANIM_DURATION = 300;
+const MODAL_BACKDROP_OPACITY = 0.4;
+
 export class Modal extends Component {
   static propTypes = {
     onBackdropPress: PropTypes.func,
@@ -76,8 +79,8 @@ export class Modal extends Component {
     Animated.timing(this.animVal, {
       easing: Easing.inOut(Easing.quad),
       // Using native driver in the modal makes the content flash
-      // useNativeDriver: true,
-      duration: 300,
+      useNativeDriver: false,
+      duration: MODAL_ANIM_DURATION,
       toValue: 1
     }).start();
   };
@@ -86,8 +89,8 @@ export class Modal extends Component {
     Animated.timing(this.animVal, {
       easing: Easing.inOut(Easing.quad),
       // Using native driver in the modal makes the content flash
-      // useNativeDriver: true,
-      duration: 300,
+      useNativeDriver: false,
+      duration: MODAL_ANIM_DURATION,
       toValue: 0
     }).start(() => {
       if (this._isMounted) {
@@ -102,7 +105,7 @@ export class Modal extends Component {
     const backdropAnimatedStyle = {
       opacity: this.animVal.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, 0.4]
+        outputRange: [0, MODAL_BACKDROP_OPACITY]
       })
     };
     const contentAnimatedStyle = {
