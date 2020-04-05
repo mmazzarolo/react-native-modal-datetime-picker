@@ -61,8 +61,8 @@ export class Modal extends Component {
   }
 
   handleDimensionsUpdate = dimensionsUpdate => {
-    const deviceWidth = dimensionsUpdate.width;
-    const deviceHeight = dimensionsUpdate.height;
+    const deviceWidth = dimensionsUpdate.window.width;
+    const deviceHeight = dimensionsUpdate.window.height;
     if (
       deviceWidth !== this.state.deviceWidth ||
       deviceHeight !== this.state.deviceHeight
