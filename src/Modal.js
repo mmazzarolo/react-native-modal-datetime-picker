@@ -120,7 +120,12 @@ export class Modal extends Component {
       ]
     };
     return (
-      <ReactNativeModal transparent animationType="none" visible={isVisible}>
+      <ReactNativeModal
+        transparent
+        animationType="none"
+        visible={isVisible}
+        supportedOrientations={['portrait', 'landscape']}
+      >
         <TouchableWithoutFeedback onPress={onBackdropPress}>
           <Animated.View
             style={[
