@@ -46,4 +46,4 @@ jsconfig.json
 npm-debug.log.*
 
 # yarn
-yarn-error.log
+yarn-error.logyarn.lock
