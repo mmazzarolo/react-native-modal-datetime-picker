@@ -100,7 +100,12 @@ export class Modal extends Component {
   };
 
   render() {
-    const { children, onBackdropPress, contentStyle } = this.props;
+    const {
+      children,
+      onBackdropPress,
+      contentStyle,
+      ...otherProps
+    } = this.props;
     const { deviceHeight, deviceWidth, isVisible } = this.state;
     const backdropAnimatedStyle = {
       opacity: this.animVal.interpolate({
@@ -120,7 +125,12 @@ export class Modal extends Component {
       ]
     };
     return (
-      <ReactNativeModal transparent animationType="none" visible={isVisible}>
+      <ReactNativeModal
+        transparent
+        animationType="none"
+        visible={isVisible}
+        {...otherProps}
+      >
         <TouchableWithoutFeedback onPress={onBackdropPress}>
           <Animated.View
             style={[
