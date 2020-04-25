@@ -803,10 +803,10 @@
     shell-quote "1.6.1"
     ws "^1.1.0"
 
-"@react-native-community/datetimepicker@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-1.0.0.tgz#6e8550702bdb840b8dfb55d2e2d3638cabc815e3"
-  integrity sha512-DcD7kn0JIUNR3DKT9Sn4btuJmHffLuXm4/WeYj66y+bGc75eBLOtuuZ7/jQUoWpXFEy9UcnP0EMIoWSBP6ngpg==
+"@react-native-community/datetimepicker@*":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-2.3.2.tgz#c4dfc503ed260c7c93ce838f60e707dbba179452"
+  integrity sha512-BbDmWVIaSYoYK2x5tRRuy/UWUVS6WtZ+3D210zYZgyD47yEVcTbaLFL9zFw7VxNMb8c/6BFcEpC6k18WTYplwA==
   dependencies:
     invariant "^2.2.4"
 
@@ -3604,7 +3604,7 @@ react-is@^16.8.1, react-is@^16.8.4:
   integrity sha512-tJBzzzIgnnRfEm046qRcURvwQnZVXmuCbscxUO5RWrGTXpon2d4c8mI0D8WE6ydVIm29JiLB6+RslkIvym9Rjw==
 
 "react-native-modal-datetime-picker@file:..":
-  version "7.5.0"
+  version "8.5.4"
   dependencies:
     prop-types "^15.7.2"
 

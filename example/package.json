@@ -5,10 +5,11 @@
   "scripts": {
     "start": "react-native start",
     "postinstall": "node ../scripts/examples_postinstall.js",
-    "reinstall": "rm -rf node_modules ios/Pods && yarn install && cd ios && pod install"
+    "setup": "rm -rf node_modules ios/Pods && yarn install && cd ios && pod install && yarn copy",
+    "copy": "rm -rf node_modules/react-native-modal-datetime-picker/src/ && cp -Rv ../src node_modules/react-native-modal-datetime-picker/src"
   },
   "dependencies": {
-    "@react-native-community/datetimepicker": "^1.0.0",
+    "@react-native-community/datetimepicker": "*",
     "react": "16.8.6",
     "react-native": "0.60.4",
     "react-native-modal-datetime-picker": "file:../"
