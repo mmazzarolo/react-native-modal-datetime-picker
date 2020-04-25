@@ -35,15 +35,15 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@semantic-release/git": "^8.0.0",
+    "@semantic-release/git": "^9.0.0",
     "eslint": "^6.7.2",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react-app": "^6.2.1",
-    "husky": "^4.0.10",
-    "lint-staged": "^9.5.0",
-    "prettier": "^1.19.1",
-    "semantic-release": "^16.0.2"
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react-app": "^6.2.2",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.7",
+    "prettier": "^2.0.5",
+    "semantic-release": "^17.0.7"
   },
   "peerDependencies": {
     "@react-native-community/datetimepicker": ">=1.0.0"
@@ -55,16 +55,13 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "yarn lint:fix",
-      "git add"
+      "yarn lint:fix"
     ],
     "*.json": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "*.md": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   }
 }

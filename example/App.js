@@ -17,7 +17,7 @@ const App = () => {
     setPickerMode(null);
   };
 
-  const handleConfirm = date => {
+  const handleConfirm = (date) => {
     console.warn("A date has been picked: ", date);
     hidePicker();
   };
@@ -40,8 +40,8 @@ const style = StyleSheet.create({
   root: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });
 
 export default App;

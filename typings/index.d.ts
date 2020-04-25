@@ -9,7 +9,7 @@ import * as React from "react";
 import { ViewStyle } from "react-native";
 import {
   IOSNativeProps,
-  AndroidNativeProps
+  AndroidNativeProps,
 } from "@react-native-community/datetimepicker";
 
 export type CancelButtonComponent = React.ComponentType<{

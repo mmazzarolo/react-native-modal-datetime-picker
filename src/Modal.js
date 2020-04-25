@@ -7,7 +7,7 @@ import {
   Easing,
   Modal as ReactNativeModal,
   StyleSheet,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from "react-native";
 
 const MODAL_ANIM_DURATION = 300;
@@ -18,19 +18,19 @@ export class Modal extends Component {
     onBackdropPress: PropTypes.func,
     onHide: PropTypes.func,
     isVisible: PropTypes.bool,
-    contentStyle: PropTypes.any
+    contentStyle: PropTypes.any,
   };
 
   static defaultProps = {
     onBackdropPress: () => null,
     onHide: () => null,
-    isVisible: false
+    isVisible: false,
   };
 
   state = {
     isVisible: this.props.isVisible,
     deviceWidth: Dimensions.get("window").width,
-    deviceHeight: Dimensions.get("window").height
+    deviceHeight: Dimensions.get("window").height,
   };
 
   animVal = new Animated.Value(0);
@@ -63,7 +63,7 @@ export class Modal extends Component {
     }
   }
 
-  handleDimensionsUpdate = dimensionsUpdate => {
+  handleDimensionsUpdate = (dimensionsUpdate) => {
     const deviceWidth = dimensionsUpdate.window.width;
     const deviceHeight = dimensionsUpdate.window.height;
     if (
@@ -81,7 +81,7 @@ export class Modal extends Component {
       // Using native driver in the modal makes the content flash
       useNativeDriver: false,
       duration: MODAL_ANIM_DURATION,
-      toValue: 1
+      toValue: 1,
     }).start();
   };
 
@@ -91,7 +91,7 @@ export class Modal extends Component {
       // Using native driver in the modal makes the content flash
       useNativeDriver: false,
       duration: MODAL_ANIM_DURATION,
-      toValue: 0
+      toValue: 0,
     }).start(() => {
       if (this._isMounted) {
         this.setState({ isVisible: false }, this.props.onHide);
@@ -105,8 +105,8 @@ export class Modal extends Component {
     const backdropAnimatedStyle = {
       opacity: this.animVal.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, MODAL_BACKDROP_OPACITY]
-      })
+        outputRange: [0, MODAL_BACKDROP_OPACITY],
+      }),
     };
     const contentAnimatedStyle = {
       transform: [
@@ -114,10 +114,10 @@ export class Modal extends Component {
           translateY: this.animVal.interpolate({
             inputRange: [0, 1],
             outputRange: [deviceHeight, 0],
-            extrapolate: "clamp"
-          })
-        }
-      ]
+            extrapolate: "clamp",
+          }),
+        },
+      ],
     };
     return (
       <ReactNativeModal transparent animationType="none" visible={isVisible}>
@@ -126,7 +126,7 @@ export class Modal extends Component {
             style={[
               styles.backdrop,
               backdropAnimatedStyle,
-              { width: deviceWidth, height: deviceHeight }
+              { width: deviceWidth, height: deviceHeight },
             ]}
           />
         </TouchableWithoutFeedback>
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
   },
   backdrop: {
     position: "absolute",
@@ -158,12 +158,12 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: "black",
-    opacity: 0
+    opacity: 0,
   },
   content: {
     flex: 1,
-    justifyContent: "flex-end"
-  }
+    justifyContent: "flex-end",
+  },
 });
 
 export default Modal;
