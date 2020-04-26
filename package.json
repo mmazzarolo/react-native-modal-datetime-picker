@@ -29,7 +29,11 @@
     "lint": "eslint src",
     "lint:fix": "yarn lint --fix",
     "test": "yarn run lint",
-    "release": "yarn semantic-release"
+    "release": "yarn semantic-release",
+    "example:setup": "cd example && yarn setup",
+    "example:copy": "cd example && yarn copy",
+    "example:android": "cd example && react-native run android",
+    "example:ios": "cd example && react-native run ios"
   },
   "dependencies": {
     "prop-types": "^15.7.2"
