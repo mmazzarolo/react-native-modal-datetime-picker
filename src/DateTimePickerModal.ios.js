@@ -5,35 +5,17 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import Modal from "./Modal";
 import { isIphoneX } from "./utils";
 
-export const BORDER_RADIUS = 13;
 export const BACKGROUND_COLOR_LIGHT = "white";
 export const BACKGROUND_COLOR_DARK = "#0E0E0E";
 export const BORDER_COLOR = "#d5d5d5";
-export const TITLE_FONT_SIZE = 20;
-export const TITLE_COLOR = "#8f8f8f";
+export const BORDER_RADIUS = 13;
 export const BUTTON_FONT_WEIGHT = "normal";
 export const BUTTON_FONT_COLOR = "#007ff9";
 export const BUTTON_FONT_SIZE = 20;
-export const HIGHLIGHT_COLOR_LIGHT = "#ebebeb";
 export const HIGHLIGHT_COLOR_DARK = "#444444";
-
-const deprecatedPropsInfo = [
-  { prop: "titleIOS", newProp: "headerTextIOS" },
-  { prop: "customTitleContainerIOS", newProp: "customHeaderIOS" },
-  { prop: "onHideAfterConfirm", newProp: "onHide" },
-  { prop: "customDatePickerIOS", newProp: "customPickerIOS" },
-];
-
-const unsopportedPropsInfo = [
-  { prop: "cancelTextStyle" },
-  { prop: "confirmTextStyle" },
-  { prop: "datePickerModeAndroid" },
-  { prop: "dismissOnBackdropPressIOS" },
-  { prop: "hideTitleContainerIOS" },
-  { prop: "neverDisableConfirmIOS" },
-  { prop: "pickerRefCb" },
-  { prop: "reactNativeModalPropsIOS" },
-];
+export const HIGHLIGHT_COLOR_LIGHT = "#ebebeb";
+export const TITLE_FONT_SIZE = 20;
+export const TITLE_COLOR = "#8f8f8f";
 
 export class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
@@ -74,25 +56,6 @@ export class DateTimePickerModal extends React.PureComponent {
 
   didPressConfirm = false;
 
-  componentDidMount() {
-    Object.keys(this.props).forEach((prop) => {
-      // Show a warning if a deprecated prop is being used
-      const deprecationInfo = deprecatedPropsInfo.find((x) => x.prop === prop);
-      if (deprecationInfo) {
-        console.warn(
-          `react-native-modal-datetime-picker: The "${deprecationInfo.prop}" prop is deprecated. Please use the ${deprecationInfo.newProp} prop instead.`
-        );
-      }
-      // Show a warning if a prop that is not supported anymore is being used
-      const unsopportInfo = unsopportedPropsInfo.find((x) => x.prop === prop);
-      if (unsopportInfo) {
-        console.warn(
-          `react-native-modal-datetime-picker: The "${unsopportInfo.prop}" prop is not supported anymore.`
-        );
-      }
-    });
-  }
-
   static getDerivedStateFromProps(props, state) {
     if (props.isVisible && !state.isPickerVisible) {
       return { currentDate: props.date, isPickerVisible: true };
@@ -111,14 +74,8 @@ export class DateTimePickerModal extends React.PureComponent {
   };
 
   handleHide = () => {
-    // Deprecated
-    const {
-      onModalHide, // Deprecated
-      onHide,
-    } = this.props;
-    if (onModalHide) {
-      onModalHide(this.didPressConfirm, this.state.currentDate);
-    } else if (onHide) {
+    const { onHide } = this.props;
+    if (onHide) {
       onHide(this.didPressConfirm, this.state.currentDate);
     }
     this.setState({ isPickerVisible: false });
@@ -137,10 +94,8 @@ export class DateTimePickerModal extends React.PureComponent {
       confirmTextIOS,
       customCancelButtonIOS,
       customConfirmButtonIOS,
-      customDatePickerIOS, // Deprecated
       customHeaderIOS,
       customPickerIOS,
-      customTitleContainerIOS, // Deprecated
       date,
       headerTextIOS,
       isDarkModeEnabled,
@@ -151,19 +106,13 @@ export class DateTimePickerModal extends React.PureComponent {
       onConfirm,
       onChange,
       onHide,
-      onHideAfterConfirm, // Deprecated
-      titleIOS, // Deprecated
       ...otherProps
     } = this.props;
 
     const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;
-    const HeaderComponent =
-      typeof (customTitleContainerIOS || customHeaderIOS) === "undefined"
-        ? Header
-        : customTitleContainerIOS || customHeaderIOS;
-    const PickerComponent =
-      customDatePickerIOS || customPickerIOS || DateTimePicker;
+    const HeaderComponent = customHeaderIOS || Header;
+    const PickerComponent = customPickerIOS || DateTimePicker;
 
     const themedContainerStyle = isDarkModeEnabled
       ? pickerStyles.containerDark
@@ -183,7 +132,7 @@ export class DateTimePickerModal extends React.PureComponent {
             pickerContainerStyleIOS,
           ]}
         >
-          <HeaderComponent label={titleIOS || headerTextIOS} />
+          <HeaderComponent label={headerTextIOS} />
           <PickerComponent
             {...otherProps}
             value={this.state.currentDate}
