@@ -89,6 +89,7 @@ export default Example;
 | headerTextIOS           | string    | "Pick a date" | The title text of header (iOS)                                                                  |
 | isDarkModeEnabled       | bool      | false         | Is the device using a dark theme?                                                               |
 | isVisible               | bool      | false         | Show the datetime picker?                                                                       |
+| modalPropsIOS           | object    | {}            | Additional [modal](https://reactnative.dev/docs/modal) props for iOS                            |
 | modalStyleIOS           | style     |               | Style of the modal content (iOS)                                                                |
 | mode                    | string    | "date"        | Choose between 'date', 'time', and 'datetime'                                                   |
 | onCancel                | func      | **REQUIRED**  | Function called on dismiss                                                                      |

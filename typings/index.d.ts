@@ -122,6 +122,13 @@ export interface DateTimePickerProps {
   mode?: "date" | "time" | "datetime";
 
   /**
+   * Additional modal props for iOS.
+   * 
+   * See https://reactnative.dev/docs/modal for the available props.
+   */
+  modalPropsIOS?: Object;
+
+  /**
    * Toggles the time mode on Android between spinner and clock views
    *
    * Default is 'default' which shows either spinner or clock based on Android version
