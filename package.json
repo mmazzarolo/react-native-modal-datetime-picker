@@ -32,8 +32,8 @@
     "release": "yarn semantic-release",
     "example:setup": "cd example && yarn setup",
     "example:copy": "cd example && yarn copy",
-    "example:android": "cd example && react-native run android",
-    "example:ios": "cd example && react-native run ios"
+    "example:android": "cd example && react-native run-android",
+    "example:ios": "cd example && react-native run-ios"
   },
   "dependencies": {
     "prop-types": "^15.7.2"
