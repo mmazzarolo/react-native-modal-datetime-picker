@@ -46,7 +46,3 @@ We use [Semantic Release](http://semantic-release.org) to automatically release 
 ## Reporting issues
 
 You can report issues on our [bug tracker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues). Please search for existing issues and follow the issue template when opening an issue.
-
-## License
-
-By contributing to React Native NetInfo, you agree that your contributions will be licensed under the **MIT** license.
