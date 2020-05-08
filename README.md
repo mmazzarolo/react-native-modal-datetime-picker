@@ -177,4 +177,4 @@ Please see the [contributing guide](./.github/CONTRIBUTING.md).
 
 ## License
 
-The library is released under the MIT license. For more information see [`LICENSE`](/LICENSE.md).
+The library is released under the MIT license. For more details see [`LICENSE`](/LICENSE.md).
