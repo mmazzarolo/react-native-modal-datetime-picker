@@ -163,14 +163,8 @@ Otherwise, see the "Is the iOS dark mode supported?" section below 👇
 
 iOS 13 dark mode is not supported out-of-the-box yet and requires a bit of manual setup:
 
-if you use hooks:
 1. Import [useColorScheme](https://reactnative.dev/docs/usecolorscheme) from React-Native.
 2. Use this hook to detect the device color scheme: ` const colorScheme = useColorScheme();`
-3. Use the color scheme to enable/disable the `react-native-modal-datetime-picker` dark mode trough the `isDarkModeEnabled` prop: `isDarkModeEnabled: colorScheme === 'dark'`
-
-if you don't use hooks:
-1. Install and link [react-native-appearance](https://github.com/expo/react-native-appearance)
-2. Use it to detect the device color scheme: `const colorScheme = Appearance.getColorScheme();`
 3. Use the color scheme to enable/disable the `react-native-modal-datetime-picker` dark mode trough the `isDarkModeEnabled` prop: `isDarkModeEnabled: colorScheme === 'dark'`
 
 ### How do I make it work with snapshot testing?
