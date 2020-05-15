@@ -209,5 +209,5 @@ export default class DateTimePicker extends React.Component<
   any
 > {}
 
-export const type FinalDateTimePickerProps = React.ComponentType<typeof DateTimePicker>;
+export type FinalDateTimePickerProps = React.ComponentType<typeof DateTimePicker>;
 
