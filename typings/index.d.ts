@@ -208,3 +208,6 @@ export default class DateTimePicker extends React.Component<
     Omit<AndroidNativeProps, "value" | "mode">,
   any
 > {}
+
+export const type FinalDateTimePickerProps = React.ComponentType<typeof DateTimePicker>;
+
