@@ -123,7 +123,7 @@ export interface DateTimePickerProps {
 
   /**
    * Additional modal props for iOS.
-   * 
+   *
    * See https://reactnative.dev/docs/modal for the available props.
    */
   modalPropsIOS?: Object;
@@ -202,12 +202,11 @@ export interface DateTimePickerProps {
   testID?: string;
 }
 
+export type ReactNativeModalDateTimePickerProps = DateTimePickerProps &
+  Omit<IOSNativeProps, "value" | "mode"> &
+  Omit<AndroidNativeProps, "value" | "mode">;
+
 export default class DateTimePicker extends React.Component<
-  DateTimePickerProps &
-    Omit<IOSNativeProps, "value" | "mode"> &
-    Omit<AndroidNativeProps, "value" | "mode">,
+  ReactNativeModalDateTimePickerProps,
   any
 > {}
-
-export type FinalDateTimePickerProps = React.ComponentType<typeof DateTimePicker>;
-
