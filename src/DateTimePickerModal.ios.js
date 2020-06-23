@@ -139,6 +139,7 @@ export class DateTimePickerModal extends React.PureComponent {
           <HeaderComponent label={headerTextIOS} />
           <PickerComponent
             {...otherProps}
+            isDarkModeEnabled={isDarkModeEnabled}
             value={this.state.currentDate}
             onChange={this.handleChange}
           />
