@@ -212,6 +212,9 @@ export const ConfirmButton = ({
       style={style.button}
       underlayColor={underlayColor}
       onPress={onPress}
+      accessible={true}
+      accessibilityRole="button"
+      accessibilityLabel={label}
     >
       <Text style={style.text}>{label}</Text>
     </TouchableHighlight>
@@ -252,6 +255,9 @@ export const CancelButton = ({
       style={[style.button, themedButtonStyle]}
       underlayColor={underlayColor}
       onPress={onPress}
+      accessible={true}
+      accessibilityRole="button"
+      accessibilityLabel={label}
     >
       <Text style={style.text}>{label}</Text>
     </TouchableHighlight>
