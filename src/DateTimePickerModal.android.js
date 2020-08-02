@@ -13,11 +13,7 @@ const DateTimePickerModal = ({
   }) =>{
     const [currentDate, setCurrentDate] = useState(date);
     const [currentMode, setCurrentMode] = useState(mode === "time" ? "time" : "date");
-
-    useEffect(()=>{
-      console.log('initial')
-    },[]);
-
+    
     useEffect(()=>{
       if (isVisible && currentMode === null) {
         setCurrentMode(mode === "time" ? "time" : "date");
