@@ -24,7 +24,6 @@ const DateTimePickerModal = ({
 
     if (!isVisible || !currentMode) return null;
 
-    console.log(currentDate)
     return (
       <DateTimePicker
         {...otherProps}
