@@ -35,8 +35,8 @@ const DateTimePickerModal = memo(({
               onHide(false);
               return;
             }
+            let nextDate = date;
             if (mode === "datetime") {
-              let nextDate = date;
               if (currentMode === "date") {
                 setCurrentMode("time")
                 setCurrentDate(new Date(date));
@@ -50,7 +50,8 @@ const DateTimePickerModal = memo(({
                 nextDate = new Date(year, month, day, hours, minutes);
               }
             } 
-            setCurrentDate(nextDate)      
+            
+            setCurrentDate(nextDate);
             onConfirm(nextDate);
             onHide(true, nextDate);
           }}
