@@ -28,7 +28,7 @@ const DateTimePickerModal = memo(({
         <DateTimePicker
           {...otherProps}
           mode={currentMode}
-          value={currentDate}
+          value={date}
           onChange={(event, date) => {
             if (event.type === "dismissed") {
               onCancel();
@@ -50,8 +50,6 @@ const DateTimePickerModal = memo(({
                 nextDate = new Date(year, month, day, hours, minutes);
               }
             } 
-            
-            setCurrentDate(nextDate);
             onConfirm(nextDate);
             onHide(true, nextDate);
           }}
