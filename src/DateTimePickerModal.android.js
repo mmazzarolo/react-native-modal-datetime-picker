@@ -2,63 +2,58 @@ import React, { useEffect, useState, memo } from "react";
 import PropTypes from "prop-types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-const DateTimePickerModal = memo(({
-      date, 
-      mode,
-      isVisible, 
-      onCancel, 
-      onConfirm,
-      onHide, 
-      ...otherProps
-    }) =>{
-      const [currentDate, setCurrentDate] = useState(date);
-      const [currentMode, setCurrentMode] = useState(null);
+const DateTimePickerModal = memo(
+  ({ date, mode, isVisible, onCancel, onConfirm, onHide, ...otherProps }) => {
+    const [currentDate, setCurrentDate] = useState(date);
+    const [currentMode, setCurrentMode] = useState(null);
 
-      useEffect(()=>{
-        if (isVisible && currentMode === null) {
-          setCurrentMode(mode === "time" ? "time" : "date");
-        } else if (!isVisible) {
-          setCurrentMode(null);
+    useEffect(() => {
+      if (isVisible && currentMode === null) {
+        setCurrentMode(mode === "time" ? "time" : "date");
+      } else if (!isVisible) {
+        setCurrentMode(null);
+      }
+    }, [isVisible, currentMode, mode]);
+
+    if (!isVisible || !currentMode) return null;
+
+    const handleChange = (event, date) => {
+      if (event.type === "dismissed") {
+        onCancel();
+        onHide(false);
+        return;
+      }
+      let nextDate = date;
+      if (mode === "datetime") {
+        if (currentMode === "date") {
+          setCurrentMode("time");
+          setCurrentDate(new Date(date));
+          return;
+        } else if (currentMode === "time") {
+          const year = currentDate.getFullYear();
+          const month = currentDate.getMonth();
+          const day = currentDate.getDate();
+          const hours = date.getHours();
+          const minutes = date.getMinutes();
+          nextDate = new Date(year, month, day, hours, minutes);
         }
-      }, [isVisible, currentMode]);
+      }
+      onConfirm(nextDate);
+      onHide(true, nextDate);
+    };
 
-      if (!isVisible || !currentMode) return null;
-
-      return (
-        <DateTimePicker
-          {...otherProps}
-          mode={currentMode}
-          value={date}
-          onChange={(event, date) => {
-            if (event.type === "dismissed") {
-              onCancel();
-              onHide(false);
-              return;
-            }
-            let nextDate = date;
-            if (mode === "datetime") {
-              if (currentMode === "date") {
-                setCurrentMode("time")
-                setCurrentDate(new Date(date));
-                return;
-              } else if (currentMode === "time") {
-                const year = currentDate.getFullYear();
-                const month = currentDate.getMonth();
-                const day = currentDate.getDate();
-                const hours = date.getHours();
-                const minutes = date.getMinutes();
-                nextDate = new Date(year, month, day, hours, minutes);
-              }
-            } 
-            onConfirm(nextDate);
-            onHide(true, nextDate);
-          }}
-        />
-      );
-  }, 
+    return (
+      <DateTimePicker
+        {...otherProps}
+        mode={currentMode}
+        value={date}
+        onChange={handleChange}
+      />
+    );
+  },
   (prevProps, nextProps) =>
-    prevProps.isVisible === nextProps.isVisible
-    && prevProps.date === nextProps.date
+    prevProps.isVisible === nextProps.isVisible &&
+    prevProps.date === nextProps.date
 );
 
 DateTimePickerModal.propTypes = {
@@ -77,4 +72,4 @@ DateTimePickerModal.defaultProps = {
   onHide: () => {},
 };
 
-export {DateTimePickerModal};
+export { DateTimePickerModal };
