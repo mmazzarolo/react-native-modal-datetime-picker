@@ -1,6 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, Text, TouchableHighlight, View, Appearance } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+  Appearance,
+} from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Modal from "./Modal";
 import { isIphoneX } from "./utils";
@@ -108,7 +114,7 @@ export class DateTimePickerModal extends React.PureComponent {
       onHide,
       ...otherProps
     } = this.props;
-    const isDarkModeEnabled = Appearance.getColorScheme() === 'dark';
+    const isDarkModeEnabled = Appearance.getColorScheme() === "dark";
 
     const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;

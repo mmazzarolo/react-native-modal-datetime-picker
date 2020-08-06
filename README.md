@@ -87,7 +87,6 @@ export default Example;
 | customPickerIOS         | component |               | Overrides the default native picker component (iOS)                                             |
 | date                    | obj       | new Date()    | Initial selected date/time                                                                      |
 | headerTextIOS           | string    | "Pick a date" | The title text of header (iOS)                                                                  |
-| isDarkModeEnabled       | bool      | false         | Is the device using a dark theme?                                                               |
 | isVisible               | bool      | false         | Show the datetime picker?                                                                       |
 | modalPropsIOS           | object    | {}            | Additional [modal](https://reactnative.dev/docs/modal) props for iOS                            |
 | modalStyleIOS           | style     |               | Style of the modal content (iOS)                                                                |
@@ -146,26 +145,6 @@ To do so, edit your `AppDelegate.m` file and add the following to `didFinishLaun
 NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 [[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:currentLanguage]];
 ```
-
-### I can't see the picker on iOS/the picker is white on iOS
-
-Your app is probably running in dark mode, which is [not supported by React-Native for the pickers yet](https://github.com/facebook/react-native/issues/26299).  
-If you're not planning to support the iOS dark mode in your app, add the following to your `info.plist`:
-
-```xml
-<key>UIUserInterfaceStyle</key>
-<string>Light</string>
-```
-
-Otherwise, see the "Is the iOS dark mode supported?" section below 👇
-
-### Is the iOS dark mode supported?
-
-iOS 13 dark mode is not supported out-of-the-box yet and requires a bit of manual setup:
-
-1. Import [useColorScheme](https://reactnative.dev/docs/usecolorscheme) from React-Native.
-2. Use this hook to detect the device color scheme: ` const colorScheme = useColorScheme();`
-3. Use the color scheme to enable/disable the `react-native-modal-datetime-picker` dark mode trough the `isDarkModeEnabled` prop: `isDarkModeEnabled: colorScheme === 'dark'`
 
 ### How do I make it work with snapshot testing?
 
