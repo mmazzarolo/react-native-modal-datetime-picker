@@ -10,14 +10,14 @@
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "*",
-    "react": "16.8.6",
-    "react-native": "0.60.4",
+    "react": "16.13.1",
+    "react-native": "0.63.2",
     "react-native-modal-datetime-picker": "file:../"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.0",
-    "@babel/runtime": "^7.5.0",
-    "metro-react-native-babel-preset": "^0.54.1"
+    "@babel/core": "^7.11.1",
+    "@babel/runtime": "^7.11.2",
+    "metro-react-native-babel-preset": "^0.62.0"
   },
   "jest": {
     "preset": "react-native"

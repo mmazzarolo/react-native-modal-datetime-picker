@@ -35,6 +35,7 @@ export class DateTimePickerModal extends React.PureComponent {
     headerTextIOS: PropTypes.string,
     modalPropsIOS: PropTypes.any,
     modalStyleIOS: PropTypes.any,
+    isDarkModeEnabled: PropTypes.bool,
     isVisible: PropTypes.bool,
     pickerContainerStyleIOS: PropTypes.any,
     onCancel: PropTypes.func.isRequired,
@@ -51,6 +52,7 @@ export class DateTimePickerModal extends React.PureComponent {
     headerTextIOS: "Pick a date",
     modalPropsIOS: {},
     date: new Date(),
+    isDarkModeEnabled: undefined,
     isVisible: false,
     pickerContainerStyleIOS: {},
   };
@@ -104,6 +106,7 @@ export class DateTimePickerModal extends React.PureComponent {
       customPickerIOS,
       date,
       headerTextIOS,
+      isDarkModeEnabled,
       isVisible,
       modalStyleIOS,
       modalPropsIOS,
@@ -114,14 +117,20 @@ export class DateTimePickerModal extends React.PureComponent {
       onHide,
       ...otherProps
     } = this.props;
-    const isDarkModeEnabled = Appearance.getColorScheme() === "dark";
+    const isAppearanceModuleAvailable = !!(
+      Appearance && Appearance.getColorScheme
+    );
+    const _isDarkModeEnabled =
+      isDarkModeEnabled === undefined && isAppearanceModuleAvailable
+        ? Appearance.getColorScheme() === "dark"
+        : isDarkModeEnabled || false;
 
     const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;
     const HeaderComponent = customHeaderIOS || Header;
     const PickerComponent = customPickerIOS || DateTimePicker;
 
-    const themedContainerStyle = isDarkModeEnabled
+    const themedContainerStyle = _isDarkModeEnabled
       ? pickerStyles.containerDark
       : pickerStyles.containerLight;
 
@@ -147,13 +156,13 @@ export class DateTimePickerModal extends React.PureComponent {
             onChange={this.handleChange}
           />
           <ConfirmButtonComponent
-            isDarkModeEnabled={isDarkModeEnabled}
+            isDarkModeEnabled={_isDarkModeEnabled}
             onPress={this.handleConfirm}
             label={confirmTextIOS}
           />
         </View>
         <CancelButtonComponent
-          isDarkModeEnabled={isDarkModeEnabled}
+          isDarkModeEnabled={_isDarkModeEnabled}
           onPress={this.handleCancel}
           label={cancelTextIOS}
         />
