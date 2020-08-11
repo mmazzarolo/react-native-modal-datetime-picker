@@ -1,10 +1,18 @@
-import React, { useEffect, useState, memo } from "react";
+import React, { useEffect, useRef, useState, memo } from "react";
 import PropTypes from "prop-types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
+// Memo workaround for https://github.com/react-native-community/datetimepicker/issues/54
+const areEqual = (prevProps, nextProps) => {
+  return (
+    prevProps.isVisible === nextProps.isVisible &&
+    prevProps.date === nextProps.date
+  );
+};
+
 const DateTimePickerModal = memo(
   ({ date, mode, isVisible, onCancel, onConfirm, onHide, ...otherProps }) => {
-    const [currentDate, setCurrentDate] = useState(date);
+    const currentDateRef = useRef(date);
     const [currentMode, setCurrentMode] = useState(null);
 
     useEffect(() => {
@@ -27,12 +35,12 @@ const DateTimePickerModal = memo(
       if (mode === "datetime") {
         if (currentMode === "date") {
           setCurrentMode("time");
-          setCurrentDate(new Date(date));
+          currentDateRef.current = new Date(date);
           return;
         } else if (currentMode === "time") {
-          const year = currentDate.getFullYear();
-          const month = currentDate.getMonth();
-          const day = currentDate.getDate();
+          const year = currentDateRef.current.getFullYear();
+          const month = currentDateRef.current.getMonth();
+          const day = currentDateRef.current.getDate();
           const hours = date.getHours();
           const minutes = date.getMinutes();
           nextDate = new Date(year, month, day, hours, minutes);
@@ -51,9 +59,7 @@ const DateTimePickerModal = memo(
       />
     );
   },
-  (prevProps, nextProps) =>
-    prevProps.isVisible === nextProps.isVisible &&
-    prevProps.date === nextProps.date
+  areEqual
 );
 
 DateTimePickerModal.propTypes = {
