@@ -88,6 +88,14 @@ export interface DateTimePickerProps {
   locale?: string;
 
   /**
+   * Toggles the dark mode style of the picker
+   * If not set, the picker tries to use the color-scheme from the Appearance module, if available.
+   *
+   * Default is undefined
+   */
+  isDarkModeEnabled?: boolean;
+
+  /**
    * Sets the visibility of the picker
    *
    * Default is false
