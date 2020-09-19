@@ -151,6 +151,7 @@ export class DateTimePickerModal extends React.PureComponent {
         >
           <HeaderComponent label={headerTextIOS} />
           <PickerComponent
+            display="spinner"
             {...otherProps}
             value={this.state.currentDate}
             onChange={this.handleChange}
