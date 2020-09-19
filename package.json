@@ -1,6 +1,6 @@
 {
   "name": "react-native-modal-datetime-picker",
-  "version": "8.9.3",
+  "version": "9.0.0",
   "description": "A react-native datetime-picker for Android and iOS",
   "main": "src/index.js",
   "files": [
