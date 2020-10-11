@@ -204,8 +204,8 @@ export interface DateTimePickerProps {
 }
 
 export type ReactNativeModalDateTimePickerProps = DateTimePickerProps &
-  Omit<IOSNativeProps, "value" | "mode"> &
-  Omit<AndroidNativeProps, "value" | "mode">;
+  (Omit<IOSNativeProps, "value" | "mode"> |
+  Omit<AndroidNativeProps, "value" | "mode">);
 
 export default class DateTimePicker extends React.Component<
   ReactNativeModalDateTimePickerProps,
