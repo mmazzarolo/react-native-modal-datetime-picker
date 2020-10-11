@@ -40,14 +40,14 @@
   },
   "devDependencies": {
     "@semantic-release/git": "^9.0.0",
-    "eslint": "^7.6.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react-app": "^6.2.2",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5",
-    "semantic-release": "^17.1.1"
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
+    "semantic-release": "^17.1.2"
   },
   "peerDependencies": {
     "@react-native-community/datetimepicker": ">=3.0.0"
