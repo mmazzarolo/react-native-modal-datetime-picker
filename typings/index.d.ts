@@ -46,6 +46,20 @@ export interface DateTimePickerProps {
   confirmTextIOS?: string;
 
   /**
+   * The text on the cancel button on Android
+   *
+   * Default is 'Cancel'
+   */
+  positiveButtonLabel?: string;
+
+  /**
+   * The text on the confirm button on Android
+   *
+   * Default is 'Confirm'
+   */
+  negativeButtonLabel?: string;
+
+  /**
    * A custom component for the cancel button on iOS
    */
   customCancelButtonIOS?: CancelButtonComponent;

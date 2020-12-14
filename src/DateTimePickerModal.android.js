@@ -11,7 +11,7 @@ const areEqual = (prevProps, nextProps) => {
 };
 
 const DateTimePickerModal = memo(
-  ({ date, mode, isVisible, onCancel, onConfirm, onHide, ...otherProps }) => {
+  ({ date, mode, isVisible, onCancel, onConfirm, onHide, ...otherProps, positiveButtonLabel, negativeButtonLabel }) => {
     const currentDateRef = useRef(date);
     const [currentMode, setCurrentMode] = useState(null);
 
@@ -56,6 +56,8 @@ const DateTimePickerModal = memo(
         mode={currentMode}
         value={date}
         onChange={handleChange}
+        positiveButtonLabel={positiveButtonLabel}
+        negativeButtonLabel={negativeButtonLabel}
       />
     );
   },
@@ -70,12 +72,17 @@ DateTimePickerModal.propTypes = {
   onHide: PropTypes.func,
   maximumDate: PropTypes.instanceOf(Date),
   minimumDate: PropTypes.instanceOf(Date),
+  onHide: PropTypes.func,
+  positiveButtonLabel: PropTypes.string,
+  negativeButtonLabel: PropTypes.string,
 };
 
 DateTimePickerModal.defaultProps = {
   date: new Date(),
   isVisible: false,
   onHide: () => {},
+  positiveButtonLabel: 'Confirm',
+  negativeButtonLabel: 'Cancel',
 };
 
 export { DateTimePickerModal };
