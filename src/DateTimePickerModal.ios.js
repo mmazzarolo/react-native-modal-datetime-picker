@@ -25,8 +25,8 @@ export const TITLE_COLOR = "#8f8f8f";
 
 export class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
-    cancelTextIOS: PropTypes.string,
-    confirmTextIOS: PropTypes.string,
+    cancelText: PropTypes.string,
+    confirmText: PropTypes.string,
     customCancelButtonIOS: PropTypes.elementType,
     customConfirmButtonIOS: PropTypes.elementType,
     customHeaderIOS: PropTypes.elementType,
@@ -47,8 +47,8 @@ export class DateTimePickerModal extends React.PureComponent {
   };
 
   static defaultProps = {
-    cancelTextIOS: "Cancel",
-    confirmTextIOS: "Confirm",
+    cancelText: "Cancel",
+    confirmText: "Confirm",
     headerTextIOS: "Pick a date",
     modalPropsIOS: {},
     date: new Date(),
@@ -98,8 +98,8 @@ export class DateTimePickerModal extends React.PureComponent {
 
   render() {
     const {
-      cancelTextIOS,
-      confirmTextIOS,
+      cancelText,
+      confirmText,
       customCancelButtonIOS,
       customConfirmButtonIOS,
       customHeaderIOS,
@@ -159,13 +159,13 @@ export class DateTimePickerModal extends React.PureComponent {
           <ConfirmButtonComponent
             isDarkModeEnabled={_isDarkModeEnabled}
             onPress={this.handleConfirm}
-            label={confirmTextIOS}
+            label={confirmText}
           />
         </View>
         <CancelButtonComponent
           isDarkModeEnabled={_isDarkModeEnabled}
           onPress={this.handleCancel}
-          label={cancelTextIOS}
+          label={cancelText}
         />
       </Modal>
     );

@@ -32,32 +32,18 @@ export type PickerComponent = React.ComponentType<IOSNativeProps>;
 
 export interface DateTimePickerProps {
   /**
-   * The text on the cancel button on iOS
+   * The text on the cancel button on iOS & Android
    *
    * Default is 'Cancel'
    */
-  cancelTextIOS?: string;
+  cancelText?: string;
 
   /**
-   * The text on the confirm button on iOS
+   * The text on the confirm button on iOS & Android
    *
    * Default is 'Confirm'
    */
-  confirmTextIOS?: string;
-
-  /**
-   * The text on the cancel button on Android
-   *
-   * Default is 'Cancel'
-   */
-  positiveButtonLabel?: string;
-
-  /**
-   * The text on the confirm button on Android
-   *
-   * Default is 'Confirm'
-   */
-  negativeButtonLabel?: string;
+  confirmText?: string;
 
   /**
    * A custom component for the cancel button on iOS
