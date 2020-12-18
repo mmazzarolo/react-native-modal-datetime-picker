@@ -117,7 +117,33 @@ Please make sure you're using the `date` props (and not the `value` one).
 
 ### The picker shows up twice on Android
 
-This seems to be a known issue of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker/issues/54). Please see [this thread](https://github.com/react-native-community/datetimepicker/issues/54) for a couple of workarounds.
+This seems to be a known issue of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker/issues/54). Please see [this thread](https://github.com/react-native-community/datetimepicker/issues/54) for a couple of workarounds (specially [this reply](https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550)). The most common approach is:
+- Wrap your `Input` with a "`Pressable`"/`Button` (`TouchableWithoutFeedback`/`TouchableOpacity` + `activeOpacity={1}` for example)
+- Prevent `Input` from being focused. You could set `editable={false}` too for preventing Keyboard opening
+- Triggering your `hideModal()` callback as a first thing inside `onConfirm`/`onCancel` callback props
+
+```jsx
+const [isVisible, setVisible] = useState(false);
+const [date, setDate] = useState('');
+
+<TouchableOpacity
+  activeOpaticy={1}
+  onPress={() => setVisible(true)}>
+  <Input
+    value={value}
+    editable={false} // optional
+  />
+</TouchableOpacity>
+
+<DatePicker
+  isVisible={isVisible}
+  onConfirm={(date) => {
+    setVisible(false); // <- first thing
+    setValue(parseDate(date)); 
+  }}
+  onCancel={() => setVisible(false)}
+/>
+```
 
 ### How do I change the color of the Android date and time pickers?
 
