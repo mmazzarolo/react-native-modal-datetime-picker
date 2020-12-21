@@ -117,10 +117,16 @@ Please make sure you're using the `date` props (and not the `value` one).
 
 ### The picker shows up twice on Android
 
-This seems to be a known issue of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker/issues/54). Please see [this thread](https://github.com/react-native-community/datetimepicker/issues/54) for a couple of workarounds (specially [this reply](https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550)). The most common approach is:
-- Wrap your `Input` with a "`Pressable`"/`Button` (`TouchableWithoutFeedback`/`TouchableOpacity` + `activeOpacity={1}` for example)
-- Prevent `Input` from being focused. You could set `editable={false}` too for preventing Keyboard opening
-- Triggering your `hideModal()` callback as a first thing inside `onConfirm`/`onCancel` callback props
+This seems to be a known issue of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker/issues/54). Please see [this thread](https://github.com/react-native-community/datetimepicker/issues/54) for a couple of workarounds. The solution, as described at [this reply](https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550) is calling your `hideModal()` callback as first thing, **before doing anything else**.
+
+<details><summary><strong>Example of solution using Input + DatePicker</strong></summary>
+<p>
+The most common approach for solving this issue when using an <code>Input</code> is:
+<ul>
+  <li>Wrap your <code>Input</code> with a "<code>Pressable</code>"/<code>Button</code> (<code>TouchableWithoutFeedback</code>/<code>TouchableOpacity</code> + <code>activeOpacity={1}</code> for example)</li>
+  <li>Prevent <code>Input</code> from being focused. You could set <code>editable={false}</code> too for preventing Keyboard opening</li>
+  <li>Triggering your <code>hideModal()</code> callback as a first thing inside <code>onConfirm</code>/<code>onCancel</code> callback props</li>
+</ul>
 
 ```jsx
 const [isVisible, setVisible] = useState(false);
@@ -134,7 +140,6 @@ const [date, setDate] = useState('');
     editable={false} // optional
   />
 </TouchableOpacity>
-
 <DatePicker
   isVisible={isVisible}
   onConfirm={(date) => {
@@ -144,6 +149,8 @@ const [date, setDate] = useState('');
   onCancel={() => setVisible(false)}
 />
 ```
+</p>
+</details>
 
 ### How do I change the color of the Android date and time pickers?
 
