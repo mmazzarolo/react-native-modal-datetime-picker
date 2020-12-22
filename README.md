@@ -117,7 +117,40 @@ Please make sure you're using the `date` props (and not the `value` one).
 
 ### The picker shows up twice on Android
 
-This seems to be a known issue of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker/issues/54). Please see [this thread](https://github.com/react-native-community/datetimepicker/issues/54) for a couple of workarounds.
+This seems to be a known issue of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker/issues/54). Please see [this thread](https://github.com/react-native-community/datetimepicker/issues/54) for a couple of workarounds. The solution, as described at [this reply](https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550) is calling your `hideModal()` callback as first thing, **before doing anything else**.
+
+<details><summary><strong>Example of solution using Input + DatePicker</strong></summary>
+<p>
+The most common approach for solving this issue when using an <code>Input</code> is:
+<ul>
+  <li>Wrap your <code>Input</code> with a "<code>Pressable</code>"/<code>Button</code> (<code>TouchableWithoutFeedback</code>/<code>TouchableOpacity</code> + <code>activeOpacity={1}</code> for example)</li>
+  <li>Prevent <code>Input</code> from being focused. You could set <code>editable={false}</code> too for preventing Keyboard opening</li>
+  <li>Triggering your <code>hideModal()</code> callback as a first thing inside <code>onConfirm</code>/<code>onCancel</code> callback props</li>
+</ul>
+
+```jsx
+const [isVisible, setVisible] = useState(false);
+const [date, setDate] = useState('');
+
+<TouchableOpacity
+  activeOpaticy={1}
+  onPress={() => setVisible(true)}>
+  <Input
+    value={value}
+    editable={false} // optional
+  />
+</TouchableOpacity>
+<DatePicker
+  isVisible={isVisible}
+  onConfirm={(date) => {
+    setVisible(false); // <- first thing
+    setValue(parseDate(date)); 
+  }}
+  onCancel={() => setVisible(false)}
+/>
+```
+</p>
+</details>
 
 ### How do I change the color of the Android date and time pickers?
 
