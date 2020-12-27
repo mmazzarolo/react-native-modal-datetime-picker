@@ -97,7 +97,7 @@ export default Example;
 | onHide                  | func      | () => null    | Called after the hide animation                                                                 |
 | pickerContainerStyleIOS | style     |               | The style of the picker container (iOS)                                                         |
 
-👉Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) props are also supported**!
+👉 Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) props are also supported**!
 
 ## Frequently Asked Questions
 
@@ -117,7 +117,7 @@ Please make sure you're using the `date` props (and not the `value` one).
 
 ### The picker shows up twice on Android
 
-This seems to be a known issue of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker/issues/54). Please see [this thread](https://github.com/react-native-community/datetimepicker/issues/54) for a couple of workarounds. The solution, as described at [this reply](https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550) is calling your `hideModal()` callback as first thing, **before doing anything else**.
+This seems to be a known issue of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker/issues/54). Please see [this thread](https://github.com/react-native-community/datetimepicker/issues/54) for a couple of workarounds. The solution, as described in [this reply](https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550) is hiding the modal, **before doing anything else**.
 
 <details><summary><strong>Example of solution using Input + DatePicker</strong></summary>
 <p>
@@ -151,6 +151,10 @@ const [date, setDate] = useState('');
 ```
 </p>
 </details>
+
+### How can I set a minimum and/or maximum date?
+
+You can use the [`minimumDate`](https://github.com/react-native-datetimepicker/datetimepicker#minimumdate-optional) and [`maximumDate`](https://github.com/react-native-datetimepicker/datetimepicker#maximumdate-optional) props from [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
 
 ### How do I change the color of the Android date and time pickers?
 
