@@ -189,7 +189,7 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker). 
 [We already closed several iOS 14 issues that were all caused by outdated/cached versions of the community datetimepicker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues?q=%22ios+14%22).  
 
-### I can't show up an alert after the picker has been hidden (on iOS)
+### I can't show an alert after the picker has been hidden (on iOS)
 
 Unfortunately this is a know issue with React-Native on iOS. Even by using the `onHide` callback exposed by `react-native-modal-datetime-picker` you might not be able to show the (native) alert successfully. The only workaround that seems to work consistently for now is to wrap showing the alter in a setTimeout 😔:
 ```js
