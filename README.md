@@ -200,6 +200,13 @@ const handleHide = () => {
 
 See issue [#512](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/512) for more info.
 
+### The date in `onConfirm` doesn't match the picked date (on iOS)
+
+On iOS, clicking the "Confirm" button while the spinner is still in motion — even just _slightly_ in motion — will cause the `onConfirm` callback to return the initial date instead of the picked one. This is is a long standing iOS issue (that can happen even on native app like the iOS calendar) and there's no failproof way to fix it on the JavaScript side.  
+See [this GitHub gist](https://gist.github.com/SudoPlz/6959001879fbfcc7e2aa42a428a5265c) for an example of how it might be solved at the native level — but keep in mind it won't work on this component until it has been merged into the official React-Native repo.  
+
+Related issue in the React-Native repo [here](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/357).
+
 
 ### How do I make it work with snapshot testing?
 
