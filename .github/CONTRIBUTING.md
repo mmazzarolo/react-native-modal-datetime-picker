@@ -1,5 +1,8 @@
 # Contributing to react-native-modal-datetime-picker
 
+Contribution to `react-native-modal-datetime-picker` are warmly welcome!  
+Before you start, please keep in mind that the goal of this library is to be as consistent as possible with the native behaviour/style guidelines, so **it's highly lickely that we won't accept contributions that introduce customization options that goes against the native guidelines**.  
+
 ## Development Process
 
 All work on React Native Modal Datetime Picker happens directly on GitHub. Contributors send pull requests which go through a review process.
