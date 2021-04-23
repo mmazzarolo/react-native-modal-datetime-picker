@@ -96,6 +96,8 @@ export default Example;
 | onConfirm               | func      | **REQUIRED**  | Function called on date or time picked. It returns the date or time as a JavaScript Date object |
 | onHide                  | func      | () => null    | Called after the hide animation                                                                 |
 | pickerContainerStyleIOS | style     |               | The style of the picker container (iOS)                                                         |
+| backdropColorIOS | string     | "black"              | The color of the modal backdropColor (iOS)                                                         |
+| backdropOpacityIOS | number     | 0.4              | The opacity of the modal backdrop (iOS)                                                           |
 
 👉 Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) props are also supported**!
 
