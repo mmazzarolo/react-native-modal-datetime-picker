@@ -32,6 +32,20 @@ export type PickerComponent = React.ComponentType<IOSNativeProps>;
 
 export interface DateTimePickerProps {
   /**
+   * The modal backdrop color on iOS
+   *
+   * Default is 'black'
+   */
+  backdropColorIOS?: string;
+
+  /**
+   * The modal backdrop opacity on iOS
+   *
+   * Default is '0.4'
+   */
+  backdropOpacityIOS?: number;
+
+  /**
    * The text on the cancel button on iOS
    *
    * Default is 'Cancel'

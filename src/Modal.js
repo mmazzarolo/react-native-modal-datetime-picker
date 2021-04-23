@@ -11,6 +11,7 @@ import {
 } from "react-native";
 
 const MODAL_ANIM_DURATION = 300;
+const MODAL_BACKDROP_COLOR = "black";
 const MODAL_BACKDROP_OPACITY = 0.4;
 
 export class Modal extends Component {
@@ -19,6 +20,8 @@ export class Modal extends Component {
     onHide: PropTypes.func,
     isVisible: PropTypes.bool,
     contentStyle: PropTypes.any,
+    backdropColorIOS: PropTypes.string,
+    backdropOpacityIOS: PropTypes.number,
   };
 
   static defaultProps = {
@@ -104,13 +107,16 @@ export class Modal extends Component {
       children,
       onBackdropPress,
       contentStyle,
+      backdropColorIOS = MODAL_BACKDROP_COLOR,
+      backdropOpacityIOS = MODAL_BACKDROP_OPACITY,
       ...otherProps
     } = this.props;
+
     const { deviceHeight, deviceWidth, isVisible } = this.state;
     const backdropAnimatedStyle = {
       opacity: this.animVal.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, MODAL_BACKDROP_OPACITY],
+        outputRange: [0, backdropOpacityIOS],
       }),
     };
     const contentAnimatedStyle = {
@@ -136,7 +142,11 @@ export class Modal extends Component {
             style={[
               styles.backdrop,
               backdropAnimatedStyle,
-              { width: deviceWidth, height: deviceHeight },
+              {
+                backgroundColor: backdropColorIOS,
+                width: deviceWidth,
+                height: deviceHeight,
+              },
             ]}
           />
         </TouchableWithoutFeedback>
@@ -167,7 +177,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "black",
     opacity: 0,
   },
   content: {

@@ -116,6 +116,8 @@ export class DateTimePickerModal extends React.PureComponent {
       onConfirm,
       onChange,
       onHide,
+      backdropColorIOS,
+      backdropOpacityIOS,
       ...otherProps
     } = this.props;
     const isAppearanceModuleAvailable = !!(
@@ -141,6 +143,8 @@ export class DateTimePickerModal extends React.PureComponent {
         contentStyle={[pickerStyles.modal, modalStyleIOS]}
         onBackdropPress={this.handleCancel}
         onHide={this.handleHide}
+        backdropColorIOS={backdropColorIOS}
+        backdropOpacityIOS={backdropOpacityIOS}
         {...modalPropsIOS}
       >
         <View
