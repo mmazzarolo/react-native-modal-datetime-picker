@@ -89,6 +89,7 @@ export default Example;
 | headerTextIOS           | string    | "Pick a date" | The title text of header (iOS)                                                                  |
 | isVisible               | bool      | false         | Show the datetime picker?                                                                       |
 | isDarkModeEnabled       | bool?     | undefined     | Forces the picker dark/light mode if set (otherwise fallbacks to the Appearance color scheme)   |
+| isHeaderVisibleIOS      | bool?     | false         | Show the built-in header on iOS                                                                 |
 | modalPropsIOS           | object    | {}            | Additional [modal](https://reactnative.dev/docs/modal) props for iOS                            |
 | modalStyleIOS           | style     |               | Style of the modal content (iOS)                                                                |
 | mode                    | string    | "date"        | Choose between 'date', 'time', and 'datetime'                                                   |
@@ -144,11 +145,12 @@ const [date, setDate] = useState('');
   isVisible={isVisible}
   onConfirm={(date) => {
     setVisible(false); // <- first thing
-    setValue(parseDate(date)); 
+    setValue(parseDate(date));
   }}
   onCancel={() => setVisible(false)}
 />
 ```
+
 </p>
 </details>
 
@@ -186,12 +188,13 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 
 ### The picker is not showing the right layout on iOS >= 14
 
-Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker). 
-[We already closed several iOS 14 issues that were all caused by outdated/cached versions of the community datetimepicker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues?q=%22ios+14%22).  
+Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker).
+[We already closed several iOS 14 issues that were all caused by outdated/cached versions of the community datetimepicker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues?q=%22ios+14%22).
 
 ### I can't show up an alert after the picker has been hidden (on iOS)
 
 Unfortunately this is a know issue with React-Native on iOS. Even by using the `onHide` callback exposed by `react-native-modal-datetime-picker` you might not be able to show the (native) alert successfully. The only workaround that seems to work consistently for now is to wrap showing the alter in a setTimeout 😔:
+
 ```js
 const handleHide = () => {
   setTimeout(() => Alert.alert("Hello"), 0);
@@ -199,7 +202,6 @@ const handleHide = () => {
 ```
 
 See issue [#512](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/512) for more info.
-
 
 ### How do I make it work with snapshot testing?
 

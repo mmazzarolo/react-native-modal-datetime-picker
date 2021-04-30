@@ -13,6 +13,10 @@ const App = () => {
     setPickerMode("time");
   };
 
+  const showDateTimePicker = () => {
+    setPickerMode("datetime");
+  };
+
   const hidePicker = () => {
     setPickerMode(null);
   };
@@ -26,6 +30,7 @@ const App = () => {
     <View style={style.root}>
       <Button title="Show Date Picker" onPress={showDatePicker} />
       <Button title="Show Time Picker" onPress={showTimePicker} />
+      <Button title="Show DateTime Picker" onPress={showDateTimePicker} />
       <DateTimePickerModal
         isVisible={pickerMode !== null}
         mode={pickerMode}

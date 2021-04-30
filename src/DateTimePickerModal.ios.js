@@ -36,6 +36,7 @@ export class DateTimePickerModal extends React.PureComponent {
     modalPropsIOS: PropTypes.any,
     modalStyleIOS: PropTypes.any,
     isDarkModeEnabled: PropTypes.bool,
+    isHeaderVisibleIOS: PropTypes.bool,
     isVisible: PropTypes.bool,
     pickerContainerStyleIOS: PropTypes.any,
     onCancel: PropTypes.func.isRequired,
@@ -53,6 +54,7 @@ export class DateTimePickerModal extends React.PureComponent {
     modalPropsIOS: {},
     date: new Date(),
     isDarkModeEnabled: undefined,
+    isHeaderVisibleIOS: false,
     isVisible: false,
     pickerContainerStyleIOS: {},
   };
@@ -69,6 +71,14 @@ export class DateTimePickerModal extends React.PureComponent {
       return { currentDate: props.date, isPickerVisible: true };
     }
     return null;
+  }
+
+  componentDidMount() {
+    if (this.props.isHeaderVisibleIOS) {
+      console.warn(
+        `Please notice that the built-in iOS header will not be supported anymore in the future. If you're still planning to show a header, it's recommended to provide your own header implementation using "customHeaderIOS" (which will continue to be supported).`
+      );
+    }
   }
 
   handleCancel = () => {
@@ -105,8 +115,10 @@ export class DateTimePickerModal extends React.PureComponent {
       customHeaderIOS,
       customPickerIOS,
       date,
+      display,
       headerTextIOS,
       isDarkModeEnabled,
+      isHeaderVisibleIOS,
       isVisible,
       modalStyleIOS,
       modalPropsIOS,
@@ -149,9 +161,12 @@ export class DateTimePickerModal extends React.PureComponent {
             pickerContainerStyleIOS,
           ]}
         >
-          <HeaderComponent label={headerTextIOS} />
+          {isHeaderVisibleIOS && <HeaderComponent label={headerTextIOS} />}
+          {!isHeaderVisibleIOS && display === "inline" && (
+            <View style={pickerStyles.headerFiller} />
+          )}
           <PickerComponent
-            display="spinner"
+            display={display || "spinner"}
             {...otherProps}
             value={this.state.currentDate}
             onChange={this.handleChange}
@@ -187,6 +202,9 @@ const pickerStyles = StyleSheet.create({
   },
   containerDark: {
     backgroundColor: BACKGROUND_COLOR_DARK,
+  },
+  headerFiller: {
+    height: 8,
   },
 });
 
