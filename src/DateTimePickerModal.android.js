@@ -6,7 +6,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 const areEqual = (prevProps, nextProps) => {
   return (
     prevProps.isVisible === nextProps.isVisible &&
-    prevProps.date === nextProps.date
+    prevProps.date.getTime() === nextProps.date.getTime()
   );
 };
 

@@ -191,7 +191,7 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker).
 [We already closed several iOS 14 issues that were all caused by outdated/cached versions of the community datetimepicker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues?q=%22ios+14%22).
 
-### I can't show up an alert after the picker has been hidden (on iOS)
+### I can't show an alert after the picker has been hidden (on iOS)
 
 Unfortunately this is a know issue with React-Native on iOS. Even by using the `onHide` callback exposed by `react-native-modal-datetime-picker` you might not be able to show the (native) alert successfully. The only workaround that seems to work consistently for now is to wrap showing the alter in a setTimeout 😔:
 
@@ -202,6 +202,14 @@ const handleHide = () => {
 ```
 
 See issue [#512](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/512) for more info.
+
+### The date in `onConfirm` doesn't match the picked date (on iOS)
+
+On iOS, clicking the "Confirm" button while the spinner is still in motion — even just _slightly_ in motion — will cause the `onConfirm` callback to return the initial date instead of the picked one. This is is a long standing iOS issue (that can happen even on native app like the iOS calendar) and there's no failproof way to fix it on the JavaScript side.  
+See [this GitHub gist](https://gist.github.com/SudoPlz/6959001879fbfcc7e2aa42a428a5265c) for an example of how it might be solved at the native level — but keep in mind it won't work on this component until it has been merged into the official React-Native repo.  
+
+Related issue in the React-Native repo [here](https://github.com/facebook/react-native/issues/8169).
+
 
 ### How do I make it work with snapshot testing?
 

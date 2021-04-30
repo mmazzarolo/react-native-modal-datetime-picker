@@ -14,6 +14,7 @@ import { isIphoneX } from "./utils";
 export const BACKGROUND_COLOR_LIGHT = "white";
 export const BACKGROUND_COLOR_DARK = "#0E0E0E";
 export const BORDER_COLOR = "#d5d5d5";
+export const BORDER_COLOR_DARK = "#272729";
 export const BORDER_RADIUS = 13;
 export const BUTTON_FONT_WEIGHT = "normal";
 export const BUTTON_FONT_COLOR = "#007ff9";
@@ -236,12 +237,16 @@ export const ConfirmButton = ({
   label,
   style = confirmButtonStyles,
 }) => {
+  const themedButtonStyle = isDarkModeEnabled
+    ? confirmButtonStyles.buttonDark
+    : confirmButtonStyles.buttonLight;
+
   const underlayColor = isDarkModeEnabled
     ? HIGHLIGHT_COLOR_DARK
     : HIGHLIGHT_COLOR_LIGHT;
   return (
     <TouchableHighlight
-      style={style.button}
+      style={[themedButtonStyle, style.button]}
       underlayColor={underlayColor}
       onPress={onPress}
       accessible={true}
@@ -255,11 +260,16 @@ export const ConfirmButton = ({
 
 export const confirmButtonStyles = StyleSheet.create({
   button: {
-    borderColor: BORDER_COLOR,
     borderTopWidth: StyleSheet.hairlineWidth,
     backgroundColor: "transparent",
     height: 57,
     justifyContent: "center",
+  },
+  buttonLight: {
+    borderColor: BORDER_COLOR,
+  },
+  buttonDark: {
+    borderColor: BORDER_COLOR_DARK,
   },
   text: {
     textAlign: "center",
