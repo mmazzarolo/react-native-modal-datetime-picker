@@ -52,7 +52,6 @@ export class DateTimePickerModal extends React.PureComponent {
   static defaultProps = {
     cancelTextIOS: "Cancel",
     confirmTextIOS: "Confirm",
-    headerTextIOS: "Pick a date",
     modalPropsIOS: {},
     date: new Date(),
     isDarkModeEnabled: undefined,
@@ -150,6 +149,11 @@ export class DateTimePickerModal extends React.PureComponent {
       ? pickerStyles.containerDark
       : pickerStyles.containerLight;
 
+    const headerText =
+      headerTextIOS || (this.props.mode === "time"
+        ? "Pick a time"
+        : "Pick a date");
+
     return (
       <Modal
         isVisible={isVisible}
@@ -165,7 +169,7 @@ export class DateTimePickerModal extends React.PureComponent {
             pickerContainerStyleIOS,
           ]}
         >
-          {isHeaderVisibleIOS && <HeaderComponent label={headerTextIOS} />}
+          {isHeaderVisibleIOS && <HeaderComponent label={headerText} />}
           {!isHeaderVisibleIOS && display === "inline" && (
             <View style={pickerStyles.headerFiller} />
           )}

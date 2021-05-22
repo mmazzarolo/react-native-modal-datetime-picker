@@ -23,8 +23,9 @@ const App = () => {
   };
 
   const handleConfirm = (date) => {
-    console.warn("A date has been picked: ", date);
+    // In order to prevent the double-shown popup bug on Android, picker has to be hidden first (https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550)
     hidePicker();
+    console.warn("A date has been picked: ", date);
   };
 
   return (
