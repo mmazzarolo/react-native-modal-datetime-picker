@@ -97,6 +97,7 @@ export default Example;
 | onConfirm               | func      | **REQUIRED**  | Function called on date or time picked. It returns the date or time as a JavaScript Date object     |
 | onHide                  | func      | () => null    | Called after the hide animation                                                                     |
 | pickerContainerStyleIOS | style     |               | The style of the picker container (iOS)                                                             |
+| pickerStyleIOS          | style     |               | The style of the picker component wrapper (iOS)                                                     |
 
 👉 Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) props are also supported**!
 
@@ -115,6 +116,17 @@ You can also display both the datepicker and the timepicker in one step by setti
 ### I can't set the initial date on the picker
 
 Please make sure you're using the `date` props (and not the `value` one).
+
+### Can I use the new iOS 14 style for the date/time picker?
+
+Yes!  
+You can set the `display` prop (that we'll pass down to [`react-native-datetimepicker`](https://github.com/react-native-datetimepicker/datetimepicker)) to `inline` to use the new iOS 14 picker.
+
+<p align="center">
+  <img src="./.github/images/datetimepicker-ios-inline.png" height="400" />
+</p>
+
+> Please notice that you should probably avoid using this new style with a time-only picker (so with `mode` set to `time`) because it doesn't suit well this use case.
 
 ### The picker shows up twice on Android
 

@@ -40,6 +40,7 @@ export class DateTimePickerModal extends React.PureComponent {
     isHeaderVisibleIOS: PropTypes.bool,
     isVisible: PropTypes.bool,
     pickerContainerStyleIOS: PropTypes.any,
+    pickerStyleIOS: PropTypes.any,
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     onChange: PropTypes.func,
@@ -58,6 +59,7 @@ export class DateTimePickerModal extends React.PureComponent {
     isHeaderVisibleIOS: false,
     isVisible: false,
     pickerContainerStyleIOS: {},
+    pickerStyleIOS: {},
   };
 
   state = {
@@ -124,6 +126,7 @@ export class DateTimePickerModal extends React.PureComponent {
       modalStyleIOS,
       modalPropsIOS,
       pickerContainerStyleIOS,
+      pickerStyleIOS,
       onCancel,
       onConfirm,
       onChange,
@@ -166,12 +169,21 @@ export class DateTimePickerModal extends React.PureComponent {
           {!isHeaderVisibleIOS && display === "inline" && (
             <View style={pickerStyles.headerFiller} />
           )}
-          <PickerComponent
-            display={display || "spinner"}
-            {...otherProps}
-            value={this.state.currentDate}
-            onChange={this.handleChange}
-          />
+          <View
+            style={[
+              display === "inline"
+                ? pickerStyles.pickerInline
+                : pickerStyles.pickerSpinner,
+              pickerStyleIOS,
+            ]}
+          >
+            <PickerComponent
+              display={display || "spinner"}
+              {...otherProps}
+              value={this.state.currentDate}
+              onChange={this.handleChange}
+            />
+          </View>
           <ConfirmButtonComponent
             isDarkModeEnabled={_isDarkModeEnabled}
             onPress={this.handleConfirm}
@@ -198,14 +210,18 @@ const pickerStyles = StyleSheet.create({
     marginBottom: 8,
     overflow: "hidden",
   },
+  pickerSpinner: {
+    marginBottom: 8,
+  },
+  pickerInline: {
+    paddingHorizontal: 12,
+    paddingTop: 14,
+  },
   containerLight: {
     backgroundColor: BACKGROUND_COLOR_LIGHT,
   },
   containerDark: {
     backgroundColor: BACKGROUND_COLOR_DARK,
-  },
-  headerFiller: {
-    height: 8,
   },
 });
 
