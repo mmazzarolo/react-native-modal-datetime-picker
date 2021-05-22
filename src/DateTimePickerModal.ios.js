@@ -150,9 +150,8 @@ export class DateTimePickerModal extends React.PureComponent {
       : pickerStyles.containerLight;
 
     const headerText =
-      headerTextIOS || (this.props.mode === "time"
-        ? "Pick a time"
-        : "Pick a date");
+      headerTextIOS ||
+      (this.props.mode === "time" ? "Pick a time" : "Pick a date");
 
     return (
       <Modal
