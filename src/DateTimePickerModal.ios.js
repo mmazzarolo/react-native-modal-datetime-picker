@@ -37,8 +37,10 @@ export class DateTimePickerModal extends React.PureComponent {
     modalPropsIOS: PropTypes.any,
     modalStyleIOS: PropTypes.any,
     isDarkModeEnabled: PropTypes.bool,
+    isHeaderVisibleIOS: PropTypes.bool,
     isVisible: PropTypes.bool,
     pickerContainerStyleIOS: PropTypes.any,
+    pickerStyleIOS: PropTypes.any,
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     onChange: PropTypes.func,
@@ -53,8 +55,10 @@ export class DateTimePickerModal extends React.PureComponent {
     modalPropsIOS: {},
     date: new Date(),
     isDarkModeEnabled: undefined,
+    isHeaderVisibleIOS: false,
     isVisible: false,
     pickerContainerStyleIOS: {},
+    pickerStyleIOS: {},
   };
 
   state = {
@@ -69,6 +73,14 @@ export class DateTimePickerModal extends React.PureComponent {
       return { currentDate: props.date, isPickerVisible: true };
     }
     return null;
+  }
+
+  componentDidMount() {
+    if (this.props.isHeaderVisibleIOS) {
+      console.warn(
+        `Please notice that the built-in iOS header will not be supported anymore in the future. If you're still planning to show a header, it's recommended to provide your own header implementation using "customHeaderIOS" (which will continue to be supported).`
+      );
+    }
   }
 
   handleCancel = () => {
@@ -105,12 +117,15 @@ export class DateTimePickerModal extends React.PureComponent {
       customHeaderIOS,
       customPickerIOS,
       date,
+      display,
       headerTextIOS,
       isDarkModeEnabled,
+      isHeaderVisibleIOS,
       isVisible,
       modalStyleIOS,
       modalPropsIOS,
       pickerContainerStyleIOS,
+      pickerStyleIOS,
       onCancel,
       onConfirm,
       onChange,
@@ -135,9 +150,8 @@ export class DateTimePickerModal extends React.PureComponent {
       : pickerStyles.containerLight;
 
     const headerText =
-      headerTextIOS || (this.props.mode === "time"
-        ? "Pick a time"
-        : "Pick a date");
+      headerTextIOS ||
+      (this.props.mode === "time" ? "Pick a time" : "Pick a date");
 
     return (
       <Modal
@@ -154,13 +168,25 @@ export class DateTimePickerModal extends React.PureComponent {
             pickerContainerStyleIOS,
           ]}
         >
-          <HeaderComponent label={headerText} />
-          <PickerComponent
-            display="spinner"
-            {...otherProps}
-            value={this.state.currentDate}
-            onChange={this.handleChange}
-          />
+          {isHeaderVisibleIOS && <HeaderComponent label={headerText} />}
+          {!isHeaderVisibleIOS && display === "inline" && (
+            <View style={pickerStyles.headerFiller} />
+          )}
+          <View
+            style={[
+              display === "inline"
+                ? pickerStyles.pickerInline
+                : pickerStyles.pickerSpinner,
+              pickerStyleIOS,
+            ]}
+          >
+            <PickerComponent
+              display={display || "spinner"}
+              {...otherProps}
+              value={this.state.currentDate}
+              onChange={this.handleChange}
+            />
+          </View>
           <ConfirmButtonComponent
             isDarkModeEnabled={_isDarkModeEnabled}
             onPress={this.handleConfirm}
@@ -186,6 +212,13 @@ const pickerStyles = StyleSheet.create({
     borderRadius: BORDER_RADIUS,
     marginBottom: 8,
     overflow: "hidden",
+  },
+  pickerSpinner: {
+    marginBottom: 8,
+  },
+  pickerInline: {
+    paddingHorizontal: 12,
+    paddingTop: 14,
   },
   containerLight: {
     backgroundColor: BACKGROUND_COLOR_LIGHT,

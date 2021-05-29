@@ -77,25 +77,27 @@ export default Example;
 
 ## Available props
 
-| Name                    | Type      | Default       | Description                                                                                     |
-| ----------------------- | --------- | ------------- | ----------------------------------------------------------------------------------------------- |
-| cancelTextIOS           | string    | 'Cancel'      | The label of the cancel button (iOS)                                                            |
-| confirmTextIOS          | string    | 'Confirm'     | The label of the confirm button (iOS)                                                           |
-| customCancelButtonIOS   | component |               | Overrides the default cancel button component (iOS)                                             |
-| customConfirmButtonIOS  | component |               | Overrides the default confirm button component (iOS)                                            |
-| customHeaderIOS         | component |               | Overrides the default header component (iOS)                                                    |
-| customPickerIOS         | component |               | Overrides the default native picker component (iOS)                                             |
-| date                    | obj       | new Date()    | Initial selected date/time                                                                      |
-| headerTextIOS           | string    | "Pick a date" | The title text of header (iOS)                                                                  |
-| isVisible               | bool      | false         | Show the datetime picker?                                                                       |
-| isDarkModeEnabled       | bool?     | undefined     | Forces the dark/light mode if set (otherwise fallbacks to the Appearance color scheme) (iOS)    |
-| modalPropsIOS           | object    | {}            | Additional [modal](https://reactnative.dev/docs/modal) props for iOS                            |
-| modalStyleIOS           | style     |               | Style of the modal content (iOS)                                                                |
-| mode                    | string    | "date"        | Choose between 'date', 'time', and 'datetime'                                                   |
-| onCancel                | func      | **REQUIRED**  | Function called on dismiss                                                                      |
-| onConfirm               | func      | **REQUIRED**  | Function called on date or time picked. It returns the date or time as a JavaScript Date object |
-| onHide                  | func      | () => null    | Called after the hide animation                                                                 |
-| pickerContainerStyleIOS | style     |               | The style of the picker container (iOS)                                                         |
+| Name                    | Type      | Default       | Description                                                                                         |
+| ----------------------- | --------- | ------------- | --------------------------------------------------------------------------------------------------- |
+| cancelTextIOS           | string    | 'Cancel'      | The label of the cancel button (iOS)                                                                |
+| confirmTextIOS          | string    | 'Confirm'     | The label of the confirm button (iOS)                                                               |
+| customCancelButtonIOS   | component |               | Overrides the default cancel button component (iOS)                                                 |
+| customConfirmButtonIOS  | component |               | Overrides the default confirm button component (iOS)                                                |
+| customHeaderIOS         | component |               | Overrides the default header component (iOS)                                                        |
+| customPickerIOS         | component |               | Overrides the default native picker component (iOS)                                                 |
+| date                    | obj       | new Date()    | Initial selected date/time                                                                          |
+| headerTextIOS           | string    | "Pick a date" | The title text of header (iOS)                                                                      |
+| isVisible               | bool      | false         | Show the datetime picker?                                                                           |
+| isDarkModeEnabled       | bool?     | undefined     | Forces the picker dark/light mode if set (otherwise fallbacks to the Appearance color scheme) (iOS) |
+| isHeaderVisibleIOS      | bool?     | false         | Show the built-in header on iOS                                                                     |
+| modalPropsIOS           | object    | {}            | Additional [modal](https://reactnative.dev/docs/modal) props for iOS                                |
+| modalStyleIOS           | style     |               | Style of the modal content (iOS)                                                                    |
+| mode                    | string    | "date"        | Choose between 'date', 'time', and 'datetime'                                                       |
+| onCancel                | func      | **REQUIRED**  | Function called on dismiss                                                                          |
+| onConfirm               | func      | **REQUIRED**  | Function called on date or time picked. It returns the date or time as a JavaScript Date object     |
+| onHide                  | func      | () => null    | Called after the hide animation                                                                     |
+| pickerContainerStyleIOS | style     |               | The style of the picker container (iOS)                                                             |
+| pickerStyleIOS          | style     |               | The style of the picker component wrapper (iOS)                                                     |
 
 👉 Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) props are also supported**!
 
@@ -114,6 +116,17 @@ You can also display both the datepicker and the timepicker in one step by setti
 ### I can't set the initial date on the picker
 
 Please make sure you're using the `date` props (and not the `value` one).
+
+### Can I use the new iOS 14 style for the date/time picker?
+
+Yes!  
+You can set the `display` prop (that we'll pass down to [`react-native-datetimepicker`](https://github.com/react-native-datetimepicker/datetimepicker)) to `inline` to use the new iOS 14 picker.
+
+<p align="center">
+  <img src="./.github/images/datetimepicker-ios-inline.png" height="400" />
+</p>
+
+> Please notice that you should probably avoid using this new style with a time-only picker (so with `mode` set to `time`) because it doesn't suit well this use case.
 
 ### The picker shows up twice on Android
 
@@ -144,11 +157,12 @@ const [date, setDate] = useState('');
   isVisible={isVisible}
   onConfirm={(date) => {
     setVisible(false); // <- first thing
-    setValue(parseDate(date)); 
+    setValue(parseDate(date));
   }}
   onCancel={() => setVisible(false)}
 />
 ```
+
 </p>
 </details>
 
@@ -186,12 +200,13 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 
 ### The picker is not showing the right layout on iOS >= 14
 
-Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker). 
-[We already closed several iOS 14 issues that were all caused by outdated/cached versions of the community datetimepicker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues?q=%22ios+14%22).  
+Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker).
+[We already closed several iOS 14 issues that were all caused by outdated/cached versions of the community datetimepicker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues?q=%22ios+14%22).
 
 ### I can't show an alert after the picker has been hidden (on iOS)
 
 Unfortunately this is a know issue with React-Native on iOS. Even by using the `onHide` callback exposed by `react-native-modal-datetime-picker` you might not be able to show the (native) alert successfully. The only workaround that seems to work consistently for now is to wrap showing the alter in a setTimeout 😔:
+
 ```js
 const handleHide = () => {
   setTimeout(() => Alert.alert("Hello"), 0);
@@ -203,10 +218,9 @@ See issue [#512](https://github.com/mmazzarolo/react-native-modal-datetime-picke
 ### The date in `onConfirm` doesn't match the picked date (on iOS)
 
 On iOS, clicking the "Confirm" button while the spinner is still in motion — even just _slightly_ in motion — will cause the `onConfirm` callback to return the initial date instead of the picked one. This is is a long standing iOS issue (that can happen even on native app like the iOS calendar) and there's no failproof way to fix it on the JavaScript side.  
-See [this GitHub gist](https://gist.github.com/SudoPlz/6959001879fbfcc7e2aa42a428a5265c) for an example of how it might be solved at the native level — but keep in mind it won't work on this component until it has been merged into the official React-Native repo.  
+See [this GitHub gist](https://gist.github.com/SudoPlz/6959001879fbfcc7e2aa42a428a5265c) for an example of how it might be solved at the native level — but keep in mind it won't work on this component until it has been merged into the official React-Native repo.
 
 Related issue in the React-Native repo [here](https://github.com/facebook/react-native/issues/8169).
-
 
 ### How do I make it work with snapshot testing?
 
