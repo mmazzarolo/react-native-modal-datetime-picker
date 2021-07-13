@@ -26,6 +26,8 @@ export const TITLE_COLOR = "#8f8f8f";
 
 export class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
+    cancelButtonTestID: PropTypes.string,
+    confirmButtonTestID: PropTypes.string,
     cancelTextIOS: PropTypes.string,
     confirmTextIOS: PropTypes.string,
     customCancelButtonIOS: PropTypes.elementType,
@@ -110,6 +112,8 @@ export class DateTimePickerModal extends React.PureComponent {
 
   render() {
     const {
+      cancelButtonTestID,
+      confirmButtonTestID,
       cancelTextIOS,
       confirmTextIOS,
       customCancelButtonIOS,
@@ -188,12 +192,14 @@ export class DateTimePickerModal extends React.PureComponent {
             />
           </View>
           <ConfirmButtonComponent
+            confirmButtonTestID={confirmButtonTestID}
             isDarkModeEnabled={_isDarkModeEnabled}
             onPress={this.handleConfirm}
             label={confirmTextIOS}
           />
         </View>
         <CancelButtonComponent
+          cancelButtonTestID={cancelButtonTestID}
           isDarkModeEnabled={_isDarkModeEnabled}
           onPress={this.handleCancel}
           label={cancelTextIOS}
@@ -252,6 +258,7 @@ export const headerStyles = StyleSheet.create({
 
 export const ConfirmButton = ({
   isDarkModeEnabled,
+  confirmButtonTestID,
   onPress,
   label,
   style = confirmButtonStyles,
@@ -265,6 +272,7 @@ export const ConfirmButton = ({
     : HIGHLIGHT_COLOR_LIGHT;
   return (
     <TouchableHighlight
+      testID={confirmButtonTestID}
       style={[themedButtonStyle, style.button]}
       underlayColor={underlayColor}
       onPress={onPress}
@@ -300,6 +308,7 @@ export const confirmButtonStyles = StyleSheet.create({
 });
 
 export const CancelButton = ({
+  cancelButtonTestID,
   isDarkModeEnabled,
   onPress,
   label,
@@ -313,6 +322,7 @@ export const CancelButton = ({
     : HIGHLIGHT_COLOR_LIGHT;
   return (
     <TouchableHighlight
+      testID={cancelButtonTestID}
       style={[style.button, themedButtonStyle]}
       underlayColor={underlayColor}
       onPress={onPress}
