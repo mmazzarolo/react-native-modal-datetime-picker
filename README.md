@@ -79,6 +79,8 @@ export default Example;
 
 | Name                    | Type      | Default       | Description                                                                                         |
 | ----------------------- | --------- | ------------- | --------------------------------------------------------------------------------------------------- |
+| cancelButtonTestID      | string    |               | Used to locate cancel button in end-to-end tests.                                                   |
+| confirmButtonTestID     | string    |               | Used to locate confirm button in end-to-end tests.                                                  |
 | cancelTextIOS           | string    | 'Cancel'      | The label of the cancel button (iOS)                                                                |
 | confirmTextIOS          | string    | 'Confirm'     | The label of the confirm button (iOS)                                                               |
 | customCancelButtonIOS   | component |               | Overrides the default cancel button component (iOS)                                                 |
