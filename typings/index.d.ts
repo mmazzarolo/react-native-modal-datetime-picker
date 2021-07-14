@@ -32,6 +32,16 @@ export type PickerComponent = React.ComponentType<IOSNativeProps>;
 
 export interface DateTimePickerProps {
   /**
+   * The prop to locate cancel button for e2e testing
+   */
+  cancelButtonTestID?: string;
+
+  /**
+   * The prop to locate confirm button for e2e testing
+   */
+  confirmButtonTestID?: string;
+
+  /**
    * The text on the cancel button on iOS
    *
    * Default is 'Cancel'
