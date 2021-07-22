@@ -12,6 +12,13 @@ import {
   AndroidNativeProps,
 } from "@react-native-community/datetimepicker";
 
+
+// Platform Specific types
+type IOSMode = 'date' | 'time' | 'datetime' | 'countdown';
+type AndroidMode = 'date' | 'time';
+type Display = 'spinner' | 'default' | 'clock' | 'calendar';
+type IOSDisplay = 'default' | 'compact' | 'inline' | 'spinner';
+
 export type CancelButtonComponent = React.ComponentType<{
   isDarkModeEnabled: boolean;
   onPress(): void;
@@ -130,7 +137,14 @@ export interface DateTimePickerProps {
    *
    * Default is 'date'
    */
-  mode?: "date" | "time" | "datetime";
+  mode?: AndroidMode | IOSMode
+
+  /**
+   *  Display for the picker
+   * 
+   *  switches the Views for the picker
+   */
+   display?: Display | IOSDisplay
 
   /**
    * Additional modal props for iOS.
@@ -214,8 +228,8 @@ export interface DateTimePickerProps {
 }
 
 export type ReactNativeModalDateTimePickerProps = DateTimePickerProps &
-  Omit<IOSNativeProps, "value" | "mode"> &
-  Omit<AndroidNativeProps, "value" | "mode">;
+  Omit<IOSNativeProps, "value" | "mode" | "display"> &
+  Omit<AndroidNativeProps, "value" | "mode" | "display">;
 
 export default class DateTimePicker extends React.Component<
   ReactNativeModalDateTimePickerProps,
