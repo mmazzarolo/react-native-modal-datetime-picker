@@ -36,6 +36,23 @@ If your project is using [Expo](https://expo.io/), install the library and the c
 expo install react-native-modal-datetime-picker @react-native-community/datetimepicker
 ```
 
+You will also need to configure supported appearance styles in your app.json:
+
+```json
+{
+  "expo": {
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "userInterfaceStyle": "light"
+    },
+    "android": {
+      "userInterfaceStyle": "dark"
+    }
+  }
+}
+```
+Refer to the [Appearance](https://docs.expo.io/versions/latest/sdk/appearance/) documentation on [Expo](https://expo.io/) 
+
 ## Usage
 
 ```javascript
