@@ -41,12 +41,12 @@ To ensure the picker theme respects the device theme, you should also configure 
 ```json
 {
   "expo": {
-    "userInterfaceStyle": "automatic",
-    ...
+    "userInterfaceStyle": "automatic"
   }
 }
 ```
-Refer to the [Appearance](https://docs.expo.io/versions/latest/sdk/appearance/) documentation on [Expo](https://expo.io/) 
+
+Refer to the [Appearance](https://docs.expo.io/versions/latest/sdk/appearance/) documentation on [Expo](https://expo.io/) for more info.  
 
 ## Usage
 
