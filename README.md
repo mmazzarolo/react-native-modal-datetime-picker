@@ -103,7 +103,7 @@ export default Example;
 | headerTextIOS           | string    | "Pick a date" | The title text of header (iOS)                                                                      |
 | isVisible               | bool      | false         | Show the datetime picker?                                                                           |
 | isDarkModeEnabled       | bool?     | undefined     | Forces the picker dark/light mode if set (otherwise fallbacks to the Appearance color scheme) (iOS) |
-| isHeaderVisibleIOS      | bool?     | false         | Show the built-in header on iOS                                                                     |
+| isHeaderVisibleIOS      | bool?     | false         | Show the built-in header on iOS (deprecated — use `customHeaderIOS` instead)                        |
 | modalPropsIOS           | object    | {}            | Additional [modal](https://reactnative.dev/docs/modal) props for iOS                                |
 | modalStyleIOS           | style     |               | Style of the modal content (iOS)                                                                    |
 | mode                    | string    | "date"        | Choose between 'date', 'time', and 'datetime'                                                       |
