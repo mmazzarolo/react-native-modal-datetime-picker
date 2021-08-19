@@ -36,22 +36,21 @@ export class Modal extends Component {
   animVal = new Animated.Value(0);
   _isMounted = false;
 
+  static _deviceEventEmitter = null;
+
   componentDidMount() {
     this._isMounted = true;
     if (this.state.isVisible) {
       this.show();
     }
-    DeviceEventEmitter.addListener(
+    this._deviceEventEmitter = DeviceEventEmitter.addListener(
       "didUpdateDimensions",
       this.handleDimensionsUpdate
     );
   }
 
   componentWillUnmount() {
-    DeviceEventEmitter.removeListener(
-      "didUpdateDimensions",
-      this.handleDimensionsUpdate
-    );
+    this._deviceEventEmitter.remove();
     this._isMounted = false;
   }
 
