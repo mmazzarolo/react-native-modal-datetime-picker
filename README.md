@@ -89,31 +89,31 @@ export default Example;
 
 ## Available props
 
-| Name                    | Type      | Default       | Description                                                                                         |
-| ----------------------- | --------- | ------------- | --------------------------------------------------------------------------------------------------- |
-| cancelButtonTestID      | string    |               | Used to locate cancel button in end-to-end tests.                                                   |
-| confirmButtonTestID     | string    |               | Used to locate confirm button in end-to-end tests.                                                  |
-| cancelTextIOS           | string    | 'Cancel'      | The label of the cancel button (iOS)                                                                |
-| confirmTextIOS          | string    | 'Confirm'     | The label of the confirm button (iOS)                                                               |
-| customCancelButtonIOS   | component |               | Overrides the default cancel button component (iOS)                                                 |
-| customConfirmButtonIOS  | component |               | Overrides the default confirm button component (iOS)                                                |
-| customHeaderIOS         | component |               | Overrides the default header component (iOS)                                                        |
-| customPickerIOS         | component |               | Overrides the default native picker component (iOS)                                                 |
-| date                    | obj       | new Date()    | Initial selected date/time                                                                          |
-| headerTextIOS           | string    | "Pick a date" | The title text of header (iOS)                                                                      |
-| isVisible               | bool      | false         | Show the datetime picker?                                                                           |
-| isDarkModeEnabled       | bool?     | undefined     | Forces the picker dark/light mode if set (otherwise fallbacks to the Appearance color scheme) (iOS) |
-| isHeaderVisibleIOS      | bool?     | false         | Show the built-in header on iOS (deprecated — use `customHeaderIOS` instead)                        |
-| modalPropsIOS           | object    | {}            | Additional [modal](https://reactnative.dev/docs/modal) props for iOS                                |
-| modalStyleIOS           | style     |               | Style of the modal content (iOS)                                                                    |
-| mode                    | string    | "date"        | Choose between 'date', 'time', and 'datetime'                                                       |
-| onCancel                | func      | **REQUIRED**  | Function called on dismiss                                                                          |
-| onConfirm               | func      | **REQUIRED**  | Function called on date or time picked. It returns the date or time as a JavaScript Date object     |
-| onHide                  | func      | () => null    | Called after the hide animation                                                                     |
-| pickerContainerStyleIOS | style     |               | The style of the picker container (iOS)                                                             |
-| pickerStyleIOS          | style     |               | The style of the picker component wrapper (iOS)                                                     |
+👉 Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) props are supported** as well!
 
-👉 Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) props are also supported**!
+| Name                      | Type      | Default       | Description                                                                                         |
+| ------------------------- | --------- | ------------- | --------------------------------------------------------------------------------------------------- |
+| `cancelButtonTestID`      | string    |               | Used to locate cancel button in end-to-end tests                                                    |
+| `confirmButtonTestID`     | string    |               | Used to locate confirm button in end-to-end tests                                                   |
+| `cancelTextIOS`           | string    | "Cancel"      | The label of the cancel button (iOS)                                                                |
+| `confirmTextIOS`          | string    | "Confirm"     | The label of the confirm button (iOS)                                                               |
+| `customCancelButtonIOS`   | component |               | Overrides the default cancel button component (iOS)                                                 |
+| `customConfirmButtonIOS`  | component |               | Overrides the default confirm button component (iOS)                                                |
+| `customHeaderIOS`         | component |               | Overrides the default header component (iOS)                                                        |
+| `customPickerIOS`         | component |               | Overrides the default native picker component (iOS)                                                 |
+| `date`                    | obj       | new Date()    | Initial selected date/time                                                                          |
+| `headerTextIOS`           | string    | "Pick a date" | The title text of header (iOS)                                                                      |
+| `isVisible`               | bool      | false         | Show the datetime picker?                                                                           |
+| `isDarkModeEnabled`       | bool?     | undefined     | Forces the picker dark/light mode if set (otherwise fallbacks to the Appearance color scheme) (iOS) |
+| `isHeaderVisibleIOS`      | bool?     | false         | Show the built-in header on iOS (deprecated — use `customHeaderIOS` instead)                        |
+| `modalPropsIOS`           | object    | {}            | Additional [modal](https://reactnative.dev/docs/modal) props for iOS                                |
+| `modalStyleIOS`           | style     |               | Style of the modal content (iOS)                                                                    |
+| `mode`                    | string    | "date"        | Choose between "date", "time", and "datetime"                                                       |
+| `onCancel`                | func      | **REQUIRED**  | Function called on dismiss                                                                          |
+| `onConfirm`               | func      | **REQUIRED**  | Function called on date or time picked. It returns the date or time as a JavaScript Date object     |
+| `onHide`                  | func      | () => null    | Called after the hide animation                                                                     |
+| `pickerContainerStyleIOS` | style     |               | The style of the picker container (iOS)                                                             |
+| `pickerStyleIOS`          | style     |               | The style of the picker component wrapper (iOS)                                                     |
 
 ## Frequently Asked Questions
 
