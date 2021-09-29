@@ -6,7 +6,7 @@ labels: "bug"
 
 <!-- NOTE: Under the hood react-native-modal-datetime-picker uses [react-native-community/datetimepicker](https://github.com/react-native-community/datetimepicker).
 Before reporting a bug, swap react-native-datetime-picker with [react-native-community/datetimepicker](https://github.com/react-native-community/datetimepicker) to check if the problem persists. If it does please report the issue in the [react-native-community/datetimepicker](https://github.com/react-native-community/datetimepicker) repo instead. -->
-<!-- Please notice that WE WON'T SUPPORT ISSUE IF YOU HAVEN'T TRIED USING THE COMMUNITY COMPONENT ALONE. -->
+<!-- Please notice that WE WON'T SUPPORT ISSUE IF YOU HAVEN'T TRIED USING THE COMMUNITY COMPONENT ALONE. 
 - For QUESTIONS and FEEDBACK, please use the [discussions](https://github.com/mmazzarolo/react-native-modal-datetime-picker/discussions) section.  
 -->
 
