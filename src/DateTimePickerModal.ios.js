@@ -43,7 +43,7 @@ export class DateTimePickerModal extends React.PureComponent {
     isVisible: PropTypes.bool,
     pickerContainerStyleIOS: PropTypes.any,
     pickerStyleIOS: PropTypes.any,
-    backdropStyle: PropTypes.any,
+    backdropStyleIOS: PropTypes.any,
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     onChange: PropTypes.func,
@@ -136,7 +136,7 @@ export class DateTimePickerModal extends React.PureComponent {
       onConfirm,
       onChange,
       onHide,
-      backdropStyle,
+      backdropStyleIOS,
       ...otherProps
     } = this.props;
     const isAppearanceModuleAvailable = !!(
@@ -166,7 +166,7 @@ export class DateTimePickerModal extends React.PureComponent {
         contentStyle={[pickerStyles.modal, modalStyleIOS]}
         onBackdropPress={this.handleCancel}
         onHide={this.handleHide}
-        backdropStyle={backdropStyle}
+        backdropStyle={backdropStyleIOS}
         {...modalPropsIOS}
       >
         <View
