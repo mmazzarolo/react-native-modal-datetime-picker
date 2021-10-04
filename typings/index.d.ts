@@ -78,6 +78,11 @@ export interface DateTimePickerProps {
   /**
    * Style of the modal content (iOS)
    */
+  backdropStyleIOS?: ViewStyle;
+  
+  /**
+   * Style of the modal content (iOS)
+   */
   modalStyleIOS?: ViewStyle;
 
   /**
