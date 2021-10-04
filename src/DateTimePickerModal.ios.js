@@ -62,7 +62,7 @@ export class DateTimePickerModal extends React.PureComponent {
     isVisible: false,
     pickerContainerStyleIOS: {},
     pickerStyleIOS: {},
-    backdropStyle: {},
+    backdropStyleIOS: {},
   };
 
   state = {
