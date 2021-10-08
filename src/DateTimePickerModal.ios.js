@@ -21,8 +21,6 @@ export const BUTTON_FONT_COLOR = "#007ff9";
 export const BUTTON_FONT_SIZE = 20;
 export const HIGHLIGHT_COLOR_DARK = "#444444";
 export const HIGHLIGHT_COLOR_LIGHT = "#ebebeb";
-export const TITLE_FONT_SIZE = 20;
-export const TITLE_COLOR = "#8f8f8f";
 
 export class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
@@ -35,11 +33,9 @@ export class DateTimePickerModal extends React.PureComponent {
     customHeaderIOS: PropTypes.elementType,
     customPickerIOS: PropTypes.elementType,
     date: PropTypes.instanceOf(Date),
-    headerTextIOS: PropTypes.string,
     modalPropsIOS: PropTypes.any,
     modalStyleIOS: PropTypes.any,
     isDarkModeEnabled: PropTypes.bool,
-    isHeaderVisibleIOS: PropTypes.bool,
     isVisible: PropTypes.bool,
     pickerContainerStyleIOS: PropTypes.any,
     pickerStyleIOS: PropTypes.any,
@@ -58,7 +54,6 @@ export class DateTimePickerModal extends React.PureComponent {
     modalPropsIOS: {},
     date: new Date(),
     isDarkModeEnabled: undefined,
-    isHeaderVisibleIOS: false,
     isVisible: false,
     pickerContainerStyleIOS: {},
     pickerStyleIOS: {},
@@ -77,14 +72,6 @@ export class DateTimePickerModal extends React.PureComponent {
       return { currentDate: props.date, isPickerVisible: true };
     }
     return null;
-  }
-
-  componentDidMount() {
-    if (this.props.isHeaderVisibleIOS) {
-      console.warn(
-        `Please notice that the built-in iOS header will not be supported anymore in the future. If you're still planning to show a header, it's recommended to provide your own header implementation using "customHeaderIOS" (which will continue to be supported).`
-      );
-    }
   }
 
   handleCancel = () => {
@@ -124,9 +111,7 @@ export class DateTimePickerModal extends React.PureComponent {
       customPickerIOS,
       date,
       display,
-      headerTextIOS,
       isDarkModeEnabled,
-      isHeaderVisibleIOS,
       isVisible,
       modalStyleIOS,
       modalPropsIOS,
@@ -149,16 +134,12 @@ export class DateTimePickerModal extends React.PureComponent {
 
     const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;
-    const HeaderComponent = customHeaderIOS || Header;
     const PickerComponent = customPickerIOS || DateTimePicker;
+    const HeaderComponent = customHeaderIOS;
 
     const themedContainerStyle = _isDarkModeEnabled
       ? pickerStyles.containerDark
       : pickerStyles.containerLight;
-
-    const headerText =
-      headerTextIOS ||
-      (this.props.mode === "time" ? "Pick a time" : "Pick a date");
 
     return (
       <Modal
@@ -176,8 +157,8 @@ export class DateTimePickerModal extends React.PureComponent {
             pickerContainerStyleIOS,
           ]}
         >
-          {isHeaderVisibleIOS && <HeaderComponent label={headerText} />}
-          {!isHeaderVisibleIOS && display === "inline" && (
+          {HeaderComponent && <HeaderComponent />}
+          {!HeaderComponent && display === "inline" && (
             <View style={pickerStyles.headerFiller} />
           )}
           <View
@@ -235,28 +216,6 @@ const pickerStyles = StyleSheet.create({
   },
   containerDark: {
     backgroundColor: BACKGROUND_COLOR_DARK,
-  },
-});
-
-export const Header = ({ label, style = headerStyles }) => {
-  return (
-    <View style={style.root}>
-      <Text style={style.text}>{label}</Text>
-    </View>
-  );
-};
-
-export const headerStyles = StyleSheet.create({
-  root: {
-    borderBottomColor: BORDER_COLOR,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    padding: 14,
-    backgroundColor: "transparent",
-  },
-  text: {
-    textAlign: "center",
-    color: TITLE_COLOR,
-    fontSize: TITLE_FONT_SIZE,
   },
 });
 
