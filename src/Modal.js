@@ -137,7 +137,7 @@ export class Modal extends Component {
               styles.backdrop,
               backdropAnimatedStyle,
               { width: deviceWidth, height: deviceHeight },
-              backdropStyle
+              backdropStyle,
             ]}
           />
         </TouchableWithoutFeedback>
