@@ -103,6 +103,7 @@ export class Modal extends Component {
       children,
       onBackdropPress,
       contentStyle,
+      backdropStyle,
       ...otherProps
     } = this.props;
     const { deviceHeight, deviceWidth, isVisible } = this.state;
@@ -136,6 +137,7 @@ export class Modal extends Component {
               styles.backdrop,
               backdropAnimatedStyle,
               { width: deviceWidth, height: deviceHeight },
+              backdropStyle,
             ]}
           />
         </TouchableWithoutFeedback>

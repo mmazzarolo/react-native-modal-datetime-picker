@@ -76,6 +76,11 @@ export interface DateTimePickerProps {
   customPickerIOS?: PickerComponent;
 
   /**
+   * Style of the backgrop (iOS)
+   */
+  backdropStyleIOS?: ViewStyle;
+  
+  /**
    * Style of the modal content (iOS)
    */
   modalStyleIOS?: ViewStyle;
