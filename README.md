@@ -46,7 +46,7 @@ To ensure the picker theme respects the device theme, you should also configure 
 }
 ```
 
-Refer to the [Appearance](https://docs.expo.io/versions/latest/sdk/appearance/) documentation on [Expo](https://expo.io/) for more info.  
+Refer to the [Appearance](https://docs.expo.io/versions/latest/sdk/appearance/) documentation on [Expo](https://expo.io/) for more info.
 
 ## Usage
 
@@ -114,6 +114,7 @@ export default Example;
 | `onHide`                  | func      | () => null    | Called after the hide animation                                                                     |
 | `pickerContainerStyleIOS` | style     |               | The style of the picker container (iOS)                                                             |
 | `pickerStyleIOS`          | style     |               | The style of the picker component wrapper (iOS)                                                     |
+| `backdropStyleIOS`        | style     |               | The style of the picker backdrop view style (iOS)                                                   |
 
 ## Frequently Asked Questions
 
@@ -202,11 +203,11 @@ The `is24Hour` prop is only available on Android but you can use a small hack fo
 ```
 
 ### How can I change the picker language/locale?
-  
-Under the hood this library is using [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker). You can't change the language/locale from `react-native-modal-datetime-picker`. Locale/language is set at the native level, on the device itself. 
+
+Under the hood this library is using [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker). You can't change the language/locale from `react-native-modal-datetime-picker`. Locale/language is set at the native level, on the device itself.
 
 ### How can I set an automatic locale in iOS
-  
+
 On iOS, you can set an automatic detection of the locale (`fr_FR`, `en_GB`, ...) depending on the user's device locale.
 To do so, edit your `AppDelegate.m` file and add the following to `didFinishLaunchingWithOptions`.
 
