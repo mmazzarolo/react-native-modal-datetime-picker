@@ -79,7 +79,7 @@ export interface DateTimePickerProps {
    * Style of the backgrop (iOS)
    */
   backdropStyleIOS?: ViewStyle;
-  
+
   /**
    * Style of the modal content (iOS)
    */
@@ -150,13 +150,6 @@ export interface DateTimePickerProps {
    * Default is 'default' which shows either spinner or clock based on Android version
    */
   timePickerModeAndroid?: "spinner" | "clock" | "default";
-
-  /**
-   * Title text for the Picker on iOS
-   *
-   * Default is 'Pick a Date'
-   */
-  headerTextIOS?: string;
 
   /**
    * Minimum date the picker can go back to
