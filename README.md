@@ -93,9 +93,10 @@ export default Example;
 
 | Name                      | Type      | Default      | Description                                                                                         |
 | ------------------------- | --------- | ------------ | --------------------------------------------------------------------------------------------------- |
+| `backdropStyleIOS`        | style     |              | The style of the picker backdrop view style (iOS)                                                   |
 | `cancelButtonTestID`      | string    |              | Used to locate cancel button in end-to-end tests                                                    |
-| `confirmButtonTestID`     | string    |              | Used to locate confirm button in end-to-end tests                                                   |
 | `cancelTextIOS`           | string    | "Cancel"     | The label of the cancel button (iOS)                                                                |
+| `confirmButtonTestID`     | string    |              | Used to locate confirm button in end-to-end tests                                                   |
 | `confirmTextIOS`          | string    | "Confirm"    | The label of the confirm button (iOS)                                                               |
 | `customCancelButtonIOS`   | component |              | Overrides the default cancel button component (iOS)                                                 |
 | `customConfirmButtonIOS`  | component |              | Overrides the default confirm button component (iOS)                                                |
@@ -108,11 +109,11 @@ export default Example;
 | `modalStyleIOS`           | style     |              | Style of the modal content (iOS)                                                                    |
 | `mode`                    | string    | "date"       | Choose between "date", "time", and "datetime"                                                       |
 | `onCancel`                | func      | **REQUIRED** | Function called on dismiss                                                                          |
+| `onChange`                | func      | () => null   | Function called when the date changes (with the new date as parameter).                             |
 | `onConfirm`               | func      | **REQUIRED** | Function called on date or time picked. It returns the date or time as a JavaScript Date object     |
 | `onHide`                  | func      | () => null   | Called after the hide animation                                                                     |
 | `pickerContainerStyleIOS` | style     |              | The style of the picker container (iOS)                                                             |
 | `pickerStyleIOS`          | style     |              | The style of the picker component wrapper (iOS)                                                     |
-| `backdropStyleIOS`        | style     |              | The style of the picker backdrop view style (iOS)                                                   |
 
 ## Frequently Asked Questions
 
