@@ -182,10 +182,8 @@ export interface DateTimePickerProps {
    * Date change handler.
    * This is called when the user changes the date or time in the UI.
    * The first and only argument is a Date object representing the new date and time.
-   *
-   * @extends from DatePickerIOSProperties
    */
-  onDateChange?(newDate: Date): void;
+  onChange?(newDate: Date): void;
 
   /**
    * Handler called when the user presses the confirm button
