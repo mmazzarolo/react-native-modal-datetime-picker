@@ -117,7 +117,7 @@ export default Example;
 
 ## Frequently Asked Questions
 
-### The component is not working as expected
+### The component is not working as expected, what should I do?
 
 Under the hood `react-native-modal-datetime-picker` uses [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
 Before reporting a bug, try swapping `react-native-datetime-picker` with [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) and, if the issue persists, check if it has already been reported as a an issue there.
@@ -127,7 +127,7 @@ Before reporting a bug, try swapping `react-native-datetime-picker` with [`@reac
 Set the `mode` prop to `time`.
 You can also display both the datepicker and the timepicker in one step by setting the `mode` prop to `datetime`.
 
-### I can't set the initial date on the picker
+### Why is the initial date not working?
 
 Please make sure you're using the `date` props (and not the `value` one).
 
@@ -142,7 +142,7 @@ You can set the `display` prop (that we'll pass down to [`react-native-datetimep
 
 > Please notice that you should probably avoid using this new style with a time-only picker (so with `mode` set to `time`) because it doesn't suit well this use case.
 
-### The picker shows up twice on Android
+### Why does the picker show up twice on Android?
 
 This seems to be a known issue of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker/issues/54). Please see [this thread](https://github.com/react-native-community/datetimepicker/issues/54) for a couple of workarounds. The solution, as described in [this reply](https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550) is hiding the modal, **before doing anything else**.
 
@@ -189,7 +189,7 @@ You can use the [`minimumDate`](https://github.com/react-native-datetimepicker/d
 This is more a React-Native specific question than a react-native-modal-datetime-picker one.  
 See issue [#29](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/29) and [#106](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/106) for some solutions.
 
-### How to set 24 hours in iOS ?
+### How to set a 24-hours format in iOS?
 
 The `is24Hour` prop is only available on Android but you can use a small hack for enabling it on iOS by setting the picker timezone to `en_GB`:
 
@@ -205,7 +205,7 @@ The `is24Hour` prop is only available on Android but you can use a small hack fo
 
 Under the hood this library is using [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker). You can't change the language/locale from `react-native-modal-datetime-picker`. Locale/language is set at the native level, on the device itself.
 
-### How can I set an automatic locale in iOS
+### How can I set an automatic locale in iOS?
 
 On iOS, you can set an automatic detection of the locale (`fr_FR`, `en_GB`, ...) depending on the user's device locale.
 To do so, edit your `AppDelegate.m` file and add the following to `didFinishLaunchingWithOptions`.
@@ -216,12 +216,12 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 [[UIDatePicker appearance] setLocale:[[NSLocale alloc]initWithLocaleIdentifier:currentLanguage]];
 ```
 
-### The picker is not showing the right layout on iOS >= 14
+### Why is the picker is not showing the right layout on iOS >= 14?
 
 Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker).
 [We already closed several iOS 14 issues that were all caused by outdated/cached versions of the community datetimepicker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues?q=%22ios+14%22).
 
-### I can't show an alert after the picker has been hidden (on iOS)
+### Why can't I show an alert after the picker has been hidden (on iOS)?
 
 Unfortunately this is a know issue with React-Native on iOS. Even by using the `onHide` callback exposed by `react-native-modal-datetime-picker` you might not be able to show the (native) alert successfully. The only workaround that seems to work consistently for now is to wrap showing the alter in a setTimeout 😔:
 
@@ -233,7 +233,7 @@ const handleHide = () => {
 
 See issue [#512](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues/512) for more info.
 
-### Why does the date of `onConfirm` not match the picked date (on iOS)
+### Why does the date of `onConfirm` not match the picked date (on iOS)?
 
 On iOS, clicking the "Confirm" button while the spinner is still in motion — even just _slightly_ in motion — will cause the `onConfirm` callback to return the initial date instead of the picked one. This is is a long standing iOS issue (that can happen even on native app like the iOS calendar) and there's no failproof way to fix it on the JavaScript side.  
 See [this GitHub gist](https://gist.github.com/SudoPlz/6959001879fbfcc7e2aa42a428a5265c) for an example of how it might be solved at the native level — but keep in mind it won't work on this component until it has been merged into the official React-Native repo.
