@@ -180,6 +180,11 @@ const [date, setDate] = useState('');
 </p>
 </details>
 
+  
+### How can I allow picking only specific dates?
+  
+You can't — [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) doesn't allow you to do so. That said, you can allow only "range" of dates by setting a minimum and maximum date. See below for more info.  
+  
 ### How can I set a minimum and/or maximum date?
 
 You can use the [`minimumDate`](https://github.com/react-native-datetimepicker/datetimepicker#minimumdate-optional) and [`maximumDate`](https://github.com/react-native-datetimepicker/datetimepicker#maximumdate-optional) props from [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
