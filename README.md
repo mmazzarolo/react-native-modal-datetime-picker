@@ -225,6 +225,12 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 
 Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker).
 [We already closed several iOS 14 issues that were all caused by outdated/cached versions of the community datetimepicker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues?q=%22ios+14%22).
+  
+### Why is the picker not visible/transparent on iOS?  
+  
+Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker). 
+Also, double check that the picker light/dark theme is aligned with the OS one (e.g., don't "force" a theme using `isDarkModeEnabled`). 
+
 
 ### Why can't I show an alert after the picker has been hidden (on iOS)?
 
