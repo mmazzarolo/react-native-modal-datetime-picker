@@ -9,6 +9,7 @@ Before reporting a bug, swap react-native-datetime-picker with [react-native-com
 <!-- Please notice that WE WON'T SUPPORT ISSUE IF YOU HAVEN'T TRIED USING THE COMMUNITY COMPONENT ALONE. 
 - For QUESTIONS and FEEDBACK, please use the [discussions](https://github.com/mmazzarolo/react-native-modal-datetime-picker/discussions) section.  
 -->
+<!-- Also, please check the FAQs before submitting new issues. Thanks!  -->
 
 ## Environment
 
