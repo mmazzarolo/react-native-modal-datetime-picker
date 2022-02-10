@@ -117,10 +117,15 @@ export default Example;
 
 ## Frequently Asked Questions
 
+This repo is only maintained by me, and unfortunately I don't have enough time for dedicated support & question. 
+If you're experiencing issues, please check the FAQs below.  
+For questions and support, please start [try starting a discussion](https://github.com/mmazzarolo/react-native-modal-datetime-picker/discussions) or try asking it on [StackOverflow](stackoverflow).  
+⚠️ __Please use [the GitHub issues](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues) only for well-described and reproducible bugs. Question/support issues will be closed.__
+
 ### The component is not working as expected, what should I do?
 
 Under the hood `react-native-modal-datetime-picker` uses [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
-Before reporting a bug, try swapping `react-native-datetime-picker` with [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) and, if the issue persists, check if it has already been reported as a an issue there.
+If you're experiencing issues, try swapping `react-native-datetime-picker` with [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker). If the issue persists, check if it has already been reported as a an issue or check the other FAQs.
 
 ### How can I show the timepicker instead of the datepicker?
 
