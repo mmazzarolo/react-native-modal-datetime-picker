@@ -248,7 +248,7 @@ export const ConfirmButton = ({
       accessibilityRole="button"
       accessibilityLabel={label}
     >
-      <Text style={[style.text, buttonFontColor && { textColor: buttonFontColor }]}>{label}</Text>
+      <Text style={[style.text, buttonFontColor && { color: buttonFontColor }]}>{label}</Text>
     </TouchableHighlight>
   );
 };
@@ -299,7 +299,7 @@ export const CancelButton = ({
       accessibilityRole="button"
       accessibilityLabel={label}
     >
-      <Text style={[style.text, buttonFontColor && { textColor: buttonFontColor }]}>{label}</Text>
+      <Text style={[style.text, buttonFontColor && { color: buttonFontColor }]}>{label}</Text>
     </TouchableHighlight>
   );
 };
