@@ -92,7 +92,8 @@ export default Example;
 👉 Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) props are supported** as well!
 
 | Name                      | Type      | Default      | Description                                                                                         |
-| ------------------------- | --------- | ------------ | --------------------------------------------------------------------------------------------------- |
+|---------------------------|-----------| ------------ |-----------------------------------------------------------------------------------------------------|
+| `buttonFontColor`         | string    |              | The color of the confirm button texts (iOS)                                                         |
 | `backdropStyleIOS`        | style     |              | The style of the picker backdrop view style (iOS)                                                   |
 | `cancelButtonTestID`      | string    |              | Used to locate cancel button in end-to-end tests                                                    |
 | `cancelTextIOS`           | string    | "Cancel"     | The label of the cancel button (iOS)                                                                |

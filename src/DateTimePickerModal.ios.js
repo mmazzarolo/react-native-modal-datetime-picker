@@ -24,6 +24,7 @@ export const HIGHLIGHT_COLOR_LIGHT = "#ebebeb";
 
 export class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
+    buttonFontColor: PropTypes.string,
     cancelButtonTestID: PropTypes.string,
     confirmButtonTestID: PropTypes.string,
     cancelTextIOS: PropTypes.string,
@@ -122,6 +123,7 @@ export class DateTimePickerModal extends React.PureComponent {
       onChange,
       onHide,
       backdropStyleIOS,
+      buttonFontColor,
       ...otherProps
     } = this.props;
     const isAppearanceModuleAvailable = !!(
@@ -181,6 +183,7 @@ export class DateTimePickerModal extends React.PureComponent {
             isDarkModeEnabled={_isDarkModeEnabled}
             onPress={this.handleConfirm}
             label={confirmTextIOS}
+            buttonFontColor={buttonFontColor}
           />
         </View>
         <CancelButtonComponent
@@ -188,6 +191,7 @@ export class DateTimePickerModal extends React.PureComponent {
           isDarkModeEnabled={_isDarkModeEnabled}
           onPress={this.handleCancel}
           label={cancelTextIOS}
+          buttonFontColor={buttonFontColor}
         />
       </Modal>
     );
@@ -224,6 +228,7 @@ export const ConfirmButton = ({
   confirmButtonTestID,
   onPress,
   label,
+  buttonFontColor,
   style = confirmButtonStyles,
 }) => {
   const themedButtonStyle = isDarkModeEnabled
@@ -243,7 +248,7 @@ export const ConfirmButton = ({
       accessibilityRole="button"
       accessibilityLabel={label}
     >
-      <Text style={style.text}>{label}</Text>
+      <Text style={[style.text, buttonFontColor && { textColor: buttonFontColor }]}>{label}</Text>
     </TouchableHighlight>
   );
 };
@@ -275,6 +280,7 @@ export const CancelButton = ({
   isDarkModeEnabled,
   onPress,
   label,
+  buttonFontColor,
   style = cancelButtonStyles,
 }) => {
   const themedButtonStyle = isDarkModeEnabled
@@ -293,7 +299,7 @@ export const CancelButton = ({
       accessibilityRole="button"
       accessibilityLabel={label}
     >
-      <Text style={style.text}>{label}</Text>
+      <Text style={[style.text, buttonFontColor && { textColor: buttonFontColor }]}>{label}</Text>
     </TouchableHighlight>
   );
 };
