@@ -12,7 +12,7 @@ A declarative cross-platform react-native date and time picker.
 
 This library exposes a cross-platform interface for showing the native date-picker and time-picker inside a modal, providing a unified user and developer experience.
 
-Under the hood this library is using [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
+Under the hood, this library is using [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
 
 ## Setup (for non-Expo projects)
 
@@ -233,8 +233,8 @@ Please make sure you're on the latest version of `react-native-modal-datetime-pi
   
 ### Why is the picker not visible/transparent on iOS?  
   
-Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker). 
-Also, double check that the picker light/dark theme is aligned with the OS one (e.g., don't "force" a theme using `isDarkModeEnabled`). 
+Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker). 
+Also, double-check that the picker light/dark theme is aligned with the OS one (e.g., don't "force" a theme using `isDarkModeEnabled`). 
 
 
 ### Why can't I show an alert after the picker has been hidden (on iOS)?
