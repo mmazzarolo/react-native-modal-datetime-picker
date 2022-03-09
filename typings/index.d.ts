@@ -32,11 +32,11 @@ export type PickerComponent = React.ComponentType<IOSNativeProps>;
 
 export interface DateTimePickerProps {
   /**
-   * The color of text on the buttons on iOS
+   * iOS buttons text color
    *
    * Default is '#007ff9'
    */
-  buttonFontColor?: string;
+  buttonTextColorIOS?: string;
   
   /**
    * The prop to locate cancel button for e2e testing
