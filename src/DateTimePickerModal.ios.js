@@ -24,6 +24,7 @@ export const HIGHLIGHT_COLOR_LIGHT = "#ebebeb";
 
 export class DateTimePickerModal extends React.PureComponent {
   static propTypes = {
+    buttonTextColorIOS: PropTypes.string,
     cancelButtonTestID: PropTypes.string,
     confirmButtonTestID: PropTypes.string,
     cancelTextIOS: PropTypes.string,
@@ -122,6 +123,7 @@ export class DateTimePickerModal extends React.PureComponent {
       onChange,
       onHide,
       backdropStyleIOS,
+      buttonTextColorIOS,
       ...otherProps
     } = this.props;
     const isAppearanceModuleAvailable = !!(
@@ -181,6 +183,7 @@ export class DateTimePickerModal extends React.PureComponent {
             isDarkModeEnabled={_isDarkModeEnabled}
             onPress={this.handleConfirm}
             label={confirmTextIOS}
+            buttonTextColorIOS={buttonTextColorIOS}
           />
         </View>
         <CancelButtonComponent
@@ -188,6 +191,7 @@ export class DateTimePickerModal extends React.PureComponent {
           isDarkModeEnabled={_isDarkModeEnabled}
           onPress={this.handleCancel}
           label={cancelTextIOS}
+          buttonTextColorIOS={buttonTextColorIOS}
         />
       </Modal>
     );
@@ -224,6 +228,7 @@ export const ConfirmButton = ({
   confirmButtonTestID,
   onPress,
   label,
+  buttonTextColorIOS,
   style = confirmButtonStyles,
 }) => {
   const themedButtonStyle = isDarkModeEnabled
@@ -243,7 +248,7 @@ export const ConfirmButton = ({
       accessibilityRole="button"
       accessibilityLabel={label}
     >
-      <Text style={style.text}>{label}</Text>
+      <Text style={[style.text, buttonTextColorIOS && { color: buttonTextColorIOS }]}>{label}</Text>
     </TouchableHighlight>
   );
 };
@@ -275,6 +280,7 @@ export const CancelButton = ({
   isDarkModeEnabled,
   onPress,
   label,
+  buttonTextColorIOS,
   style = cancelButtonStyles,
 }) => {
   const themedButtonStyle = isDarkModeEnabled
@@ -293,7 +299,7 @@ export const CancelButton = ({
       accessibilityRole="button"
       accessibilityLabel={label}
     >
-      <Text style={style.text}>{label}</Text>
+      <Text style={[style.text, buttonTextColorIOS && { color: buttonTextColorIOS }]}>{label}</Text>
     </TouchableHighlight>
   );
 };
