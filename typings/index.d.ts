@@ -37,7 +37,7 @@ export interface DateTimePickerProps {
    * Default is '#007ff9'
    */
   buttonTextColorIOS?: string;
-  
+
   /**
    * The prop to locate cancel button for e2e testing
    */
@@ -174,7 +174,7 @@ export interface DateTimePickerProps {
    *
    * @extends from DatePickerIOSProperties
    */
-  minuteInterval?: 1 | 2 | 3 | 4 | 5 | 6 | 10 | 12 | 15 | 20 | 30;
+  minuteInterval?: 1 | 2 | 3 | 4 | 5 | 6 | 10 | 12 | 15 | 20 | 30;
 
   /**
    * Timezone offset in minutes.
@@ -216,9 +216,12 @@ export interface DateTimePickerProps {
   testID?: string;
 }
 
+type NativePickerProps =
+  | Omit<IOSNativeProps, "value" | "mode">
+  | Omit<AndroidNativeProps, "value" | "mode">;
+
 export type ReactNativeModalDateTimePickerProps = DateTimePickerProps &
-  Omit<IOSNativeProps, "value" | "mode" | "onChange"> &
-  Omit<AndroidNativeProps, "value" | "mode" | "onChange">;
+  NativePickerProps;
 
 export default class DateTimePicker extends React.Component<
   ReactNativeModalDateTimePickerProps,
