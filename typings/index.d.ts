@@ -219,9 +219,6 @@ export interface DateTimePickerProps {
    * The style of the picker \ (iOS)
    */
   pickerStyleIOS?: ViewStyle;
-
-
-
 }
 
 export type ReactNativeModalDateTimePickerProps = DateTimePickerProps &
