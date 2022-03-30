@@ -214,6 +214,11 @@ export interface DateTimePickerProps {
    * Used to locate this view in end-to-end tests.
    */
   testID?: string;
+
+  /**
+   * The style of the picker \ (iOS)
+   */
+  pickerStyleIOS?: ViewStyle;
 }
 
 type NativePickerProps =
