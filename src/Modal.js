@@ -126,6 +126,7 @@ export class Modal extends Component {
     };
     return (
       <ReactNativeModal
+        supportedOrientations={ ['portrait', 'landscape']}
         transparent
         animationType="none"
         visible={isVisible}
