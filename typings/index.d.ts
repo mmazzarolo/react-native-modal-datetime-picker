@@ -12,17 +12,68 @@ import {
   AndroidNativeProps,
 } from "@react-native-community/datetimepicker";
 
-export type CancelButtonComponent = React.ComponentType<{
-  isDarkModeEnabled: boolean;
-  onPress(): void;
-  label: string;
-}>;
+export type CancelButtonStylePropTypes = {
+  button: {
+    borderRadius: number,
+    height: number | string,
+    marginBottom: number | string,
+    justifyContent: string,
+  },
+  buttonLight: {
+    backgroundColor: string,
+  },
+  buttonDark: {
+    backgroundColor: string,
+  },
+  text: {
+    padding: number | string,
+    textAlign: string,
+    color: string,
+    fontSize: number,
+    fontWeight: string,
+    backgroundColor: string,
+  },
+};
 
-export type ConfirmButtonComponent = React.ComponentType<{
-  isDisabled: boolean;
-  onPress(): void;
-  label: string;
-}>;
+export type ConfirmButtonStylePropTypes = {
+  button: {
+    borderTopWidth: number,
+    backgroundColor: string,
+    height: number | string,
+    justifyContent: string,
+  },
+  buttonLight: {
+    borderColor: string,
+  },
+  buttonDark: {
+    borderColor: string,
+  },
+  text: {
+    textAlign: string,
+    color: string,
+    fontSize: number,
+    fontWeight: string,
+    backgroundColor: string,
+  },
+};
+
+export type CancelButtonPropTypes = {
+  isDarkModeEnabled?: boolean,
+  cancelButtonTestID?: string,
+  onPress: () => void,
+  label: string,
+  buttonTextColorIOS?: string,
+  style?: CancelButtonStylePropTypes,
+};
+
+export type ConfirmButtonPropTypes = {
+  isDarkModeEnabled?: boolean,
+  confirmButtonTestID?: string,
+  onPress: () => void,
+  label: string,
+  buttonTextColorIOS?: string,
+  style?: ConfirmButtonStylePropTypes,
+};
 
 export type HeaderComponent = React.ComponentType<{
   label: string;
@@ -65,12 +116,12 @@ export interface DateTimePickerProps {
   /**
    * A custom component for the cancel button on iOS
    */
-  customCancelButtonIOS?: CancelButtonComponent;
+  customCancelButtonIOS?: React.FunctionComponent<CancelButtonPropTypes>;
 
   /**
    * A custom component for the confirm button on iOS
    */
-  customConfirmButtonIOS?: ConfirmButtonComponent;
+  customConfirmButtonIOS?: React.FunctionComponent<ConfirmButtonPropTypes>;
 
   /**
    * A custom component for the title container on iOS
@@ -232,3 +283,11 @@ export default class DateTimePicker extends React.Component<
   ReactNativeModalDateTimePickerProps,
   any
 > {}
+
+export class CancelButton extends React.Component<CancelButtonPropTypes> {}
+
+export class ConfirmButton extends React.Component<ConfirmButtonPropTypes> {}
+
+export const cancelButtonStyles: CancelButtonStylePropTypes;
+
+export const confirmButtonStyles: ConfirmButtonStylePropTypes;
