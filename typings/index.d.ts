@@ -284,10 +284,10 @@ export default class DateTimePicker extends React.Component<
   any
 > {}
 
-export class CancelButton extends React.Component<CancelButtonPropTypes> {}
-
-export class ConfirmButton extends React.Component<ConfirmButtonPropTypes> {}
-
 export const cancelButtonStyles: CancelButtonStylePropTypes;
 
+export const CancelButton: React.FunctionComponent<CancelButtonPropTypes>;
+
 export const confirmButtonStyles: ConfirmButtonStylePropTypes;
+
+export const ConfirmButton: React.FunctionComponent<ConfirmButtonPropTypes>;
