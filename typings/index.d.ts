@@ -75,6 +75,18 @@ export type ConfirmButtonPropTypes = {
   style?: ConfirmButtonStylePropTypes,
 };
 
+export type CustomCancelButtonPropTypes = {
+  isDarkModeEnabled?: boolean,
+  onPress: () => void,
+  label: string,
+};
+
+export type CustomConfirmButtonPropTypes = {
+  isDarkModeEnabled?: boolean,
+  onPress: () => void,
+  label: string,
+};
+
 export type HeaderComponent = React.ComponentType<{
   label: string;
 }>;
@@ -116,12 +128,12 @@ export interface DateTimePickerProps {
   /**
    * A custom component for the cancel button on iOS
    */
-  customCancelButtonIOS?: React.FunctionComponent<CancelButtonPropTypes>;
+  customCancelButtonIOS?: React.FunctionComponent<CustomCancelButtonPropTypes>;
 
   /**
    * A custom component for the confirm button on iOS
    */
-  customConfirmButtonIOS?: React.FunctionComponent<ConfirmButtonPropTypes>;
+  customConfirmButtonIOS?: React.FunctionComponent<CustomConfirmButtonPropTypes>;
 
   /**
    * A custom component for the title container on iOS
