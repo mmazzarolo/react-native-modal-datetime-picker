@@ -50,7 +50,7 @@ export class Modal extends Component {
   }
 
   componentWillUnmount() {
-    this._deviceEventEmitter.remove();
+    this._deviceEventEmitter?.remove();
     this._isMounted = false;
   }
 
