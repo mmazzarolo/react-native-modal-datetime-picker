@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Animated,
-  DeviceEventEmitter,
-  Dimensions,
   Easing,
   Modal as ReactNativeModal,
   StyleSheet,
   TouchableWithoutFeedback,
+  useWindowDimensions,
 } from "react-native";
 
 const MODAL_ANIM_DURATION = 300;
@@ -29,28 +28,19 @@ export class Modal extends Component {
 
   state = {
     isVisible: this.props.isVisible,
-    deviceWidth: Dimensions.get("window").width,
-    deviceHeight: Dimensions.get("window").height,
   };
 
   animVal = new Animated.Value(0);
   _isMounted = false;
-
-  static _deviceEventEmitter = null;
 
   componentDidMount() {
     this._isMounted = true;
     if (this.state.isVisible) {
       this.show();
     }
-    this._deviceEventEmitter = DeviceEventEmitter.addListener(
-      "didUpdateDimensions",
-      this.handleDimensionsUpdate
-    );
   }
 
   componentWillUnmount() {
-    this._deviceEventEmitter.remove();
     this._isMounted = false;
   }
 
@@ -61,17 +51,6 @@ export class Modal extends Component {
       this.hide();
     }
   }
-
-  handleDimensionsUpdate = (dimensionsUpdate) => {
-    const deviceWidth = dimensionsUpdate.window.width;
-    const deviceHeight = dimensionsUpdate.window.height;
-    if (
-      deviceWidth !== this.state.deviceWidth ||
-      deviceHeight !== this.state.deviceHeight
-    ) {
-      this.setState({ deviceWidth, deviceHeight });
-    }
-  };
 
   show = () => {
     this.setState({ isVisible: true });
@@ -106,7 +85,8 @@ export class Modal extends Component {
       backdropStyle,
       ...otherProps
     } = this.props;
-    const { deviceHeight, deviceWidth, isVisible } = this.state;
+    const { isVisible } = this.state;
+    const { height, width } = useWindowDimensions();
     const backdropAnimatedStyle = {
       opacity: this.animVal.interpolate({
         inputRange: [0, 1],
@@ -118,7 +98,7 @@ export class Modal extends Component {
         {
           translateY: this.animVal.interpolate({
             inputRange: [0, 1],
-            outputRange: [deviceHeight, 0],
+            outputRange: [height, 0],
             extrapolate: "clamp",
           }),
         },
@@ -136,7 +116,7 @@ export class Modal extends Component {
             style={[
               styles.backdrop,
               backdropAnimatedStyle,
-              { width: deviceWidth, height: deviceHeight },
+              { width, height },
               backdropStyle,
             ]}
           />
