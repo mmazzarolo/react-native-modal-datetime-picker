@@ -92,7 +92,7 @@ export default Example;
 👉 Please notice that **all the [`@react-native-community/react-native-datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) props are supported** as well!
 
 | Name                      | Type      | Default      | Description                                                                                         |
-|---------------------------|-----------| ------------ |-----------------------------------------------------------------------------------------------------|
+| ------------------------- | --------- | ------------ | --------------------------------------------------------------------------------------------------- |
 | `buttonTextColorIOS`      | string    |              | The color of the confirm button texts (iOS)                                                         |
 | `backdropStyleIOS`        | style     |              | The style of the picker backdrop view style (iOS)                                                   |
 | `cancelButtonTestID`      | string    |              | Used to locate cancel button in end-to-end tests                                                    |
@@ -115,13 +115,16 @@ export default Example;
 | `onHide`                  | func      | () => null   | Called after the hide animation                                                                     |
 | `pickerContainerStyleIOS` | style     |              | The style of the picker container (iOS)                                                             |
 | `pickerStyleIOS`          | style     |              | The style of the picker component wrapper (iOS)                                                     |
+| `pickerComponentStyleIOS` | style     |              | The style applied to the actual picker component - this can be either native iOS picker             |
+
+or a custom one if `customPickerIOS` was provided
 
 ## Frequently Asked Questions
 
-This repo is only maintained by me, and unfortunately I don't have enough time for dedicated support & question. 
+This repo is only maintained by me, and unfortunately I don't have enough time for dedicated support & question.
 If you're experiencing issues, please check the FAQs below.  
 For questions and support, please start [try starting a discussion](https://github.com/mmazzarolo/react-native-modal-datetime-picker/discussions) or try asking it on [StackOverflow](stackoverflow).  
-⚠️ __Please use [the GitHub issues](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues) only for well-described and reproducible bugs. Question/support issues will be closed.__
+⚠️ **Please use [the GitHub issues](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues) only for well-described and reproducible bugs. Question/support issues will be closed.**
 
 ### The component is not working as expected, what should I do?
 
@@ -186,11 +189,10 @@ const [date, setDate] = useState('');
 </p>
 </details>
 
-  
 ### How can I allow picking only specific dates?
-  
-You can't — [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) doesn't allow you to do so. That said, you can allow only "range" of dates by setting a minimum and maximum date. See below for more info.  
-  
+
+You can't — [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker) doesn't allow you to do so. That said, you can allow only "range" of dates by setting a minimum and maximum date. See below for more info.
+
 ### How can I set a minimum and/or maximum date?
 
 You can use the [`minimumDate`](https://github.com/react-native-datetimepicker/datetimepicker#minimumdate-optional) and [`maximumDate`](https://github.com/react-native-datetimepicker/datetimepicker#maximumdate-optional) props from [`@react-native-community/datetimepicker`](https://github.com/react-native-community/react-native-datetimepicker).
@@ -231,12 +233,11 @@ NSString *currentLanguage = [[NSLocale preferredLanguages] firstObject];
 
 Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of the [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker).
 [We already closed several iOS 14 issues that were all caused by outdated/cached versions of the community datetimepicker](https://github.com/mmazzarolo/react-native-modal-datetime-picker/issues?q=%22ios+14%22).
-  
-### Why is the picker not visible/transparent on iOS?  
-  
-Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker). 
-Also, double-check that the picker light/dark theme is aligned with the OS one (e.g., don't "force" a theme using `isDarkModeEnabled`). 
 
+### Why is the picker not visible/transparent on iOS?
+
+Please make sure you're on the latest version of `react-native-modal-datetime-picker` and of [`@react-native-community/datetimepicker`](https://github.com/react-native-community/datetimepicker).
+Also, double-check that the picker light/dark theme is aligned with the OS one (e.g., don't "force" a theme using `isDarkModeEnabled`).
 
 ### Why can't I show an alert after the picker has been hidden (on iOS)?
 
