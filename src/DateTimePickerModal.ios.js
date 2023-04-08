@@ -187,7 +187,8 @@ export class DateTimePickerModal extends React.PureComponent {
             // Recent versions @react-native-community/datetimepicker (at least starting with 6.7.0)
             // have a peculiar iOS behaviour where sometimes, for example in react-native Modal,
             // the inline picker is not rendered correctly if in datetime mode. Explicitly setting the height
-            // of the native picker to 370 fixes this issue.
+            // of the native picker to 370 fixes this issue. This is dependent on the other styles applied to the picker
+            // and may need to be adjusted if the other styles are changed.
             style={{
               height:
                 !customPickerIOS &&
