@@ -77,7 +77,7 @@ const Modal = ({
         toValue: 1,
       }).start();
     } else if (visibility) {
-      Animated.timing(this.animVal, {
+      Animated.timing(animVal, {
         easing: Easing.inOut(Easing.quad),
         // Using native driver in the modal makes the content flash
         useNativeDriver: false,
