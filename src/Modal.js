@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import {
   Animated,
@@ -44,11 +44,9 @@ const Modal = ({
   onHide,
   ...otherProps
 }) => {
-  const animVal = new Animated.Value(0);
-  const { state, setState } = useState({
-    isVisible: isVisible,
-    isMounted: false,
-  });
+  const animVal = useRef(new Animated.Value(0)).current;
+  const visibility = useRef(isVisible);
+  const isMounted = useRef(false);
   const { height, width } = useWindowDimensions();
   const backdropAnimatedStyle = {
     opacity: animVal.interpolate({
@@ -69,12 +67,8 @@ const Modal = ({
   };
 
   useEffect(() => {
-    setState({
-      ...state,
-      isMounted: true,
-    });
-    if (state.isVisible) {
-      setState({ isVisible: true });
+    if (!visibility) {
+      visibility.current = true;
       Animated.timing(animVal, {
         easing: Easing.inOut(Easing.quad),
         // Using native driver in the modal makes the content flash
@@ -82,28 +76,7 @@ const Modal = ({
         duration: MODAL_ANIM_DURATION,
         toValue: 1,
       }).start();
-    }
-
-    return () => {
-      setState({
-        ...state,
-        isMounted: false,
-      });
-    };
-    // eslint-disable-next-line react-app/react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (isVisible) {
-      setState({ isVisible: true });
-      Animated.timing(animVal, {
-        easing: Easing.inOut(Easing.quad),
-        // Using native driver in the modal makes the content flash
-        useNativeDriver: false,
-        duration: MODAL_ANIM_DURATION,
-        toValue: 1,
-      }).start();
-    } else if (!isVisible) {
+    } else if (visibility) {
       Animated.timing(this.animVal, {
         easing: Easing.inOut(Easing.quad),
         // Using native driver in the modal makes the content flash
@@ -111,19 +84,20 @@ const Modal = ({
         duration: MODAL_ANIM_DURATION,
         toValue: 0,
       }).start(() => {
-        if (state.isMounted) {
-          setState({ isVisible: false }, onHide);
+        if (isMounted) {
+          visibility.current = false;
+          onHide();
         }
       });
     }
     // eslint-disable-next-line react-app/react-hooks/exhaustive-deps
-  }, [isVisible]);
+  }, [visibility]);
 
   return (
     <ReactNativeModal
       transparent
       animationType="none"
-      visible={state.isVisible}
+      visible={visibility}
       {...otherProps}
     >
       <TouchableWithoutFeedback onPress={onBackdropPress}>
@@ -136,7 +110,7 @@ const Modal = ({
           ]}
         />
       </TouchableWithoutFeedback>
-      {state.isVisible && (
+      {isVisible && (
         <Animated.View
           style={[styles.content, contentAnimatedStyle, contentStyle]}
           pointerEvents="box-none"
