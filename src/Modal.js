@@ -90,7 +90,7 @@ const Modal = ({
         }
       });
     }
-  }, [visibility]);
+  }, [animVal, onHide, visibility]);
 
   return (
     <ReactNativeModal
