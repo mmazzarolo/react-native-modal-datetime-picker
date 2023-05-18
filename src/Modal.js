@@ -90,7 +90,6 @@ const Modal = ({
         }
       });
     }
-    // eslint-disable-next-line react-app/react-hooks/exhaustive-deps
   }, [visibility]);
 
   return (
