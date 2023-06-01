@@ -211,7 +211,7 @@ export interface DateTimePickerProps {
    *
    * Default is 'date'
    */
-  mode?: "date" | "time" | "datetime";
+  mode?: "date" | "time" | "datetime" | "monthyears" ;
 
   /**
    * Additional modal props for iOS.
