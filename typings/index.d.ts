@@ -269,9 +269,8 @@ export interface DateTimePickerProps {
 
   /**
    * Handler called when the user presses the cancel button
-   * Passes the current selected date
    */
-  onCancel(date: Date): void;
+  onCancel(): void;
 
   /**
    * Called when the underlying modal finishes its' closing animation
