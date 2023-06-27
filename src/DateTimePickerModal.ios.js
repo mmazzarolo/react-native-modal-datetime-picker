@@ -318,7 +318,7 @@ export const CancelButton = ({
   return (
     <TouchableHighlight
       testID={cancelButtonTestID}
-      style={[style.button, themedButtonStyle]}
+      style={[themedButtonStyle, style.button]}
       underlayColor={underlayColor}
       onPress={onPress}
       accessible={true}
