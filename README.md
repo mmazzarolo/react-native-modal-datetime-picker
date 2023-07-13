@@ -33,7 +33,7 @@ Please notice that the `@react-native-community/datetimepicker` package is a nat
 If your project is using [Expo](https://expo.io/), install the library and the community date/time picker using the [Expo CLI](https://docs.expo.io/versions/latest/workflow/expo-cli/):
 
 ```bash
-expo install react-native-modal-datetime-picker @react-native-community/datetimepicker
+npx expo install react-native-modal-datetime-picker @react-native-community/datetimepicker
 ```
 
 To ensure the picker theme respects the device theme, you should also configure the appearance styles in your `app.json` this way:
