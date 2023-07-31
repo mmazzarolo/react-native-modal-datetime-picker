@@ -6,6 +6,7 @@ import {
   TouchableHighlight,
   View,
   Appearance,
+  SafeAreaView,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Modal from "./Modal";
@@ -275,6 +276,7 @@ export const ConfirmButton = ({
       >
         {label}
       </Text>
+      <SafeAreaView />
     </TouchableHighlight>
   );
 };
