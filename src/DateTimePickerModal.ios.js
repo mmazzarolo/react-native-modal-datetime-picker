@@ -6,7 +6,6 @@ import {
   TouchableHighlight,
   View,
   Appearance,
-  SafeAreaView,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Modal from "./Modal";
@@ -148,74 +147,72 @@ export class DateTimePickerModal extends React.PureComponent {
       : pickerStyles.containerLight;
 
     return (
-      <SafeAreaView >
-        <Modal
-          isVisible={isVisible}
-          contentStyle={[pickerStyles.modal, modalStyleIOS]}
-          onBackdropPress={this.handleCancel}
-          onHide={this.handleHide}
-          backdropStyle={backdropStyleIOS}
-          {...modalPropsIOS}
+      <Modal
+        isVisible={isVisible}
+        contentStyle={[pickerStyles.modal, modalStyleIOS]}
+        onBackdropPress={this.handleCancel}
+        onHide={this.handleHide}
+        backdropStyle={backdropStyleIOS}
+        {...modalPropsIOS}
+      >
+        <View
+          style={[
+            pickerStyles.container,
+            themedContainerStyle,
+            pickerContainerStyleIOS,
+          ]}
         >
+          {HeaderComponent && <HeaderComponent />}
+          {!HeaderComponent && display === "inline" && (
+            <View style={pickerStyles.headerFiller} />
+          )}
           <View
             style={[
-              pickerStyles.container,
-              themedContainerStyle,
-              pickerContainerStyleIOS,
+              display === "inline"
+                ? pickerStyles.pickerInline
+                : pickerStyles.pickerSpinner,
+              pickerStyleIOS,
             ]}
           >
-            {HeaderComponent && <HeaderComponent />}
-            {!HeaderComponent && display === "inline" && (
-              <View style={pickerStyles.headerFiller} />
-            )}
-            <View
+            <PickerComponent
+              display={display || "spinner"}
+              {...otherProps}
+              value={this.state.currentDate}
+              onChange={this.handleChange}
+              // Recent versions @react-native-community/datetimepicker (at least starting with 6.7.0)
+              // have a peculiar iOS behaviour where sometimes, for example in react-native Modal,
+              // the inline picker is not rendered correctly if in datetime mode. Explicitly setting the height
+              // of the native picker to 370 fixes this issue. This is dependent on the other styles applied to the picker
+              // and may need to be adjusted if the other styles are changed.
               style={[
-                display === "inline"
-                  ? pickerStyles.pickerInline
-                  : pickerStyles.pickerSpinner,
-                pickerStyleIOS,
+                {
+                  height:
+                    !customPickerIOS &&
+                    otherProps.mode === "datetime" &&
+                    display === "inline"
+                      ? 370
+                      : undefined,
+                },
+                pickerComponentStyleIOS,
               ]}
-            >
-              <PickerComponent
-                display={display || "spinner"}
-                {...otherProps}
-                value={this.state.currentDate}
-                onChange={this.handleChange}
-                // Recent versions @react-native-community/datetimepicker (at least starting with 6.7.0)
-                // have a peculiar iOS behaviour where sometimes, for example in react-native Modal,
-                // the inline picker is not rendered correctly if in datetime mode. Explicitly setting the height
-                // of the native picker to 370 fixes this issue. This is dependent on the other styles applied to the picker
-                // and may need to be adjusted if the other styles are changed.
-                style={[
-                  {
-                    height:
-                      !customPickerIOS &&
-                      otherProps.mode === "datetime" &&
-                      display === "inline"
-                        ? 370
-                        : undefined,
-                  },
-                  pickerComponentStyleIOS,
-                ]}
-              />
-            </View>
-            <ConfirmButtonComponent
-              confirmButtonTestID={confirmButtonTestID}
-              isDarkModeEnabled={_isDarkModeEnabled}
-              onPress={this.handleConfirm}
-              label={confirmTextIOS}
-              buttonTextColorIOS={buttonTextColorIOS}
             />
           </View>
-          <CancelButtonComponent
-            cancelButtonTestID={cancelButtonTestID}
+          <ConfirmButtonComponent
+            confirmButtonTestID={confirmButtonTestID}
             isDarkModeEnabled={_isDarkModeEnabled}
-            onPress={this.handleCancel}
-            label={cancelTextIOS}
+            onPress={this.handleConfirm}
+            label={confirmTextIOS}
             buttonTextColorIOS={buttonTextColorIOS}
           />
-        </Modal>
-      </SafeAreaView>
+        </View>
+        <CancelButtonComponent
+          cancelButtonTestID={cancelButtonTestID}
+          isDarkModeEnabled={_isDarkModeEnabled}
+          onPress={this.handleCancel}
+          label={cancelTextIOS}
+          buttonTextColorIOS={buttonTextColorIOS}
+        />
+      </Modal>
     );
   }
 }
@@ -229,6 +226,7 @@ const pickerStyles = StyleSheet.create({
     borderRadius: BORDER_RADIUS,
     marginBottom: 8,
     overflow: "hidden",
+    paddingBottom: 8,
   },
   pickerSpinner: {
     marginBottom: 8,
