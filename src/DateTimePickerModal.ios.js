@@ -221,7 +221,7 @@ const pickerStyles = StyleSheet.create({
   modal: {
     justifyContent: "flex-end",
     margin: 10,
-    marginBottom: isIphoneX() ? 30 : 10,
+    marginBottom: isIphoneX() ? 34 : 10,
   },
   container: {
     borderRadius: BORDER_RADIUS,
