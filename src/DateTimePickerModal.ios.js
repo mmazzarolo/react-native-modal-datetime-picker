@@ -221,6 +221,7 @@ const pickerStyles = StyleSheet.create({
   modal: {
     justifyContent: "flex-end",
     margin: 10,
+    marginBottom: isIphoneX() ? 34 : 10,
   },
   container: {
     borderRadius: BORDER_RADIUS,
@@ -341,7 +342,6 @@ export const cancelButtonStyles = StyleSheet.create({
   button: {
     borderRadius: BORDER_RADIUS,
     height: 57,
-    marginBottom: isIphoneX() ? 20 : 0,
     justifyContent: "center",
   },
   buttonLight: {
