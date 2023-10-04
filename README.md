@@ -167,7 +167,7 @@ const [isVisible, setVisible] = useState(false);
 const [date, setDate] = useState('');
 
 <TouchableOpacity
-  activeOpaticy={1}
+  activeOpacity={1}
   onPress={() => setVisible(true)}>
   <Input
     value={value}
