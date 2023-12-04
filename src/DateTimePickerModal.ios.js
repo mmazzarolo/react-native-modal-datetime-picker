@@ -72,7 +72,14 @@ export class DateTimePickerModal extends React.PureComponent {
 
   static getDerivedStateFromProps(props, state) {
     if (props.isVisible && !state.isPickerVisible) {
-      return { currentDate: props.date, isPickerVisible: true };
+      if (props.date < props.minimumDate) {
+        console.warn(
+          "The date property shouldn't be prior to be the minimum date"
+        );
+      }
+      const smallerDateValue =
+        props.date >= props.minimumDate ? props.date : props.minimumDate;
+      return { currentDate: smallerDateValue, isPickerVisible: true };
     }
     return null;
   }
