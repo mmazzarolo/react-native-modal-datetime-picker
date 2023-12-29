@@ -4,14 +4,18 @@ import {
   Animated,
   DeviceEventEmitter,
   Dimensions,
-  Easing,
   Modal as ReactNativeModal,
   StyleSheet,
   TouchableWithoutFeedback,
 } from "react-native";
 
-const MODAL_ANIM_DURATION = 300;
 const MODAL_BACKDROP_OPACITY = 0.4;
+const ANIMATION_CONFIG = {
+  damping: 500,
+  stiffness: 1000,
+  mass: 3,
+  overshootClamping: true,
+};
 
 export class Modal extends Component {
   static propTypes = {
@@ -75,21 +79,19 @@ export class Modal extends Component {
 
   show = () => {
     this.setState({ isVisible: true });
-    Animated.timing(this.animVal, {
-      easing: Easing.inOut(Easing.quad),
+    Animated.spring(this.animVal, {
+      ...ANIMATION_CONFIG,
       // Using native driver in the modal makes the content flash
       useNativeDriver: false,
-      duration: MODAL_ANIM_DURATION,
       toValue: 1,
     }).start();
   };
 
   hide = () => {
-    Animated.timing(this.animVal, {
-      easing: Easing.inOut(Easing.quad),
+    Animated.spring(this.animVal, {
+      ...ANIMATION_CONFIG,
       // Using native driver in the modal makes the content flash
       useNativeDriver: false,
-      duration: MODAL_ANIM_DURATION,
       toValue: 0,
     }).start(() => {
       if (this._isMounted) {
