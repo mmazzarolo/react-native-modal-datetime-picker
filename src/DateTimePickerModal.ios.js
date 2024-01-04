@@ -41,6 +41,7 @@ export class DateTimePickerModal extends React.PureComponent {
     pickerContainerStyleIOS: PropTypes.any,
     pickerStyleIOS: PropTypes.any,
     backdropStyleIOS: PropTypes.any,
+    pickerComponentStyleIOS: PropTypes.any,
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     onChange: PropTypes.func,
@@ -59,6 +60,7 @@ export class DateTimePickerModal extends React.PureComponent {
     pickerContainerStyleIOS: {},
     pickerStyleIOS: {},
     backdropStyleIOS: {},
+    pickerComponentStyleIOS: {},
   };
 
   state = {
@@ -118,6 +120,7 @@ export class DateTimePickerModal extends React.PureComponent {
       modalPropsIOS,
       pickerContainerStyleIOS,
       pickerStyleIOS,
+      pickerComponentStyleIOS,
       onCancel,
       onConfirm,
       onChange,
@@ -176,6 +179,22 @@ export class DateTimePickerModal extends React.PureComponent {
               {...otherProps}
               value={this.state.currentDate}
               onChange={this.handleChange}
+              // Recent versions @react-native-community/datetimepicker (at least starting with 6.7.0)
+              // have a peculiar iOS behaviour where sometimes, for example in react-native Modal,
+              // the inline picker is not rendered correctly if in datetime mode. Explicitly setting the height
+              // of the native picker to 370 fixes this issue. This is dependent on the other styles applied to the picker
+              // and may need to be adjusted if the other styles are changed.
+              style={[
+                {
+                  height:
+                    !customPickerIOS &&
+                    otherProps.mode === "datetime" &&
+                    display === "inline"
+                      ? 370
+                      : undefined,
+                },
+                pickerComponentStyleIOS,
+              ]}
             />
           </View>
           <ConfirmButtonComponent
@@ -202,6 +221,7 @@ const pickerStyles = StyleSheet.create({
   modal: {
     justifyContent: "flex-end",
     margin: 10,
+    marginBottom: isIphoneX() ? 34 : 10,
   },
   container: {
     borderRadius: BORDER_RADIUS,
@@ -299,7 +319,7 @@ export const CancelButton = ({
   return (
     <TouchableHighlight
       testID={cancelButtonTestID}
-      style={[style.button, themedButtonStyle]}
+      style={[themedButtonStyle, style.button]}
       underlayColor={underlayColor}
       onPress={onPress}
       accessible={true}
@@ -322,7 +342,6 @@ export const cancelButtonStyles = StyleSheet.create({
   button: {
     borderRadius: BORDER_RADIUS,
     height: 57,
-    marginBottom: isIphoneX() ? 20 : 0,
     justifyContent: "center",
   },
   buttonLight: {

@@ -12,17 +12,80 @@ import {
   AndroidNativeProps,
 } from "@react-native-community/datetimepicker";
 
-export type CancelButtonComponent = React.ComponentType<{
-  isDarkModeEnabled: boolean;
-  onPress(): void;
-  label: string;
-}>;
+export type CancelButtonStylePropTypes = {
+  button: {
+    borderRadius: number,
+    height: number | string,
+    marginBottom: number | string,
+    justifyContent: string,
+  },
+  buttonLight: {
+    backgroundColor: string,
+  },
+  buttonDark: {
+    backgroundColor: string,
+  },
+  text: {
+    padding: number | string,
+    textAlign: string,
+    color: string,
+    fontSize: number,
+    fontWeight: string,
+    backgroundColor: string,
+  },
+};
 
-export type ConfirmButtonComponent = React.ComponentType<{
-  isDisabled: boolean;
-  onPress(): void;
-  label: string;
-}>;
+export type ConfirmButtonStylePropTypes = {
+  button: {
+    borderTopWidth: number,
+    backgroundColor: string,
+    height: number | string,
+    justifyContent: string,
+  },
+  buttonLight: {
+    borderColor: string,
+  },
+  buttonDark: {
+    borderColor: string,
+  },
+  text: {
+    textAlign: string,
+    color: string,
+    fontSize: number,
+    fontWeight: string,
+    backgroundColor: string,
+  },
+};
+
+export type CancelButtonPropTypes = {
+  isDarkModeEnabled?: boolean,
+  cancelButtonTestID?: string,
+  onPress: () => void,
+  label: string,
+  buttonTextColorIOS?: string,
+  style?: CancelButtonStylePropTypes,
+};
+
+export type ConfirmButtonPropTypes = {
+  isDarkModeEnabled?: boolean,
+  confirmButtonTestID?: string,
+  onPress: () => void,
+  label: string,
+  buttonTextColorIOS?: string,
+  style?: ConfirmButtonStylePropTypes,
+};
+
+export type CustomCancelButtonPropTypes = {
+  isDarkModeEnabled?: boolean,
+  onPress: () => void,
+  label: string,
+};
+
+export type CustomConfirmButtonPropTypes = {
+  isDarkModeEnabled?: boolean,
+  onPress: () => void,
+  label: string,
+};
 
 export type HeaderComponent = React.ComponentType<{
   label: string;
@@ -65,12 +128,12 @@ export interface DateTimePickerProps {
   /**
    * A custom component for the cancel button on iOS
    */
-  customCancelButtonIOS?: CancelButtonComponent;
+  customCancelButtonIOS?: React.FunctionComponent<CustomCancelButtonPropTypes>;
 
   /**
    * A custom component for the confirm button on iOS
    */
-  customConfirmButtonIOS?: ConfirmButtonComponent;
+  customConfirmButtonIOS?: React.FunctionComponent<CustomConfirmButtonPropTypes>;
 
   /**
    * A custom component for the title container on iOS
@@ -96,6 +159,12 @@ export interface DateTimePickerProps {
    * The style of the picker container (iOS)
    */
   pickerContainerStyleIOS?: ViewStyle;
+
+  /**
+   * The style applied to the actual picker component - this can be
+   * either a native iOS picker or a custom one if `customPickerIOS` was provided
+   */
+  pickerComponentStyleIOS?: ViewStyle;
 
   /**
    * Initial selected date/time
@@ -200,9 +269,8 @@ export interface DateTimePickerProps {
 
   /**
    * Handler called when the user presses the cancel button
-   * Passes the current selected date
    */
-  onCancel(date: Date): void;
+  onCancel(): void;
 
   /**
    * Called when the underlying modal finishes its' closing animation
@@ -222,8 +290,8 @@ export interface DateTimePickerProps {
 }
 
 type NativePickerProps =
-  | Omit<IOSNativeProps, "value" | "mode">
-  | Omit<AndroidNativeProps, "value" | "mode">;
+  | Omit<IOSNativeProps, "value" | "mode" | "onChange">
+  | Omit<AndroidNativeProps, "value" | "mode" | "onChange">;
 
 export type ReactNativeModalDateTimePickerProps = DateTimePickerProps &
   NativePickerProps;
@@ -232,3 +300,11 @@ export default class DateTimePicker extends React.Component<
   ReactNativeModalDateTimePickerProps,
   any
 > {}
+
+export const cancelButtonStyles: CancelButtonStylePropTypes;
+
+export const CancelButton: React.FunctionComponent<CancelButtonPropTypes>;
+
+export const confirmButtonStyles: ConfirmButtonStylePropTypes;
+
+export const ConfirmButton: React.FunctionComponent<ConfirmButtonPropTypes>;
