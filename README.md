@@ -5,7 +5,7 @@
 
 A declarative cross-platform react-native date and time picker.
 
-<p align="center">!
+<p align="center">
 
 <img src="./.github/images/datetimepicker-android.gif" height="400" />
 <img src="./.github/images/datetimepicker-ios.gif" height="400" />
