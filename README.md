@@ -5,7 +5,8 @@
 
 A declarative cross-platform react-native date and time picker.
 
-<p align="center">
+<p align="center">![image](https://github.com/mmazzarolo/react-native-modal-datetime-picker/assets/54728889/84780908-4132-49da-a429-d792a6ced278)
+
 <img src="./.github/images/datetimepicker-android.gif" height="400" />
 <img src="./.github/images/datetimepicker-ios.gif" height="400" />
 </p>
@@ -53,7 +54,7 @@ Refer to the [Appearance](https://docs.expo.io/versions/latest/sdk/appearance/) 
 ```javascript
 import React, { useState } from "react";
 import { Button, View } from "react-native";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+import DateTimePicker from "react-native-modal-datetime-picker";
 
 const Example = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -74,7 +75,7 @@ const Example = () => {
   return (
     <View>
       <Button title="Show Date Picker" onPress={showDatePicker} />
-      <DateTimePickerModal
+      <DateTimePicker
         isVisible={isDatePickerVisible}
         mode="date"
         onConfirm={handleConfirm}
