@@ -34,6 +34,7 @@ export class DateTimePickerModal extends React.PureComponent {
     customHeaderIOS: PropTypes.elementType,
     customPickerIOS: PropTypes.elementType,
     date: PropTypes.instanceOf(Date),
+    fullWindowOverlayModal: PropTypes.bool,
     modalPropsIOS: PropTypes.any,
     modalStyleIOS: PropTypes.any,
     isDarkModeEnabled: PropTypes.bool,
@@ -114,6 +115,7 @@ export class DateTimePickerModal extends React.PureComponent {
       customPickerIOS,
       date,
       display,
+      fullWindowOverlayModal,
       isDarkModeEnabled,
       isVisible,
       modalStyleIOS,
@@ -153,6 +155,7 @@ export class DateTimePickerModal extends React.PureComponent {
         onBackdropPress={this.handleCancel}
         onHide={this.handleHide}
         backdropStyle={backdropStyleIOS}
+        fullWindowOverlayModal
         {...modalPropsIOS}
       >
         <View

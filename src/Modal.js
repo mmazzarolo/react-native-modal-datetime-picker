@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FullWindowOverlay } from "react-native-screens";
 import PropTypes from "prop-types";
 import {
   Animated,
@@ -19,12 +20,14 @@ export class Modal extends Component {
     onHide: PropTypes.func,
     isVisible: PropTypes.bool,
     contentStyle: PropTypes.any,
+    fullWindowOverlayModal: PropTypes.bool,
   };
 
   static defaultProps = {
     onBackdropPress: () => null,
     onHide: () => null,
     isVisible: false,
+    fullWindowOverlayModal: true,
   };
 
   state = {
@@ -104,6 +107,7 @@ export class Modal extends Component {
       onBackdropPress,
       contentStyle,
       backdropStyle,
+      fullWindowOverlayModal,
       ...otherProps
     } = this.props;
     const { deviceHeight, deviceWidth, isVisible } = this.state;
@@ -124,13 +128,21 @@ export class Modal extends Component {
         },
       ],
     };
+
+    const Modal = fullWindowOverlayModal ? FullWindowOverlay : ReactNativeModal;
+    const modalProps = fullWindowOverlayModal
+      ? {}
+      : {
+          transparent: true,
+          animationType: "none",
+          visible: isVisible,
+          ...otherProps,
+        };
+
+    if (fullWindowOverlayModal && !isVisible) return null;
+
     return (
-      <ReactNativeModal
-        transparent
-        animationType="none"
-        visible={isVisible}
-        {...otherProps}
-      >
+      <Modal {...modalProps}>
         <TouchableWithoutFeedback onPress={onBackdropPress}>
           <Animated.View
             style={[
@@ -149,7 +161,7 @@ export class Modal extends Component {
             {children}
           </Animated.View>
         )}
-      </ReactNativeModal>
+      </Modal>
     );
   }
 }
