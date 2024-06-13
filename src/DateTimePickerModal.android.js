@@ -6,12 +6,20 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 const areEqual = (prevProps, nextProps) => {
   return (
     prevProps.isVisible === nextProps.isVisible &&
-    prevProps.date.getTime() === nextProps.date.getTime()
+    prevProps.date?.getTime() === nextProps.date?.getTime()
   );
 };
 
 const DateTimePickerModal = memo(
-  ({ date, mode, isVisible, onCancel, onConfirm, onHide, ...otherProps }) => {
+  ({
+    date = new Date(),
+    mode,
+    isVisible = false,
+    onCancel,
+    onConfirm,
+    onHide = () => {},
+    ...otherProps
+  }) => {
     const currentDateRef = useRef(date);
     const [currentMode, setCurrentMode] = useState(null);
 
@@ -70,12 +78,6 @@ DateTimePickerModal.propTypes = {
   onHide: PropTypes.func,
   maximumDate: PropTypes.instanceOf(Date),
   minimumDate: PropTypes.instanceOf(Date),
-};
-
-DateTimePickerModal.defaultProps = {
-  date: new Date(),
-  isVisible: false,
-  onHide: () => {},
 };
 
 export { DateTimePickerModal };
