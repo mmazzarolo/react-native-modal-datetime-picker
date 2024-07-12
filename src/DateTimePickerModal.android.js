@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 // Memo workaround for https://github.com/react-native-community/datetimepicker/issues/54
-// Change areEqual function
 const areEqual = (prevProps, nextProps) => {
   if (prevProps.isVisible !== nextProps.isVisible) {
     return false;
@@ -19,7 +18,7 @@ const areEqual = (prevProps, nextProps) => {
 
   return true;
 };
-//Add default props wighout DateTimePickerModal.defaultProps
+
 const DateTimePickerModal = memo(
   ({
     date = new Date(),
