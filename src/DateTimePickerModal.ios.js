@@ -136,6 +136,10 @@ export class DateTimePickerModal extends React.PureComponent {
       isDarkModeEnabled === undefined && isAppearanceModuleAvailable
         ? Appearance.getColorScheme() === "dark"
         : isDarkModeEnabled || false;
+    // If not using a custom picker component, pass themeVariant to the DateTimePicker
+    if (!customPickerIOS) {
+      otherProps.themeVariant = _isDarkModeEnabled ? 'dark' : 'light';
+    }
 
     const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;
