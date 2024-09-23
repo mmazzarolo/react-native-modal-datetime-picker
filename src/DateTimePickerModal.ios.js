@@ -126,7 +126,8 @@ export class DateTimePickerModal extends React.PureComponent {
       onChange,
       onHide,
       backdropStyleIOS,
-      buttonTextColorIOS,
+      confirmButtonTextColorIOS,
+      cancelButtonTextColorIOS,
       ...otherProps
     } = this.props;
     const isAppearanceModuleAvailable = !!(
@@ -202,7 +203,7 @@ export class DateTimePickerModal extends React.PureComponent {
             isDarkModeEnabled={_isDarkModeEnabled}
             onPress={this.handleConfirm}
             label={confirmTextIOS}
-            buttonTextColorIOS={buttonTextColorIOS}
+            buttonTextColorIOS={confirmButtonTextColorIOS}
           />
         </View>
         <CancelButtonComponent
@@ -210,7 +211,7 @@ export class DateTimePickerModal extends React.PureComponent {
           isDarkModeEnabled={_isDarkModeEnabled}
           onPress={this.handleCancel}
           label={cancelTextIOS}
-          buttonTextColorIOS={buttonTextColorIOS}
+          buttonTextColorIOS={cancelButtonTextColorIOS}
         />
       </Modal>
     );
