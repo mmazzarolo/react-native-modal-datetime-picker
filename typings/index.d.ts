@@ -274,9 +274,9 @@ export interface DateTimePickerProps {
 
   /**
    * Called when the underlying modal finishes its' closing animation
-   * after Confirm was pressed.
+   * after Confirm or Cancel was pressed.
    */
-  onHide?(date: Date): void;
+  onHide?(didPressConfirm: boolean, currentDate?: Date): void;
 
   /**
    * Used to locate this view in end-to-end tests.
