@@ -287,6 +287,11 @@ export interface DateTimePickerProps {
    * The style of the picker \ (iOS)
    */
   pickerStyleIOS?: ViewStyle;
+
+  /**
+   * Sets the first day of the week shown in the calendars
+   */
+  firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 type NativePickerProps =

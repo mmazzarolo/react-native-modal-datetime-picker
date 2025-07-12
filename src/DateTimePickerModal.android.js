@@ -18,6 +18,7 @@ const DateTimePickerModal = memo(
     onCancel,
     onConfirm,
     onHide = () => { },
+    firstDayOfWeek = 0,
     ...otherProps
   }) => {
     const currentDateRef = useRef(date);
@@ -80,6 +81,7 @@ DateTimePickerModal.propTypes = {
   onHide: PropTypes.func,
   maximumDate: PropTypes.instanceOf(Date),
   minimumDate: PropTypes.instanceOf(Date),
+  firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
 };
 
 export { DateTimePickerModal };
