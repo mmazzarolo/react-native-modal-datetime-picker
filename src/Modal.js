@@ -19,12 +19,14 @@ export class Modal extends Component {
     onHide: PropTypes.func,
     isVisible: PropTypes.bool,
     contentStyle: PropTypes.any,
+    animationType: PropTypes.oneOf(['none', 'fade', 'slide']),
   };
 
   static defaultProps = {
     onBackdropPress: () => null,
     onHide: () => null,
     isVisible: false,
+    animationType: 'slide',
   };
 
   state = {
@@ -75,27 +77,38 @@ export class Modal extends Component {
 
   show = () => {
     this.setState({ isVisible: true });
-    Animated.timing(this.animVal, {
-      easing: Easing.inOut(Easing.quad),
-      // Using native driver in the modal makes the content flash
-      useNativeDriver: false,
-      duration: MODAL_ANIM_DURATION,
-      toValue: 1,
-    }).start();
+    if (this.props.animationType === 'none') {
+      this.animVal.setValue(1);
+    } else {
+      Animated.timing(this.animVal, {
+        easing: Easing.inOut(Easing.quad),
+        // Using native driver in the modal makes the content flash
+        useNativeDriver: false,
+        duration: MODAL_ANIM_DURATION,
+        toValue: 1,
+      }).start();
+    }
   };
 
   hide = () => {
-    Animated.timing(this.animVal, {
-      easing: Easing.inOut(Easing.quad),
-      // Using native driver in the modal makes the content flash
-      useNativeDriver: false,
-      duration: MODAL_ANIM_DURATION,
-      toValue: 0,
-    }).start(() => {
+    if (this.props.animationType === 'none') {
+      this.animVal.setValue(0);
       if (this._isMounted) {
         this.setState({ isVisible: false }, this.props.onHide);
       }
-    });
+    } else {
+      Animated.timing(this.animVal, {
+        easing: Easing.inOut(Easing.quad),
+        // Using native driver in the modal makes the content flash
+        useNativeDriver: false,
+        duration: MODAL_ANIM_DURATION,
+        toValue: 0,
+      }).start(() => {
+        if (this._isMounted) {
+          this.setState({ isVisible: false }, this.props.onHide);
+        }
+      });
+    }
   };
 
   render() {
@@ -104,6 +117,7 @@ export class Modal extends Component {
       onBackdropPress,
       contentStyle,
       backdropStyle,
+      animationType,
       ...otherProps
     } = this.props;
     const { deviceHeight, deviceWidth, isVisible } = this.state;
@@ -113,17 +127,32 @@ export class Modal extends Component {
         outputRange: [0, MODAL_BACKDROP_OPACITY],
       }),
     };
-    const contentAnimatedStyle = {
-      transform: [
-        {
-          translateY: this.animVal.interpolate({
-            inputRange: [0, 1],
-            outputRange: [deviceHeight, 0],
-            extrapolate: "clamp",
-          }),
-        },
-      ],
-    };
+    
+    let contentAnimatedStyle = {};
+    
+    if (animationType === 'slide') {
+      contentAnimatedStyle = {
+        transform: [
+          {
+            translateY: this.animVal.interpolate({
+              inputRange: [0, 1],
+              outputRange: [deviceHeight, 0],
+              extrapolate: "clamp",
+            }),
+          },
+        ],
+      };
+    } else if (animationType === 'fade') {
+      contentAnimatedStyle = {
+        opacity: this.animVal.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, 1],
+        }),
+      };
+    } else if (animationType === 'none') {
+      contentAnimatedStyle = {};
+    }
+    
     return (
       <ReactNativeModal
         transparent
