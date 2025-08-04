@@ -6,7 +6,12 @@
 // TypeScript Version: 3.5
 
 import * as React from "react";
-import { ViewStyle } from "react-native";
+import {
+  ModalBaseProps,
+  ModalPropsIOS,
+  ViewStyle,
+  ViewProps
+} from 'react-native';
 import {
   IOSNativeProps,
   AndroidNativeProps,
@@ -218,7 +223,7 @@ export interface DateTimePickerProps {
    *
    * See https://reactnative.dev/docs/modal for the available props.
    */
-  modalPropsIOS?: Object;
+  modalPropsIOS?: ModalBaseProps & ModalPropsIOS & ViewProps;
 
   /**
    * Toggles the time mode on Android between spinner and clock views
