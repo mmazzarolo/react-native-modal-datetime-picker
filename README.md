@@ -116,6 +116,7 @@ export default Example;
 | `pickerContainerStyleIOS` | style     |              | The style of the picker container (iOS)                                                                                                     |
 | `pickerStyleIOS`          | style     |              | The style of the picker component wrapper (iOS)                                                                                             |
 | `pickerComponentStyleIOS` | style     |              | The style applied to the actual picker component - this can be either a native iOS picker or a custom one if `customPickerIOS` was provided |
+| `timeZoneName`            | string    |              | The timezone name to use for the picker. Example: `timeZoneName={Intl.DateTimeFormat().resolvedOptions().timeZone}`                        |
 
 ## Frequently Asked Questions
 
