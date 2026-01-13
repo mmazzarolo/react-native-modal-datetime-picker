@@ -68,5 +68,6 @@
     "*.md": [
       "prettier --write"
     ]
-  }
+  },
+  "packageManager": "yarn@3.7.0"
 }
